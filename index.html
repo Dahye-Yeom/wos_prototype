@@ -1,0 +1,2724 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WOS Prototype</title>
+    <link rel="stylesheet" href="./css/gnb.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="pc-gnb" aria-label="공통 전체 메뉴">
+        <div class="gnb-main">
+          <nav class="gnb-group" aria-label="빠른 메뉴">
+            <button class="gnb-menu" type="button" aria-label="접기" data-tooltip="접기">
+              <img src="./resources/Gnb/ico-system-1.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="AI" data-tooltip="AI">
+              <img src="./resources/Gnb/ico-module-15.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="포탈" data-tooltip="포탈">
+              <img src="./resources/Gnb/ico-module-12.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="알림" data-tooltip="알림">
+              <img src="./resources/Gnb/ico-module-10.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="메신저" data-tooltip="메신저">
+              <img src="./resources/Gnb/ico-module-9.svg" alt="">
+            </button>
+          </nav>
+
+          <span class="gnb-divider" aria-hidden="true"></span>
+
+          <nav class="gnb-group gnb-module-group" aria-label="업무 모듈">
+            <button class="gnb-menu" type="button" aria-label="메일" data-tooltip="메일">
+              <img src="./resources/Gnb/ico-module-8.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="일정관리" data-tooltip="일정관리">
+              <img src="./resources/Gnb/ico-module-11.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="전자결재" data-tooltip="전자결재">
+              <img src="./resources/Gnb/ico-module-7.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="스마트워크" data-tooltip="스마트워크">
+              <img src="./resources/Gnb/ico-module-6.svg" alt="">
+            </button>
+            <button class="gnb-menu is-active is-selected" type="button" aria-label="워크스페이스" aria-current="page" data-tooltip="워크스페이스">
+              <img src="./resources/Gnb-Menu/ico-module-27.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="근태관리" data-tooltip="근태관리">
+              <img src="./resources/Gnb/ico-module-4.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="문서관리" data-tooltip="문서관리">
+              <img src="./resources/Gnb/ico-module-14.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="자원예약" data-tooltip="자원예약">
+              <img src="./resources/Gnb/ico-module-3.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="드라이브" data-tooltip="드라이브">
+              <img src="./resources/Gnb/ico-module-2.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="설문관리" data-tooltip="설문관리">
+              <img src="./resources/Gnb/ico-module.svg" alt="">
+            </button>
+            <button class="gnb-menu" type="button" aria-label="전체 메뉴" data-tooltip="전체 메뉴">
+              <img src="./resources/Gnb/ico-module-13.svg" alt="">
+            </button>
+          </nav>
+        </div>
+
+        <div class="gnb-bottom">
+          <span class="gnb-divider" aria-hidden="true"></span>
+          <button class="gnb-menu" type="button" aria-label="설정" data-tooltip="설정">
+            <img src="./resources/Gnb/ico-system.svg" alt="">
+          </button>
+        </div>
+
+        <button class="gnb-avatar" type="button" aria-label="내 프로필" data-tooltip="내 프로필">
+          <img class="avatar-photo" src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">
+        </button>
+      </aside>
+
+      <aside class="workspace-lnb" aria-label="워크스페이스 메뉴">
+        <div class="lnb-panel is-active" id="lnbHomePanel">
+        <button class="lnb-home is-selected" type="button" data-route="workspace-home" data-screen-target="workspaceHomeScreen" data-lnb-target="lnbHomePanel">
+          <img src="./resources/Ico-System/app=submain, style=line.svg" alt="">
+          <span>워크스페이스 홈</span>
+        </button>
+
+        <nav class="lnb-scroll" aria-label="워크스페이스 탐색">
+          <div class="lnb-primary">
+            <button class="lnb-item" type="button" data-route="all-workspaces">
+              <img src="./resources/Ico-System/app=space, style=line.svg" alt="">
+              <span>전체 워크스페이스</span>
+            </button>
+            <button class="lnb-item" type="button" data-route="my-workspaces">
+              <img src="./resources/Ico-System/app=person, style=line.svg" alt="">
+              <span>내 워크스페이스</span>
+            </button>
+          </div>
+
+          <section class="lnb-section is-open">
+            <button class="lnb-section-head" type="button" aria-expanded="true">
+              <span>모아보기</span>
+              <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+            </button>
+            <div class="lnb-section-body">
+              <button class="lnb-item" type="button" data-route="assigned-tasks">
+                <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                <span>담당 작업</span>
+              </button>
+              <button class="lnb-item" type="button" data-route="bookmarks">
+                <img src="./resources/Ico-System/app=bookmark, style=line.svg" alt="">
+                <span>북마크</span>
+              </button>
+              <button class="lnb-item" type="button" data-route="shared-tasks">
+                <img src="./resources/Ico-System/app=people, style=line.svg" alt="">
+                <span>공유 작업</span>
+              </button>
+              <button class="lnb-item" type="button" data-route="favorite-boards">
+                <img src="./resources/Ico-System/app=pin, style=line.svg" alt="">
+                <span>관심 보드</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="lnb-section is-open">
+            <button class="lnb-section-head" type="button" aria-expanded="true">
+              <span>회사</span>
+              <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+            </button>
+            <div class="lnb-section-body">
+              <button class="lnb-item lnb-workspace" type="button" data-route="workspace-strategy" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-a"></span>
+                <span>전략기획팀</span>
+              </button>
+              <button class="lnb-item lnb-workspace" type="button" data-route="workspace-business" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-b"></span>
+                <span>사업관리팀</span>
+              </button>
+              <button class="lnb-item lnb-workspace" type="button" data-route="workspace-lab" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-c"></span>
+                <span>연구소 업무 공간</span>
+              </button>
+              <button class="lnb-item lnb-workspace" type="button" data-route="workspace-groupware" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-d"></span>
+                <span>세스코 그룹웨어 구축</span>
+              </button>
+              <button class="lnb-item lnb-workspace" type="button" data-route="workspace-erp" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-e"></span>
+                <span>매경미디어 ERP 고도화 프로젝트</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="lnb-section is-open">
+            <button class="lnb-section-head" type="button" aria-expanded="true">
+              <span>그룹사</span>
+              <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+            </button>
+            <div class="lnb-section-body">
+              <button class="lnb-item lnb-workspace" type="button" data-route="company-naonsoft" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-f"></span>
+                <span>나온소프트</span>
+              </button>
+              <button class="lnb-item lnb-workspace" type="button" data-route="company-electronics" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-g"></span>
+                <span>나온전자</span>
+              </button>
+              <button class="lnb-item lnb-workspace" type="button" data-route="company-semi" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-h"></span>
+                <span>나온반도체</span>
+              </button>
+              <button class="lnb-item lnb-workspace" type="button" data-route="company-ship" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-i"></span>
+                <span>나온조선</span>
+              </button>
+              <button class="lnb-item lnb-workspace" type="button" data-route="company-bio" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <span class="workspace-icon workspace-icon-j"></span>
+                <span>나온바이오</span>
+              </button>
+            </div>
+          </section>
+
+          <button class="lnb-item" type="button" data-route="drafts">
+            <img src="./resources/Ico-System/app=pencil, style=line.svg" alt="">
+            <span>임시보관함</span>
+          </button>
+        </nav>
+
+        <div class="lnb-tools" aria-label="워크스페이스 도구">
+          <button type="button" aria-label="휴지통" data-tooltip="휴지통">
+            <img src="./resources/Ico-System/app=trash, style=line.svg" alt="">
+          </button>
+          <button type="button" aria-label="사용자 설정" data-tooltip="사용자 설정">
+            <img src="./resources/Ico-System/app=controller, style=line.svg" alt="">
+          </button>
+          <button type="button" aria-label="모듈 설정" data-tooltip="모듈 설정">
+            <img src="./resources/Ico-System/app=gear, style=line.svg" alt="">
+          </button>
+        </div>
+        </div>
+
+        <div class="lnb-panel" id="lnbWorkspacePanel">
+          <button class="lnb-home" type="button" data-route="workspace-home" data-screen-target="workspaceHomeScreen" data-lnb-target="lnbHomePanel">
+            <img src="./resources/Ico-System/app=submain, style=line.svg" alt="">
+            <span>워크스페이스 홈</span>
+          </button>
+
+          <nav class="lnb-scroll" aria-label="개별 워크스페이스 메뉴">
+            <div class="lnb-primary">
+              <button class="lnb-item" type="button" data-route="all-workspaces">
+                <img src="./resources/Ico-System/app=space, style=line.svg" alt="">
+                <span>전체 워크스페이스</span>
+              </button>
+              <button class="lnb-item" type="button" data-route="my-workspaces">
+                <img src="./resources/Ico-System/app=person, style=line.svg" alt="">
+                <span>내 워크스페이스</span>
+              </button>
+            </div>
+
+            <section class="lnb-section is-open">
+              <button class="lnb-section-head" type="button" aria-expanded="true">
+                <span>모아보기</span>
+                <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+              </button>
+              <div class="lnb-section-body">
+                <button class="lnb-item" type="button" data-route="assigned-tasks">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>담당 작업</span>
+                </button>
+                <button class="lnb-item" type="button" data-route="bookmarks">
+                  <img src="./resources/Ico-System/app=bookmark, style=line.svg" alt="">
+                  <span>북마크</span>
+                </button>
+                <button class="lnb-item" type="button" data-route="shared-tasks">
+                  <img src="./resources/Ico-System/app=people, style=line.svg" alt="">
+                  <span>공유 작업</span>
+                </button>
+                <button class="lnb-item" type="button" data-route="favorite-boards">
+                  <img src="./resources/Ico-System/app=pin, style=line.svg" alt="">
+                  <span>관심 보드</span>
+                </button>
+              </div>
+            </section>
+
+            <div class="lnb-divider-line" aria-hidden="true"></div>
+
+            <div class="workspace-lnb-detail">
+              <div class="workspace-detail-head">
+                <button class="workspace-back-button" type="button" aria-label="워크스페이스 홈 LNB로 변경" data-lnb-target="lnbHomePanel">
+                  <img src="./resources/Ico-System/app=chevron-left-sm, style=line.svg" alt="">
+                </button>
+                <span class="workspace-icon workspace-icon-c"></span>
+                <strong>연구소 업무 공간</strong>
+              </div>
+
+              <div class="workspace-tree">
+                <button class="lnb-item is-selected" type="button" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                  <img src="./resources/Ico-System/app=info-circle, style=line.svg" alt="">
+                  <span>개요</span>
+                </button>
+                <button class="lnb-item" type="button" data-route-target="복합 대시보드">
+                  <img src="./resources/Ico-System/app=grid-2x2, style=line.svg" alt="">
+                  <span>복합 대시보드</span>
+                </button>
+
+                <section class="lnb-section workspace-folder is-open">
+                  <button class="lnb-section-head lnb-folder-head" type="button" aria-expanded="true">
+                    <span>
+                      <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                      전략
+                    </span>
+                    <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+                  </button>
+                  <div class="lnb-section-body">
+                    <button class="lnb-item lnb-child" type="button" data-route-target="전략 설계 현황 보드">
+                      <span>전략 설계 현황</span>
+                    </button>
+                    <button class="lnb-item lnb-child" type="button" data-route-target="전략 기획 위키">
+                      <span>전략 기획 위키</span>
+                    </button>
+                    <button class="lnb-item lnb-child" type="button" data-route-target="전사 전략 공유 게시판">
+                      <span>전사 전략 공유 게시판</span>
+                    </button>
+                  </div>
+                </section>
+
+                <section class="lnb-section workspace-folder is-open">
+                  <button class="lnb-section-head lnb-folder-head" type="button" aria-expanded="true">
+                    <span>
+                      <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                      설계
+                    </span>
+                    <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+                  </button>
+                  <div class="lnb-section-body">
+                    <button class="lnb-item lnb-child" type="button" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                      <span>솔루션 설계 관리</span>
+                    </button>
+                    <button class="lnb-item lnb-child" type="button" data-route-target="솔루션 기획 위키">
+                      <span>솔루션 기획 위키</span>
+                    </button>
+                    <button class="lnb-item lnb-child" type="button" data-route-target="화면설계서 완료 보고">
+                      <span>화면설계서 완료 보고</span>
+                    </button>
+                  </div>
+                </section>
+
+                <section class="lnb-section workspace-folder is-open">
+                  <button class="lnb-section-head lnb-folder-head" type="button" aria-expanded="true">
+                    <span>
+                      <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                      디자인
+                    </span>
+                    <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+                  </button>
+                  <div class="lnb-section-body">
+                    <button class="lnb-item lnb-child" type="button" data-route-target="GW 8.0 UIUX 검증 보드">
+                      <span>GW 8.0 UIUX 검증</span>
+                    </button>
+                  </div>
+                </section>
+
+                <section class="lnb-section workspace-folder is-open">
+                  <button class="lnb-section-head lnb-folder-head" type="button" aria-expanded="true">
+                    <span>
+                      <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                      개발
+                    </span>
+                    <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+                  </button>
+                  <div class="lnb-section-body">
+                    <button class="lnb-item lnb-child" type="button" data-route-target="신규 협업 모듈 보드">
+                      <span>신규 협업 모듈</span>
+                    </button>
+                  </div>
+                </section>
+
+                <button class="lnb-item workspace-setting-item" type="button" data-route-target="워크스페이스 설정">
+                  <img src="./resources/Ico-System/app=wrench, style=line.svg" alt="">
+                  <span>워크스페이스 설정</span>
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <div class="lnb-tools" aria-label="워크스페이스 도구">
+            <button type="button" aria-label="휴지통" data-tooltip="휴지통">
+              <img src="./resources/Ico-System/app=trash, style=line.svg" alt="">
+            </button>
+            <button type="button" aria-label="사용자 설정" data-tooltip="사용자 설정">
+              <img src="./resources/Ico-System/app=controller, style=line.svg" alt="">
+            </button>
+            <button type="button" aria-label="모듈 설정" data-tooltip="모듈 설정">
+              <img src="./resources/Ico-System/app=gear, style=line.svg" alt="">
+            </button>
+          </div>
+        </div>
+
+        <div class="lnb-panel" id="lnbWorkspacePanelLegacy">
+          <button class="lnb-home" type="button" data-route="workspace-home" data-screen-target="workspaceHomeScreen" data-lnb-target="lnbHomePanel">
+            <img src="./resources/Ico-System/app=submain, style=line.svg" alt="">
+            <span>워크스페이스 홈</span>
+          </button>
+
+          <nav class="lnb-scroll" aria-label="개별 워크스페이스 메뉴">
+            <section class="lnb-section is-open">
+              <button class="lnb-section-head" type="button" aria-expanded="true">
+                <span>모아보기</span>
+                <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+              </button>
+              <div class="lnb-section-body">
+                <button class="lnb-item" type="button" data-route="assigned-tasks">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>담당 작업</span>
+                </button>
+                <button class="lnb-item" type="button" data-route="bookmarks">
+                  <img src="./resources/Ico-System/app=bookmark, style=line.svg" alt="">
+                  <span>북마크</span>
+                </button>
+                <button class="lnb-item" type="button" data-route="shared-tasks">
+                  <img src="./resources/Ico-System/app=people, style=line.svg" alt="">
+                  <span>공유 작업</span>
+                </button>
+                <button class="lnb-item" type="button" data-route="favorite-boards">
+                  <img src="./resources/Ico-System/app=pin, style=line.svg" alt="">
+                  <span>관심 보드</span>
+                </button>
+              </div>
+            </section>
+
+            <div class="lnb-divider-line" aria-hidden="true"></div>
+
+            <section class="lnb-section is-open workspace-tree">
+              <button class="lnb-section-head workspace-title-head" type="button" aria-expanded="true">
+                <span class="workspace-icon workspace-icon-c"></span>
+                <strong>연구소 업무 공간</strong>
+                <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+              </button>
+              <div class="lnb-section-body">
+                <button class="lnb-item is-selected" type="button" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                  <img src="./resources/Ico-System/app=info-circle, style=line.svg" alt="">
+                  <span>개요</span>
+                </button>
+                <button class="lnb-item" type="button" data-route-target="복합 대시보드">
+                  <img src="./resources/Ico-System/app=grid-2x2, style=line.svg" alt="">
+                  <span>복합 대시보드</span>
+                </button>
+                <button class="lnb-item lnb-folder" type="button" data-route-target="전략 폴더">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>전략</span>
+                </button>
+                <button class="lnb-item lnb-child" type="button" data-route-target="전략 설계 현황 보드">
+                  <span>전략 설계 현황</span>
+                </button>
+                <button class="lnb-item lnb-folder" type="button" data-route-target="설계 폴더">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>설계</span>
+                </button>
+                <button class="lnb-item lnb-child" type="button" data-route-target="솔루션 설계 관리 보드">
+                  <span>솔루션 설계 관리</span>
+                </button>
+                <button class="lnb-item lnb-folder" type="button" data-route-target="디자인 폴더">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>디자인</span>
+                </button>
+                <button class="lnb-item lnb-child" type="button" data-route-target="GW 8.0 UIUX 검증 보드">
+                  <span>GW 8.0 UIUX 검증</span>
+                </button>
+                <button class="lnb-item lnb-folder" type="button" data-route-target="개발 폴더">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>개발</span>
+                </button>
+                <button class="lnb-item lnb-child" type="button" data-route-target="신규 협업 모듈 보드">
+                  <span>신규 협업 모듈</span>
+                </button>
+              </div>
+            </section>
+
+            <button class="lnb-item" type="button" data-route-target="워크스페이스 설정">
+              <img src="./resources/Ico-System/app=gear, style=line.svg" alt="">
+              <span>워크스페이스 설정</span>
+            </button>
+          </nav>
+
+          <div class="lnb-tools" aria-label="워크스페이스 도구">
+            <button type="button" aria-label="휴지통" data-tooltip="휴지통">
+              <img src="./resources/Ico-System/app=trash, style=line.svg" alt="">
+            </button>
+            <button type="button" aria-label="사용자 설정" data-tooltip="사용자 설정">
+              <img src="./resources/Ico-System/app=controller, style=line.svg" alt="">
+            </button>
+            <button type="button" aria-label="모듈 설정" data-tooltip="모듈 설정">
+              <img src="./resources/Ico-System/app=gear, style=line.svg" alt="">
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="prototype-stage" id="stage" tabindex="-1">
+        <section class="workspace-home prototype-screen is-active" id="workspaceHomeScreen" aria-labelledby="workspaceHomeTitle">
+          <header class="page-header">
+            <h1 id="workspaceHomeTitle">워크스페이스 홈</h1>
+            <div class="page-actions">
+              <button class="icon-button" type="button" aria-label="홈 설정" data-tooltip="홈 설정" data-home-toast="사용자 별로 원하는 목록으로 설정하는 화면이 뜹니다.">
+                <img src="./resources/Ico-System/app=gear, style=line.svg" alt="">
+              </button>
+              <button class="icon-button is-primary" type="button" aria-label="새 워크스페이스" data-screen-target="workspaceCreateScreen" data-tooltip="새 워크스페이스" data-tooltip-placement="top">
+                <img src="./resources/Ico-System/app=plus, style=line.svg" alt="">
+              </button>
+            </div>
+          </header>
+
+          <div class="home-content">
+            <section class="summary-hero" aria-label="작업 요약">
+              <div class="hero-copy">
+                <p>솔루션 설계 관리에서</p>
+                <strong>지연된 작업 3건<img class="hero-arrow-icon" src="./resources/Ico-System/right-up-arrow.svg" alt=""><em>이 있어요</em></strong>
+              </div>
+              <dl class="hero-stats">
+                <div>
+                  <dt>총 담당 작업</dt>
+                  <dd>12건 <span>↗</span></dd>
+                </div>
+                <div>
+                  <dt>대기 작업</dt>
+                  <dd>3건 <span>↗</span></dd>
+                </div>
+                <div>
+                  <dt>진행 작업</dt>
+                  <dd>4건 <span>↗</span></dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="home-section" aria-labelledby="recentWorkspaceTitle">
+              <div class="section-title-row">
+                <h2 id="recentWorkspaceTitle">최근 방문한 워크스페이스</h2>
+                <button class="text-more" type="button" data-home-toast="전체 워크스페이스 메뉴로 이동합니다.">더보기 <span>›</span></button>
+              </div>
+              <div class="workspace-card-grid">
+                <article class="workspace-card" tabindex="0" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                  <img class="card-illust" src="./resources/Img-Folder/0e5698fe581d9513e742bcb62b231dc357ef8295.png" alt="">
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=line.svg" alt="">
+                  <span class="chip chip-blue">관리자</span>
+                  <h3>워크스페이스 01</h3>
+                  <p>전략기획팀 워크스페이스입니다.</p>
+                  <div class="card-footer">
+                    <div class="avatar-stack" aria-label="참여자">
+                      <img src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">
+                      <span>김</span>
+                      <span>임</span>
+                    </div>
+                    <span>김나온 대리 외 3명</span>
+                  </div>
+                </article>
+
+                <article class="workspace-card" tabindex="0" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                  <img class="card-illust" src="./resources/Img-Folder/d89a4bc210de2a03bb9d0689fddaeabde232fdc5.png" alt="">
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=line.svg" alt="">
+                  <span class="chip chip-green">참여자</span>
+                  <h3>전략기획팀</h3>
+                  <p>전략기획팀 워크스페이스입니다.</p>
+                  <div class="card-footer">
+                    <div class="avatar-stack" aria-label="참여자">
+                      <img src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">
+                      <span>김</span>
+                      <span>박</span>
+                    </div>
+                    <span>김나온 대리 외 3명</span>
+                  </div>
+                </article>
+
+                <article class="workspace-card" tabindex="0" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                  <img class="card-illust" src="./resources/Img-Folder/48a2b90cd578e366a0a3988e5797323a6700c05f.png" alt="">
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=line.svg" alt="">
+                  <span class="chip chip-blue">관리자</span>
+                  <h3>연구소 업무 공간</h3>
+                  <p>연구소 협업공간입니다.</p>
+                  <div class="card-footer">
+                    <div class="avatar-stack" aria-label="참여자">
+                      <img src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">
+                      <span>김</span>
+                      <span>오</span>
+                    </div>
+                    <span>김나온 대리 외 2명</span>
+                  </div>
+                </article>
+
+                <article class="workspace-card" tabindex="0" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                  <img class="card-illust" src="./resources/Img-Folder/d94b4adfbfa35a7b83588585bf478f90bd9fa9c4.png" alt="">
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=line.svg" alt="">
+                  <span class="chip chip-blue">관리자</span>
+                  <h3>사업관리팀</h3>
+                  <p>사회 8차 공동개소 준비 업무 공유 공간입니다.</p>
+                  <div class="card-footer">
+                    <div class="avatar-stack" aria-label="참여자">
+                      <img src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">
+                      <span>김</span>
+                      <span>윤</span>
+                    </div>
+                    <span>김나온 대리 외 2명</span>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="home-section" aria-labelledby="recentBoardTitle">
+              <div class="section-title-row">
+                <h2 id="recentBoardTitle">최근 방문한 보드</h2>
+              </div>
+              <div class="board-card-grid">
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                  <span class="status-dot dot-yellow"></span>
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
+                  <span class="chip chip-blue board-permission">관리자</span>
+                  <h3>솔루션 설계 관리</h3>
+                  <p class="board-description">기획팀 업무 관리를 위한<br>보드입니다.</p>
+                  <div class="donut" style="--value: 10%; --color: #ffcc00"></div>
+                  <div class="board-metrics">
+                    <span>전체 작업 <strong>00건</strong></span>
+                    <span>완료됨 <strong>00건</strong></span>
+                    <span>완료율 <strong class="danger">10%</strong></span>
+                  </div>
+                </article>
+
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                  <span class="status-dot dot-blue"></span>
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
+                  <span class="chip chip-green board-permission">참여자</span>
+                  <h3>전략 설계 현황</h3>
+                  <p class="board-description">전략문서 설계를 관리하는<br>협업 보드입니다.</p>
+                  <div class="donut" style="--value: 50%; --color: #075ff4"></div>
+                  <div class="board-metrics">
+                    <span>전체 작업 <strong>00건</strong></span>
+                    <span>완료 작업 <strong>00건</strong></span>
+                    <span>완료율 <strong class="warn">50%</strong></span>
+                  </div>
+                </article>
+
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                  <span class="status-dot dot-green"></span>
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
+                  <span class="chip chip-blue board-permission">관리자</span>
+                  <h3>전략 설계 현황</h3>
+                  <p class="board-description">전략문서 설계를 관리하는<br>협업 보드입니다.</p>
+                  <div class="donut" style="--value: 99%; --color: #64bd00"></div>
+                  <div class="board-metrics">
+                    <span>전체 작업 <strong>00건</strong></span>
+                    <span>완료 작업 <strong>00건</strong></span>
+                    <span>완료율 <strong class="success">99%</strong></span>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="home-section" aria-labelledby="assignedTaskTitle">
+              <div class="section-title-row">
+                <h2 id="assignedTaskTitle">작업담당</h2>
+                <button class="text-more" type="button" data-home-toast="담당 작업 메뉴로 이동합니다.">더보기 <span>›</span></button>
+              </div>
+              <div class="list-panel">
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>신규 협업 모듈 설계</strong><em>연구소 업무 공간 › 설계 › 솔루션 설계 관리</em></span>
+                  <time>2025-08-14</time>
+                  <small>방금 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>공공결재 기업관계공통화</strong><em>연구소 업무 공간 › 설계 › 솔루션 설계 관리</em></span>
+                  <time>2025-08-15</time>
+                  <small>오늘</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>중간 보고 준비</strong><em>연구소 업무 공간 › 설계 › 솔루션 설계 관리</em></span>
+                  <time>2025-07-30</time>
+                  <small>어제</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>설문조사 분석</strong><em>연구소 업무 공간 › 설계 › 솔루션 설계 관리</em></span>
+                  <time>2025-07-14</time>
+                  <small>2일 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>외주업체 선정</strong><em>연구소 업무 공간 › 설계 › 솔루션 설계 관리</em></span>
+                  <time>2025-06-10</time>
+                  <small>2025-10-15</small>
+                </button>
+              </div>
+            </section>
+
+            <section class="home-section" aria-labelledby="activityTitle">
+              <h2 id="activityTitle">활동 내역</h2>
+              <div class="round-tabs" role="tablist" aria-label="활동 범위">
+                <button class="is-active" type="button" role="tab" aria-selected="true">내활동</button>
+                <button type="button" role="tab" aria-selected="false">전체 활동</button>
+              </div>
+              <div class="list-panel activity-panel">
+                <button class="task-row" type="button">
+                  <span><strong>신규 협업 모듈 설계 작업 등록</strong><em>연구소 업무 공간 › 8.0 프로젝트</em></span>
+                  <small>방금 전</small>
+                </button>
+                <button class="task-row" type="button">
+                  <span><strong>댓글 공통화 작업 완료일 항목 업데이트</strong><em>연구소 업무 공간 › 8.0 프로젝트</em></span>
+                  <small>오늘</small>
+                </button>
+                <button class="task-row" type="button">
+                  <span><strong>보드 보기 설정 권한 변경</strong><em>전략기획팀 › 솔루션 설계 관리</em></span>
+                  <small>오늘</small>
+                </button>
+                <button class="task-row" type="button">
+                  <span><strong>연구소 업무 공간 참여자 추가</strong><em>연구소 업무 공간 › 권한 설정</em></span>
+                  <small>어제</small>
+                </button>
+                <button class="task-row" type="button">
+                  <span><strong>외주업체 선정 작업 담당자 변경</strong><em>연구소 업무 공간 › 설계 › 솔루션 설계 관리</em></span>
+                  <small>어제</small>
+                </button>
+                <button class="task-row" type="button">
+                  <span><strong>전략 설계 현황 보드 생성</strong><em>전략기획팀 › 전략 설계 현황</em></span>
+                  <small>2일 전</small>
+                </button>
+                <button class="task-row" type="button">
+                  <span><strong>중간 보고 준비 완료일 수정</strong><em>연구소 업무 공간 › 설계 › 솔루션 설계 관리</em></span>
+                  <small>3일 전</small>
+                </button>
+                <button class="task-row" type="button">
+                  <span><strong>공통 댓글 항목 커스텀 필드 추가</strong><em>연구소 업무 공간 › 8.0 프로젝트</em></span>
+                  <small>이번 주</small>
+                </button>
+                <button class="task-row" type="button">
+                  <span><strong>사업관리팀 워크스페이스 설명 업데이트</strong><em>사업관리팀 › 기본 정보</em></span>
+                  <small>이번 주</small>
+                </button>
+                <button class="task-row" type="button">
+                  <span><strong>설문조사 분석 작업 북마크 등록</strong><em>연구소 업무 공간 › 설계 › 솔루션 설계 관리</em></span>
+                  <small>지난 주</small>
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="workspace-overview prototype-screen" id="workspaceOverviewScreen" aria-labelledby="workspaceOverviewTitle">
+          <header class="page-header overview-header">
+            <div class="overview-breadcrumb" id="workspaceOverviewTitle">
+              <button class="overview-breadcrumb-button" type="button" aria-expanded="false" aria-haspopup="menu" data-overview-menu-toggle>
+                <span>개요</span>
+                <span class="breadcrumb-icon" aria-hidden="true">
+                  <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                </span>
+              </button>
+              <div class="overview-menu" role="menu" aria-label="개별 워크스페이스 메뉴" data-overview-menu>
+                <button class="overview-menu-item is-selected" type="button" role="menuitem" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                  <img src="./resources/Ico-System/app=info-circle, style=line.svg" alt="">
+                  <span>개요</span>
+                  <img class="menu-check" src="./resources/Ico-System/app=check-s, style=line.svg" alt="">
+                </button>
+                <button class="overview-menu-item" type="button" role="menuitem" data-route-target="복합대시보드">
+                  <img src="./resources/Ico-System/app=grid-2x2, style=line.svg" alt="">
+                  <span>복합대시보드</span>
+                </button>
+                <button class="overview-menu-item" type="button" role="menuitem" data-route-target="전략">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>전략</span>
+                </button>
+                <button class="overview-menu-item" type="button" role="menuitem" data-route-target="설계">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>설계</span>
+                </button>
+                <button class="overview-menu-item" type="button" role="menuitem" data-route-target="디자인">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>디자인</span>
+                </button>
+                <button class="overview-menu-item" type="button" role="menuitem" data-route-target="개발">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>개발</span>
+                </button>
+                <button class="overview-menu-item" type="button" role="menuitem" data-route-target="워크스페이스 설정">
+                  <img src="./resources/Ico-System/app=wrench, style=line.svg" alt="">
+                  <span>워크스페이스 설정</span>
+                </button>
+              </div>
+            </div>
+            <button class="icon-button" type="button" aria-label="워크스페이스 설정" data-route-target="워크스페이스 설정">
+              <img src="./resources/Ico-System/app=gear, style=line.svg" alt="">
+            </button>
+          </header>
+
+          <div class="overview-content">
+            <section class="overview-hero" aria-label="워크스페이스 정보">
+              <div class="overview-identity">
+                <span class="workspace-icon workspace-icon-c overview-workspace-icon"></span>
+                <div>
+                  <div class="overview-title-row">
+                    <h2>연구소 업무 공간</h2>
+                    <span class="chip chip-blue">공개</span>
+                  </div>
+                  <p>전략, 설계, 디자인, 개발팀 업무 공간입니다.</p>
+                </div>
+              </div>
+              <dl class="overview-members">
+                <div>
+                  <dt>관리자</dt>
+                  <dd>
+                    <span class="avatar-stack">
+                      <img src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">
+                      <span>김</span>
+                    </span>
+                    김나온
+                  </dd>
+                </div>
+                <div>
+                  <dt>참여자</dt>
+                  <dd>
+                    <span class="avatar-stack">
+                      <img src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">
+                      <span>박</span>
+                      <span>+3</span>
+                    </span>
+                    5명
+                  </dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="home-section" aria-labelledby="overviewRecentBoardTitle">
+              <div class="section-title-row">
+                <h2 id="overviewRecentBoardTitle">최근 방문한 보드</h2>
+              </div>
+              <div class="board-card-grid overview-board-grid">
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                  <span class="status-dot dot-blue"></span>
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
+                  <span class="chip chip-blue board-permission">관리자</span>
+                  <h3>전략 설계 현황</h3>
+                  <p class="board-description">전략 문서 설계를 관리하는<br>작업 보드입니다.</p>
+                  <div class="donut" style="--value: 50%; --color: #0078ff"></div>
+                  <div class="board-metrics">
+                    <span>전체 작업 <strong>24건</strong></span>
+                    <span>완료 작업 <strong>12건</strong></span>
+                    <span>완료율 <strong class="warn">50%</strong></span>
+                  </div>
+                </article>
+
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                  <span class="status-dot dot-yellow"></span>
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
+                  <span class="chip chip-green board-permission">참여자</span>
+                  <h3>GW 8.0 UIUX 검증</h3>
+                  <p class="board-description">화면 검증과 피드백을<br>정리하는 보드입니다.</p>
+                  <div class="donut" style="--value: 10%; --color: #ffcc00"></div>
+                  <div class="board-metrics">
+                    <span>전체 작업 <strong>30건</strong></span>
+                    <span>완료 작업 <strong>3건</strong></span>
+                    <span>완료율 <strong class="danger">10%</strong></span>
+                  </div>
+                </article>
+
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                  <span class="status-dot dot-green"></span>
+                  <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
+                  <span class="chip chip-blue board-permission">관리자</span>
+                  <h3>솔루션 설계 관리</h3>
+                  <p class="board-description">솔루션 구조와 정책 설계를<br>추적하는 보드입니다.</p>
+                  <div class="donut" style="--value: 99%; --color: #64bd00"></div>
+                  <div class="board-metrics">
+                    <span>전체 작업 <strong>18건</strong></span>
+                    <span>완료 작업 <strong>17건</strong></span>
+                    <span>완료율 <strong class="success">99%</strong></span>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="home-section" aria-labelledby="overviewTaskTitle">
+              <div class="section-title-row">
+                <h2 id="overviewTaskTitle">담당 작업</h2>
+                <button class="text-more" type="button" data-route-target="담당 작업">더보기<span>›</span></button>
+              </div>
+              <div class="list-panel">
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>신규 협업 모듈 설계</strong><em>연구소 업무 공간 > 개발 > 신규 협업 모듈</em></span>
+                  <time>2025-08-14</time>
+                  <small>방금 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>공공결재, 기업결재 공통화</strong><em>연구소 업무 공간 > 설계 > 솔루션 설계 관리</em></span>
+                  <time>2025-08-15</time>
+                  <small>오늘</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>중간 보고 준비</strong><em>연구소 업무 공간 > 전략 > 전략 설계 현황</em></span>
+                  <time>2025-07-30</time>
+                  <small>어제</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>설문조사 분석</strong><em>연구소 업무 공간 > 디자인 > GW 8.0 UIUX 검증</em></span>
+                  <time>2025-07-14</time>
+                  <small>2일 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>외주업체 선정</strong><em>연구소 업무 공간 > 전략 > 전략 설계 현황</em></span>
+                  <time>2025-06-10</time>
+                  <small>2025-10-15</small>
+                </button>
+              </div>
+            </section>
+
+            <section class="home-section" aria-labelledby="overviewActivityTitle">
+              <h2 id="overviewActivityTitle">활동 내역</h2>
+              <div class="list-panel activity-panel">
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>신규 협업 모듈 설계 작업 등록</strong><em>연구소 업무 공간 > 개발 > 신규 협업 모듈</em></span>
+                  <small>방금 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>공통화 작업 완료율 항목 업데이트</strong><em>연구소 업무 공간 > 설계 > 솔루션 설계 관리</em></span>
+                  <small>10분 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>GW 8.0 UIUX 검증 보드 댓글 추가</strong><em>연구소 업무 공간 > 디자인 > GW 8.0 UIUX 검증</em></span>
+                  <small>1시간 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>전략 설계 현황 작업 상태 변경</strong><em>연구소 업무 공간 > 전략 > 전략 설계 현황</em></span>
+                  <small>3시간 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>전사 전략 공유 자료 검토</strong><em>연구소 업무 공간 > 전략 > 전략 설계 현황</em></span>
+                  <small>5시간 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>솔루션 기획 검토 항목 수정</strong><em>연구소 업무 공간 > 설계 > 솔루션 설계 관리</em></span>
+                  <small>7시간 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>화면설계서 완료 보고 파일 첨부</strong><em>연구소 업무 공간 > 설계 > 솔루션 설계 관리</em></span>
+                  <small>9시간 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>참여자 권한 업데이트</strong><em>연구소 업무 공간 > 워크스페이스 설정</em></span>
+                  <small>12시간 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>전략 기획 참고 링크 추가</strong><em>연구소 업무 공간 > 전략 > 전략 설계 현황</em></span>
+                  <small>15시간 전</small>
+                </button>
+                <button class="task-row" type="button" data-route-target="작업 상세">
+                  <span><strong>솔루션 설계 관리 보드 보기 설정 변경</strong><em>연구소 업무 공간 > 설계 > 솔루션 설계 관리</em></span>
+                  <small>18시간 전</small>
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="board-dashboard-screen prototype-screen" id="boardDashboardScreen" aria-labelledby="boardDashboardTitle">
+          <header class="page-header board-dashboard-header">
+            <div class="board-breadcrumb" id="boardDashboardTitle">
+              <span>설계</span>
+              <img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt="">
+              <strong>솔루션 설계 관리</strong>
+              <button class="breadcrumb-icon-button" type="button" aria-label="보드 메뉴" aria-expanded="false" data-popover-toggle="boardBreadcrumbPopover">
+                <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+              </button>
+              <div class="board-popover board-breadcrumb-popover" id="boardBreadcrumbPopover" role="menu">
+                <button class="is-selected" type="button" role="menuitem">
+                  <span>솔루션 설계 관리</span>
+                  <img src="./resources/Ico-System/app=check-s, style=line.svg" alt="">
+                </button>
+                <button type="button" role="menuitem" data-route-target="솔루션 기획 위키">솔루션 기획 위키</button>
+                <button type="button" role="menuitem" data-route-target="화면설계서 완료 보고">화면설계서 완료 보고</button>
+              </div>
+            </div>
+            <div class="page-actions board-header-actions">
+              <div class="board-action-wrap">
+              <button class="icon-button" type="button" aria-label="대시보드 설정" aria-expanded="false" data-popover-toggle="boardSettingsPopover">
+                <img src="./resources/Ico-System/app=gear, style=line.svg" alt="">
+              </button>
+                <div class="board-popover board-action-popover" id="boardSettingsPopover" role="menu">
+                  <button type="button" role="menuitem" data-route-target="권한 추가">권한 추가</button>
+                  <button type="button" role="menuitem" data-route-target="보드 설정">보드 설정</button>
+                  <button type="button" role="menuitem" data-route-target="보드 삭제">보드 삭제</button>
+                  <button type="button" role="menuitem" data-route-target="템플릿으로 저장">템플릿으로 저장</button>
+                  <button type="button" role="menuitem" data-route-target="보관함 관리">보관함 관리</button>
+                </div>
+              </div>
+              <div class="board-action-wrap">
+              <button class="icon-button" type="button" aria-label="더보기" aria-expanded="false" data-popover-toggle="boardMorePopover">
+                <img src="./resources/Ico-System/app=kebab, style=line.svg" alt="">
+              </button>
+                <div class="board-popover board-action-popover" id="boardMorePopover" role="menu">
+                  <button type="button" role="menuitem" data-route-target="URL 복사">URL 복사</button>
+                  <button type="button" role="menuitem" data-route-target="즐겨찾기 추가">즐겨찾기 추가</button>
+                  <button type="button" role="menuitem" data-route-target="포틀릿 추가">포틀릿 추가</button>
+                  <button type="button" role="menuitem" data-route-target="관심 보드로 추가">관심 보드로 추가</button>
+                  <button type="button" role="menuitem" data-route-target="AI 연결">AI 연결</button>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <nav class="board-view-tabs" aria-label="보드 보기 타입">
+            <button class="is-active" type="button" role="tab" aria-selected="true" draggable="true" data-tab-drag data-board-view="dashboard">
+              <img src="./resources/Ico-System/app=graph, style=line.svg" alt="" data-default-icon="./resources/Ico-System/app=graph, style=line.svg">
+              대시보드
+            </button>
+            <button type="button" role="tab" aria-selected="false" draggable="true" data-tab-drag data-board-view="table">
+              <img src="./resources/Ico-System/app=grid-3x3, style=line.svg" alt="" data-default-icon="./resources/Ico-System/app=grid-3x3, style=line.svg">
+              테이블
+            </button>
+            <button type="button" role="tab" aria-selected="false" draggable="true" data-tab-drag data-board-view="kanban">
+              <img src="./resources/Ico-System/app=two-cal, style=line.svg" alt="" data-default-icon="./resources/Ico-System/app=two-cal, style=line.svg">
+              칸반
+            </button>
+            <button type="button" role="tab" aria-selected="false" draggable="true" data-tab-drag data-board-view="gantt">
+              <img src="./resources/Ico-System/app=grid-1x2, style=line.svg" alt="" data-default-icon="./resources/Ico-System/app=grid-1x2, style=line.svg">
+              간트
+            </button>
+            <button type="button" role="tab" aria-selected="false" draggable="true" data-tab-drag data-board-view="feed">
+              <img src="./resources/Ico-System/app=paper, style=line.svg" alt="" data-default-icon="./resources/Ico-System/app=paper, style=line.svg">
+              피드
+            </button>
+            <div class="board-add-wrap">
+              <button class="board-add-tab" type="button" aria-expanded="false" data-popover-toggle="boardAddViewPopover">
+                <img src="./resources/Ico-System/app=plus, style=line.svg" alt="">
+                추가
+              </button>
+              <div class="board-popover board-add-popover" id="boardAddViewPopover" role="menu">
+                <button type="button" role="menuitem" data-route-target="테이블 보기 추가">테이블</button>
+                <button type="button" role="menuitem" data-route-target="칸반 보기 추가">칸반</button>
+                <button type="button" role="menuitem" data-route-target="캘린더 보기 추가">캘린더</button>
+                <button type="button" role="menuitem" data-route-target="간트 보기 추가">간트</button>
+                <button type="button" role="menuitem" data-route-target="피드 보기 추가">피드</button>
+                <button type="button" role="menuitem" data-route-target="목록 보기 추가">목록</button>
+                <button type="button" role="menuitem" data-route-target="페이지 보기 추가">페이지</button>
+                <button type="button" role="menuitem" data-route-target="URL 연결 보기 추가">URL 연결</button>
+                <button type="button" role="menuitem" data-route-target="첨부파일 모아보기 추가">첨부파일 모아보기</button>
+              </div>
+            </div>
+          </nav>
+
+          <div class="dashboard-content board-view-panel is-active" data-board-panel="dashboard">
+            <div class="dashboard-title-area">
+              <div class="dashboard-type-wrap">
+                <button class="dashboard-select" type="button" aria-expanded="false" data-popover-toggle="dashboardTypePopover">
+                  <span data-dashboard-type-label>기본 대시보드</span>
+                  <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                </button>
+                <div class="board-popover dashboard-type-popover" id="dashboardTypePopover" role="menu">
+                  <button type="button" role="menuitem" data-dashboard-type="기본 대시보드">
+                    <span>기본 대시보드</span>
+                    <img src="./resources/Ico-System/app=pencil, style=line.svg" alt="">
+                  </button>
+                  <button type="button" role="menuitem" data-dashboard-type="완료 제외">
+                    <span>완료 제외</span>
+                    <img src="./resources/Ico-System/app=pencil, style=line.svg" alt="">
+                  </button>
+                  <button class="dashboard-type-add" type="button" data-route-target="대시보드 추가">
+                    <img src="./resources/Ico-System/app=plus, style=line.svg" alt="">
+                    추가
+                  </button>
+                </div>
+              </div>
+
+              <section class="dashboard-summary" aria-label="보드 작업 요약">
+                <div class="dashboard-period-wrap">
+                  <button class="dashboard-period-title" type="button" aria-expanded="false" data-popover-toggle="dashboardPeriodPopover">
+                    <span data-dashboard-period-label>지난 7일 동안</span>
+                    <img src="./resources/Ico-System/app=chevron-down, style=filled.svg" alt="">
+                  </button>
+                  <div class="board-popover dashboard-period-popover" id="dashboardPeriodPopover" role="menu">
+                    <button type="button" role="menuitem" data-period-label="전체">
+                      <span>전체</span>
+                      <img src="./resources/Ico-System/app=check-s, style=line.svg" alt="">
+                    </button>
+                    <button class="is-selected" type="button" role="menuitem" data-period-label="지난 7일 동안">
+                      <span>이번 주</span>
+                      <img src="./resources/Ico-System/app=check-s, style=line.svg" alt="">
+                    </button>
+                    <button type="button" role="menuitem" data-period-label="이번 달">
+                      <span>이번 달</span>
+                      <img src="./resources/Ico-System/app=check-s, style=line.svg" alt="">
+                    </button>
+                    <button type="button" role="menuitem" data-period-label="직접 설정">
+                      <span>직접 설정</span>
+                      <img src="./resources/Ico-System/app=check-s, style=line.svg" alt="">
+                    </button>
+                  </div>
+                </div>
+                <div class="dashboard-summary-row">
+                  <h2 data-dashboard-summary-text>총 <strong>102</strong>건의 작업이 있어요.</h2>
+                  <div class="summary-nav">
+                    <button type="button" aria-label="이전 작업 요약" data-summary-step="-1">‹</button>
+                    <button type="button" aria-label="다음 작업 요약" data-summary-step="1">›</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="dashboard-layout">
+              <div class="dashboard-main">
+                <section class="dashboard-card status-chart-card">
+                  <h3>상태별 작업 현황</h3>
+                  <div class="dashboard-donut" tabindex="0" aria-label="전체 작업 102건, 대기 22건, 진행 50건, 완료 30건">
+                    <div class="donut-center">
+                      <span>전체 작업</span>
+                      <strong>102</strong>
+                    </div>
+                    <div class="donut-hover-labels" aria-hidden="true">
+                      <span class="wait">대기 22건</span>
+                      <span class="progress">진행 50건</span>
+                      <span class="done">완료 30건</span>
+                    </div>
+                  </div>
+                  <ul class="chart-legend">
+                    <li><span class="legend-dot gray"></span>대기 작업 <strong>22</strong></li>
+                    <li><span class="legend-dot blue"></span>진행 작업 <strong>50</strong></li>
+                    <li><span class="legend-dot light"></span>완료 작업 <strong>30</strong></li>
+                  </ul>
+                </section>
+
+                <section class="dashboard-card assignee-chart-card">
+                  <h3>담당자별 작업 현황</h3>
+                  <div class="bar-list">
+                    <div>
+                      <span><i class="assignee-avatar" aria-hidden="true">김</i>김나온</span>
+                      <b style="--bar:100%"></b>
+                      <em>28건</em>
+                    </div>
+                    <div>
+                      <span><i class="assignee-avatar" aria-hidden="true">나</i>나문구</span>
+                      <b style="--bar:75%"></b>
+                      <em>21건</em>
+                    </div>
+                    <div>
+                      <span><i class="assignee-avatar" aria-hidden="true">이</i>이영희</span>
+                      <b style="--bar:67.86%"></b>
+                      <em>19건</em>
+                    </div>
+                    <div>
+                      <span><i class="assignee-avatar" aria-hidden="true">이</i>이철수</span>
+                      <b style="--bar:64.29%"></b>
+                      <em>18건</em>
+                    </div>
+                    <div>
+                      <span><i class="assignee-avatar" aria-hidden="true">홍</i>홍길동</span>
+                      <b style="--bar:57.14%"></b>
+                      <em>16건</em>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="dashboard-card start-date-card">
+                  <h3>시작일 별 작업 수</h3>
+                  <div class="start-chart" aria-label="시작일 별 작업 수. 07-06 8건, 07-07 12건, 07-08 18건, 07-09 14건, 07-10 22건, 07-11 16건, 07-12 12건">
+                    <svg viewBox="0 0 640 230" role="img" aria-hidden="true">
+                      <g class="chart-grid">
+                        <line x1="42" y1="30" x2="610" y2="30"></line>
+                        <line x1="42" y1="80" x2="610" y2="80"></line>
+                        <line x1="42" y1="130" x2="610" y2="130"></line>
+                        <line x1="42" y1="180" x2="610" y2="180"></line>
+                      </g>
+                      <g class="chart-y-labels">
+                        <text x="18" y="34">24</text>
+                        <text x="18" y="84">16</text>
+                        <text x="24" y="134">8</text>
+                        <text x="24" y="184">0</text>
+                      </g>
+                      <path class="start-area" d="M42 126.7 C72 118 92 110 136.7 105 C176 101 190 62 231.3 67.5 C270 73 286 91 326 86.7 C366 82 380 39 420.7 43.3 C462 47 470 73 515.3 73.3 C554 73 574 93 610 105 L610 180 L42 180 Z"></path>
+                      <path class="start-line" d="M42 126.7 C72 118 92 110 136.7 105 C176 101 190 62 231.3 67.5 C270 73 286 91 326 86.7 C366 82 380 39 420.7 43.3 C462 47 470 73 515.3 73.3 C554 73 574 93 610 105"></path>
+                      <g class="chart-points">
+                        <circle cx="42" cy="126.7" r="3.5"></circle>
+                        <circle cx="136.7" cy="105" r="3.5"></circle>
+                        <circle cx="231.3" cy="67.5" r="3.5"></circle>
+                        <circle cx="326" cy="86.7" r="3.5"></circle>
+                        <circle cx="420.7" cy="43.3" r="3.5"></circle>
+                        <circle cx="515.3" cy="73.3" r="3.5"></circle>
+                        <circle cx="610" cy="105" r="3.5"></circle>
+                      </g>
+                      <g class="chart-x-labels">
+                        <text x="42" y="214">07-06</text>
+                        <text x="136.7" y="214">07-07</text>
+                        <text x="231.3" y="214">07-08</text>
+                        <text x="326" y="214">07-09</text>
+                        <text x="420.7" y="214">07-10</text>
+                        <text x="515.3" y="214">07-11</text>
+                        <text x="610" y="214">07-12</text>
+                      </g>
+                    </svg>
+                    <ul class="start-chart-values">
+                      <li><span>07-06</span><strong>8</strong></li>
+                      <li><span>07-07</span><strong>12</strong></li>
+                      <li><span>07-08</span><strong>18</strong></li>
+                      <li><span>07-09</span><strong>14</strong></li>
+                      <li><span>07-10</span><strong>22</strong></li>
+                      <li><span>07-11</span><strong>16</strong></li>
+                      <li><span>07-12</span><strong>12</strong></li>
+                    </ul>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="dashboard-activity" aria-label="최근 활동">
+                <div class="activity-tabs" role="tablist" aria-label="활동 목록">
+                  <button type="button" role="tab" aria-selected="false" data-activity-tab="delayed">
+                    지연된 작업 <strong>3</strong>
+                  </button>
+                  <button class="is-active" type="button" role="tab" aria-selected="true" data-activity-tab="recent">
+                    최근활동
+                  </button>
+                </div>
+
+                <div class="activity-panel" data-activity-panel="delayed" role="tabpanel" hidden>
+                  <div class="activity-timeline">
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot blue">김</span>
+                      <p><strong>김철수</strong> 님의 <b>웹 애플리케이션 성능 개선 요청 <em class="priority-chip normal">보통</em></b> 작업이 지연되었습니다.</p>
+                      <small>마감 1일 지남</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot">홍</span>
+                      <p><strong>홍길동</strong> 님의 <b>모바일 전자결재 개선 요구사항 정리 <em class="priority-chip high">높음</em></b> 작업이 지연되었습니다.</p>
+                      <small>마감 2일 지남</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot pink">이</span>
+                      <p><strong>이영희</strong> 님의 <b>데이터 시각화 기능 추가 요청 <em class="priority-chip normal">보통</em></b> 작업이 지연되었습니다.</p>
+                      <small>마감 3일 지남</small>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="activity-panel is-active" data-activity-panel="recent" role="tabpanel">
+                  <div class="activity-timeline">
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot has-photo">
+                        <img src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">
+                      </span>
+                      <p><strong>홍길동</strong> 님이 <b>모바일 전자결재 개선 요구사항 정리 <em class="priority-chip high">높음</em></b>에서 <mark>항목명</mark>을 수정했습니다.</p>
+                      <small>2분 전</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot blue">김</span>
+                      <p><strong>김철수</strong> 님이 <b>웹 애플리케이션 성능 개선 요청 <em class="priority-chip normal">보통</em></b>에서 <mark>완료일</mark>을 수정했습니다.</p>
+                      <small>1시간 전</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot pink">이</span>
+                      <p><strong>이영희</strong> 님이 <b>데이터 시각화 기능 추가 요청 <em class="priority-chip normal">보통</em></b>에서 <mark>담당자</mark>를 수정했습니다.</p>
+                      <small>2시간 전</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot pink">이</span>
+                      <p><strong>이영희</strong> 님이 <b>데이터 시각화 기능 추가 요청 <em class="priority-chip normal">보통</em></b>에 <mark>하위 작업</mark>을 추가했습니다.</p>
+                      <small>2시간 전</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot blue">김</span>
+                      <p><strong>김나온</strong> 님이 <b>사용자 권한 관리 정책 정리 <em class="priority-chip high">높음</em></b>에서 <mark>담당자</mark>를 수정했습니다.</p>
+                      <small>3시간 전</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot">홍</span>
+                      <p><strong>홍길동</strong> 님이 <b>메신저 알림 정책 개선안 <em class="priority-chip normal">보통</em></b>에서 <mark>우선순위</mark>를 수정했습니다.</p>
+                      <small>오늘 오전 10:20</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot pink">이</span>
+                      <p><strong>이철수</strong> 님이 <b>공통 컴포넌트 사용성 검토 <em class="priority-chip normal">보통</em></b>에서 <mark>진행 상태</mark>를 수정했습니다.</p>
+                      <small>오늘 오전 9:45</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot blue">나</span>
+                      <p><strong>나문구</strong> 님이 <b>워크스페이스 초대 플로우 정리 <em class="priority-chip high">높음</em></b>에서 <mark>설명</mark>을 수정했습니다.</p>
+                      <small>어제 오후 5:10</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot">홍</span>
+                      <p><strong>홍길동</strong> 님이 <b>대시보드 필터 동작 정의 <em class="priority-chip normal">보통</em></b>에서 <mark>완료일</mark>을 수정했습니다.</p>
+                      <small>어제 오후 3:30</small>
+                    </button>
+                    <button type="button" data-route-target="작업 상세">
+                      <span class="activity-node"></span>
+                      <span class="avatar-dot pink">이</span>
+                      <p><strong>이영희</strong> 님이 <b>데이터 연동 예외 처리 개선 <em class="priority-chip normal">보통</em></b>에서 <mark>첨부 파일</mark>을 삭제했습니다.</p>
+                      <small>어제 오전 11:00</small>
+                    </button>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="kanban-view-content board-view-panel" data-board-panel="kanban">
+            <div class="kanban-view-shell">
+              <section class="kanban-board-area" aria-label="칸반 형 보기">
+                <div class="table-toolbar kanban-toolbar">
+                  <div class="table-toolbar-left">
+                    <button class="table-icon-button" type="button" aria-label="검색">
+                      <img src="./resources/Ico-System/app=search, style=line.svg" alt="">
+                    </button>
+                    <div class="toolbar-view-wrap">
+                      <button class="table-filter-button toolbar-view-button" type="button" aria-haspopup="menu" aria-expanded="false" data-toolbar-view-toggle>
+                        <span data-toolbar-view-label>기본</span>
+                        <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                      </button>
+                      <div class="toolbar-view-popover" role="menu" data-toolbar-view-popover hidden>
+                        <div class="toolbar-view-actions">
+                          <button type="button" aria-label="화면 추가" data-toolbar-view-toast="사용자 별로 맞춤형 화면을 추가하여 저장할 수 있습니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                          <button type="button" aria-label="순서 변경" data-toolbar-view-toast="화면들 간 순서를 변경할 수 있습니다."><img src="./resources/Ico-System/app=order-updown, style=line.svg" alt=""></button>
+                          <button type="button" aria-label="화면 저장" data-toolbar-view-toast="인터랙션으로 설정한 현재 화면을 저장할 수 있습니다."><img src="./resources/Ico-System/app=disk, style=line.svg" alt=""></button>
+                        </div>
+                        <div class="toolbar-view-divider" aria-hidden="true"></div>
+                        <div class="toolbar-view-list">
+                          <button type="button" role="menuitem" data-toolbar-view-option="기본"><span>기본</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                          <button type="button" role="menuitem" data-toolbar-view-option="진행중"><span>진행중</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                          <button type="button" role="menuitem" data-toolbar-view-option="우리팀만"><span>우리팀만</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="toolbar-filter-wrap">
+                      <div class="toolbar-filter-group">
+                        <button class="table-icon-button toolbar-filter-main" type="button" aria-label="필터" data-open-filter-canvas>
+                          <img src="./resources/Ico-System/app=funnel, style=line.svg" alt="">
+                        </button>
+                        <button class="table-icon-button toolbar-filter-arrow" type="button" aria-label="기본 필터" aria-haspopup="menu" aria-expanded="false" data-basic-filter-toggle>
+                          <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                        </button>
+                      </div>
+                      <div class="basic-filter-popover" role="menu" data-basic-filter-popover hidden>
+                        <h4>기본 필터</h4>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>내가 담당하고 있는 작업</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>완료 작업 제외</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>지연된 작업</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>안읽은 작업</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>안읽은 댓글</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>내가 쓴 댓글</button>
+                      </div>
+                    </div>
+                    <button class="table-icon-button" type="button" aria-label="내보내기" data-task-action-toast="항목을 선택하여 엑셀 또는 PDF로 다운받을 수 있는 기능을 제공합니다.">
+                      <img src="./resources/Ico-System/app=export, style=line.svg" alt="">
+                    </button>
+                    <button class="table-icon-button" type="button" aria-label="더보기" data-task-action-toast="보기 타입 별로 추가 설정을 제공합니다.">
+                      <img src="./resources/Ico-System/app=kebab, style=line.svg" alt="">
+                    </button>
+                  </div>
+                  <button class="table-add-button" type="button" data-open-create-task aria-label="작업 등록">
+                    <img src="./resources/Ico-System/app=plus, style=line.svg" alt="">
+                  </button>
+                </div>
+
+                <div class="kanban-board-scroll" aria-label="작업 단계별 목록">
+                  <section class="kanban-column waiting" aria-labelledby="kanbanWaiting">
+                    <header class="kanban-column-head">
+                      <h3 id="kanbanWaiting"><span class="kanban-column-title">대기</span><span class="kanban-column-count">3</span></h3>
+                      <button type="button" aria-label="대기 컬럼 축소" aria-expanded="true" data-kanban-column-toggle><img src="./resources/Ico-System/app=collapse, style=line.svg" alt=""></button>
+                    </header>
+                    <div class="kanban-card-list">
+                      <article class="kanban-card priority-normal" tabindex="0" data-open-task-panel>
+                        <div class="kanban-card-top"><span class="fake-checkbox"></span><span>plan-1001</span><b class="stage-waiting">대기</b><em><i></i>보통</em><button type="button" aria-label="더보기"><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button></div>
+                        <h4>스마트워크 보고 양식 개선</h4>
+                        <div class="kanban-card-assignee"><small>담당자</small><span><span class="table-avatar yellow">윤</span>윤대현</span></div>
+                        <div class="kanban-card-date"><span>등록일</span><time>2025-11-15</time></div>
+                      </article>
+                      <article class="kanban-card priority-normal" tabindex="0" data-open-task-panel>
+                        <div class="kanban-card-top"><span class="fake-checkbox"></span><span>plan-1004</span><b class="stage-waiting">대기</b><em><i></i>보통</em><button type="button" aria-label="더보기"><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button></div>
+                        <h4>외부 연동 가이드 초안 작성 (Google 캘린더 연동)</h4>
+                        <div class="kanban-card-assignee"><small>담당자</small><span><span class="table-avatar violet">박</span>박정훈</span></div>
+                        <div class="kanban-card-date"><span>등록일</span><time>2025-11-15</time></div>
+                      </article>
+                      <article class="kanban-card priority-normal" tabindex="0" data-open-task-panel>
+                        <div class="kanban-card-top"><span class="fake-checkbox"></span><span>plan-1020</span><b class="stage-waiting">대기</b><em><i></i>보통</em><button type="button" aria-label="더보기"><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button></div>
+                        <h4>게시판 사용자 시나리오</h4>
+                        <div class="kanban-card-assignee"><small>담당자</small><span><span class="table-avatar yellow">윤</span>윤대현</span></div>
+                        <div class="kanban-card-date"><span>등록일</span><time>yyyy-mm-dd</time></div>
+                      </article>
+                      <article class="kanban-card priority-normal" tabindex="0" data-open-task-panel>
+                        <div class="kanban-card-top"><span class="fake-checkbox"></span><span>plan-1012</span><b class="stage-waiting">대기</b><em class="priority-green"><i></i>낮음</em><button type="button" aria-label="더보기"><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button></div>
+                        <h4>하위작업 02</h4>
+                        <div class="kanban-card-assignee"><small>담당자</small><span><span class="table-avatar rose">조</span>조민지</span></div>
+                        <div class="kanban-card-date"><span>등록일</span><time>2025-11-15</time></div>
+                      </article>
+                    </div>
+                  </section>
+
+                  <section class="kanban-column progress" aria-labelledby="kanbanProgress">
+                    <header class="kanban-column-head">
+                      <h3 id="kanbanProgress"><span class="kanban-column-title">진행</span><span class="kanban-column-count">2</span></h3>
+                      <button type="button" aria-label="진행 컬럼 축소" aria-expanded="true" data-kanban-column-toggle><img src="./resources/Ico-System/app=collapse, style=line.svg" alt=""></button>
+                    </header>
+                    <div class="kanban-card-list">
+                      <article class="kanban-card priority-normal" tabindex="0" data-open-task-panel>
+                        <div class="kanban-card-top"><span class="fake-checkbox"></span><span>plan-1002</span><b class="stage-progress">진행</b><em><i></i>보통</em><button type="button" aria-label="더보기"><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button></div>
+                        <h4>AI 요약 기능 개선을 위한 사용자 시나리오 작성</h4>
+                        <div class="kanban-card-assignee"><small>담당자</small><span><span class="table-avatar violet">박</span>박정훈</span></div>
+                        <div class="kanban-card-date"><span>등록일</span><time>2025-11-15</time></div>
+                        <div class="kanban-subtask-wrap">
+                          <button class="kanban-subtask-button" type="button" aria-expanded="false" data-kanban-subtask-toggle>
+                            <img src="./resources/Ico-System/app=child-task, style=line.svg" alt="">
+                            <span>하위 작업</span>
+                            <i></i>
+                            <strong>2</strong>
+                          </button>
+                          <div class="kanban-subtask-popover" data-kanban-subtask-popover hidden>
+                            <h5>하위 작업</h5>
+                            <button class="is-active" type="button" data-task-action-toast="게시판 사용자 시나리오 하위 작업이 패널로 열립니다.">
+                              <span class="subtask-branch" aria-hidden="true"></span>
+                              <em>plan-1011</em>
+                              <span>게시판 사용자 시나리오</span>
+                              <b><span class="table-avatar yellow">윤</span>윤대현</b>
+                              <img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt="">
+                            </button>
+                            <button type="button" data-task-action-toast="하위작업 02 하위 작업이 패널로 열립니다.">
+                              <span class="subtask-branch" aria-hidden="true"></span>
+                              <em>plan-1012</em>
+                              <span>하위작업 02</span>
+                              <b><span class="table-avatar rose">조</span>조민지</b>
+                              <img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt="">
+                            </button>
+                          </div>
+                        </div>
+                      </article>
+                      <article class="kanban-card priority-normal" tabindex="0" data-open-task-panel>
+                        <div class="kanban-card-top"><span class="fake-checkbox"></span><span>plan-1002</span><b class="stage-progress">진행</b><em><i></i>보통</em><button type="button" aria-label="더보기"><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button></div>
+                        <h4>캘린더 뷰 인터랙션 설계안 작성</h4>
+                        <div class="kanban-card-assignee"><small>담당자</small><span><span class="table-avatar navy">김</span>김지은</span></div>
+                        <div class="kanban-card-date"><span>등록일</span><time>2025-11-15</time></div>
+                      </article>
+                    </div>
+                  </section>
+
+                  <section class="kanban-column finished" aria-labelledby="kanbanFinished">
+                    <header class="kanban-column-head">
+                      <h3 id="kanbanFinished"><span class="kanban-column-title">완료</span><span class="kanban-column-count">2</span></h3>
+                      <button type="button" aria-label="완료 컬럼 축소" aria-expanded="true" data-kanban-column-toggle><img src="./resources/Ico-System/app=collapse, style=line.svg" alt=""></button>
+                    </header>
+                    <div class="kanban-card-list">
+                      <article class="kanban-card priority-normal" tabindex="0" data-open-task-panel>
+                        <div class="kanban-card-top"><span class="fake-checkbox"></span><span>plan-1009</span><b class="stage-finished">완료</b><em><i></i>보통</em><button type="button" aria-label="더보기"><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button></div>
+                        <h4>모바일 전자결재 개선 요구사항 정리</h4>
+                        <div class="kanban-card-assignee"><small>담당자</small><span><span class="table-avatar navy">김</span>김지은</span></div>
+                        <div class="kanban-card-date"><span>등록일</span><time>2025-11-15</time></div>
+                      </article>
+                      <article class="kanban-card priority-high" tabindex="0" data-open-task-panel>
+                        <div class="kanban-card-top"><span class="fake-checkbox"></span><span>plan-1021</span><b class="stage-finished">완료</b><em class="priority-orange"><i></i>높음</em><button type="button" aria-label="더보기"><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button></div>
+                        <h4>프로젝트 기능 통합 구조 설계안 작성</h4>
+                        <div class="kanban-card-assignee"><small>담당자</small><span><span class="table-avatar yellow">윤</span>윤대현</span></div>
+                        <div class="kanban-card-date"><span>등록일</span><time>2025-11-15</time></div>
+                      </article>
+                    </div>
+                  </section>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="table-view-content board-view-panel" data-board-panel="table">
+            <div class="table-view-shell">
+              <section class="board-table-area" aria-label="테이블 형 보기">
+                <div class="table-toolbar">
+                  <div class="table-toolbar-left">
+                    <button class="table-icon-button" type="button" aria-label="검색">
+                      <img src="./resources/Ico-System/app=search, style=line.svg" alt="">
+                    </button>
+                    <div class="toolbar-view-wrap">
+                      <button class="table-filter-button toolbar-view-button" type="button" aria-haspopup="menu" aria-expanded="false" data-toolbar-view-toggle>
+                        <span data-toolbar-view-label>기본</span>
+                        <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                      </button>
+                      <div class="toolbar-view-popover" role="menu" data-toolbar-view-popover hidden>
+                        <div class="toolbar-view-actions">
+                          <button type="button" aria-label="화면 추가" data-toolbar-view-toast="사용자 별로 맞춤형 화면을 추가하여 저장할 수 있습니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                          <button type="button" aria-label="순서 변경" data-toolbar-view-toast="화면들 간 순서를 변경할 수 있습니다."><img src="./resources/Ico-System/app=order-updown, style=line.svg" alt=""></button>
+                          <button type="button" aria-label="화면 저장" data-toolbar-view-toast="인터랙션으로 설정한 현재 화면을 저장할 수 있습니다."><img src="./resources/Ico-System/app=disk, style=line.svg" alt=""></button>
+                        </div>
+                        <div class="toolbar-view-divider" aria-hidden="true"></div>
+                        <div class="toolbar-view-list">
+                          <button type="button" role="menuitem" data-toolbar-view-option="기본"><span>기본</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                          <button type="button" role="menuitem" data-toolbar-view-option="진행중"><span>진행중</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                          <button type="button" role="menuitem" data-toolbar-view-option="우리팀만"><span>우리팀만</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="toolbar-filter-wrap">
+                      <div class="toolbar-filter-group">
+                        <button class="table-icon-button toolbar-filter-main" type="button" aria-label="필터" data-open-filter-canvas>
+                          <img src="./resources/Ico-System/app=funnel, style=line.svg" alt="">
+                        </button>
+                        <button class="table-icon-button toolbar-filter-arrow" type="button" aria-label="기본 필터" aria-haspopup="menu" aria-expanded="false" data-basic-filter-toggle>
+                          <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                        </button>
+                      </div>
+                      <div class="basic-filter-popover" role="menu" data-basic-filter-popover hidden>
+                        <h4>기본 필터</h4>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>내가 담당하고 있는 작업</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>완료 작업 제외</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>지연된 작업</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>안읽은 작업</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>안읽은 댓글</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>내가 쓴 댓글</button>
+                      </div>
+                    </div>
+                    <button class="table-icon-button" type="button" aria-label="내보내기" data-task-action-toast="항목을 선택하여 엑셀 또는 PDF로 다운받을 수 있는 기능을 제공합니다.">
+                      <img src="./resources/Ico-System/app=export, style=line.svg" alt="">
+                    </button>
+                    <button class="table-icon-button" type="button" aria-label="더보기" data-task-action-toast="보기 타입 별로 추가 설정을 제공합니다.">
+                      <img src="./resources/Ico-System/app=kebab, style=line.svg" alt="">
+                    </button>
+                  </div>
+                  <button class="table-add-button" type="button" data-open-create-task aria-label="작업 등록">
+                    <img src="./resources/Ico-System/app=plus, style=line.svg" alt="">
+                  </button>
+                </div>
+
+                <div class="board-table-scroll" data-table-scroll>
+                  <table class="board-table">
+                    <colgroup>
+                      <col class="select-col">
+                      <col class="id-col">
+                      <col class="title-col">
+                      <col class="person-col">
+                      <col class="stage-col">
+                      <col class="status-col">
+                      <col class="priority-col">
+                      <col class="date-col">
+                      <col class="date-col">
+                      <col class="person-col">
+                      <col class="date-col">
+                      <col class="date-col">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th><span class="fake-checkbox"></span></th>
+                        <th draggable="true" data-column-drag>ID</th>
+                        <th draggable="true" data-column-drag>제목</th>
+                        <th draggable="true" data-column-drag>담당자</th>
+                        <th draggable="true" data-column-drag>단계</th>
+                        <th draggable="true" data-column-drag>상태</th>
+                        <th draggable="true" data-column-drag>우선순위</th>
+                        <th draggable="true" data-column-drag>시작일</th>
+                        <th draggable="true" data-column-drag>완료일</th>
+                        <th draggable="true" data-column-drag>등록자</th>
+                        <th draggable="true" data-column-drag>수정일</th>
+                        <th draggable="true" data-column-drag>등록일</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr data-open-task-panel>
+                        <td><span class="fake-checkbox"></span></td>
+                        <td>plan-1001</td>
+                        <td class="title-cell"><span class="table-title-spacer"></span><button type="button" data-inline-title>모바일 전자결재 개선 요구사항 정리</button></td>
+                        <td><button class="person-cell" type="button" data-cell-menu="assignee"><span class="table-avatar navy">김</span>김지은</button></td>
+                        <td><button class="table-chip chip-stage-done" type="button" data-cell-menu="stage">등록 완료</button></td>
+                        <td><button class="table-chip chip-state-done" type="button" data-cell-menu="state">완료</button></td>
+                        <td><button class="table-chip chip-priority-high" type="button" data-cell-menu="priority">높음</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-06</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-12</button></td>
+                        <td><span class="person-cell is-readonly"><span class="table-avatar navy">김</span>김지은</span></td>
+                        <td>2025-07-12</td>
+                        <td>2025-07-01</td>
+                      </tr>
+                      <tr data-open-task-panel>
+                        <td><span class="fake-checkbox"></span></td>
+                        <td>plan-1002</td>
+                        <td class="title-cell"><span class="table-title-spacer"></span><button type="button" data-inline-title>프로젝트 기능 통합 구조 설계안 작성</button></td>
+                        <td><button class="person-cell" type="button" data-cell-menu="assignee"><span class="table-avatar yellow">윤</span>윤대현</button></td>
+                        <td><button class="table-chip chip-stage-done" type="button" data-cell-menu="stage">등록 완료</button></td>
+                        <td><button class="table-chip chip-state-progress" type="button" data-cell-menu="state">진행</button></td>
+                        <td><button class="table-chip chip-priority-normal" type="button" data-cell-menu="priority">보통</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-07</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-14</button></td>
+                        <td><span class="person-cell is-readonly"><span class="table-avatar violet">박</span>박정훈</span></td>
+                        <td>2025-07-12</td>
+                        <td>2025-07-02</td>
+                      </tr>
+                      <tr data-open-task-panel data-task-group-parent="ai-summary">
+                        <td><span class="fake-checkbox"></span></td>
+                        <td>plan-1003</td>
+                        <td class="title-cell has-children"><button class="table-hierarchy-toggle" type="button" aria-label="하위 작업 접기" aria-expanded="true" data-table-tree-toggle="ai-summary"><img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button><button type="button" data-inline-title>AI 요약 기능 개선을 위한 사용자 시나리오 작성</button></td>
+                        <td><button class="person-cell" type="button" data-cell-menu="assignee"><span class="table-avatar violet">박</span>박정훈</button></td>
+                        <td><button class="table-chip chip-stage-progress" type="button" data-cell-menu="stage">초안 설계</button></td>
+                        <td><button class="table-chip chip-state-progress" type="button" data-cell-menu="state">진행</button></td>
+                        <td><button class="table-chip chip-priority-normal" type="button" data-cell-menu="priority">보통</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-08</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-17</button></td>
+                        <td><span class="person-cell is-readonly"><span class="table-avatar yellow">윤</span>윤대현</span></td>
+                        <td>2025-07-12</td>
+                        <td>2025-07-03</td>
+                      </tr>
+                      <tr data-open-task-panel data-task-group-child="ai-summary">
+                        <td><span class="fake-checkbox"></span></td>
+                        <td>plan-1008</td>
+                        <td class="title-cell is-depth"><img class="table-child-icon" src="./resources/Ico-System/app=child-task, style=line.svg" alt=""><button type="button" data-inline-title>게시판 사용자 시나리오</button></td>
+                        <td><button class="person-cell" type="button" data-cell-menu="assignee"><span class="table-avatar violet">박</span>박정훈</button></td>
+                        <td><button class="table-chip chip-stage-review" type="button" data-cell-menu="stage">리뷰</button></td>
+                        <td><button class="table-chip chip-state-wait" type="button" data-cell-menu="state">대기</button></td>
+                        <td><button class="table-chip chip-priority-high" type="button" data-cell-menu="priority">높음</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-10</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-18</button></td>
+                        <td><span class="person-cell is-readonly"><span class="table-avatar violet">박</span>박정훈</span></td>
+                        <td>2025-07-12</td>
+                        <td>2025-07-06</td>
+                      </tr>
+                      <tr data-open-task-panel data-task-group-child="ai-summary">
+                        <td><span class="fake-checkbox"></span></td>
+                        <td>plan-1010</td>
+                        <td class="title-cell is-depth"><img class="table-child-icon" src="./resources/Ico-System/app=child-task, style=line.svg" alt=""><button type="button" data-inline-title>스마트워크 사용자 시나리오</button></td>
+                        <td><button class="person-cell" type="button" data-cell-menu="assignee"><span class="table-avatar violet">박</span>박정훈</button></td>
+                        <td><button class="table-chip chip-stage-progress" type="button" data-cell-menu="stage">초안 설계</button></td>
+                        <td><button class="table-chip chip-state-progress" type="button" data-cell-menu="state">진행</button></td>
+                        <td><button class="table-chip chip-priority-normal" type="button" data-cell-menu="priority">보통</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-11</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-20</button></td>
+                        <td><span class="person-cell is-readonly"><span class="table-avatar violet">박</span>박정훈</span></td>
+                        <td>2025-07-12</td>
+                        <td>2025-07-08</td>
+                      </tr>
+                      <tr data-open-task-panel>
+                        <td><span class="fake-checkbox"></span></td>
+                        <td>plan-1004</td>
+                        <td class="title-cell"><span class="table-title-spacer"></span><button type="button" data-inline-title>캘린더 뷰 인터랙션 설계안 작성</button></td>
+                        <td><button class="person-cell" type="button" data-cell-menu="assignee"><span class="table-avatar rose">조</span>조민지</button></td>
+                        <td><button class="table-chip chip-stage-progress" type="button" data-cell-menu="stage">피드백 반영</button></td>
+                        <td><button class="table-chip chip-state-progress" type="button" data-cell-menu="state">진행</button></td>
+                        <td><button class="table-chip chip-priority-normal" type="button" data-cell-menu="priority">보통</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-12</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-21</button></td>
+                        <td><span class="person-cell is-readonly"><span class="table-avatar navy">김</span>김지은</span></td>
+                        <td>2025-07-12</td>
+                        <td>2025-07-09</td>
+                      </tr>
+                      <tr data-open-task-panel>
+                        <td><span class="fake-checkbox"></span></td>
+                        <td>plan-1005</td>
+                        <td class="title-cell"><span class="table-title-spacer"></span><button type="button" data-inline-title>전자결재 프로세스 정리 및 정책 수립</button></td>
+                        <td><button class="person-cell" type="button" data-cell-menu="assignee"><span class="table-avatar rose">조</span>조민지</button></td>
+                        <td><button class="table-chip chip-stage-progress" type="button" data-cell-menu="stage">시장조사</button></td>
+                        <td><button class="table-chip chip-state-progress" type="button" data-cell-menu="state">진행</button></td>
+                        <td><button class="table-chip chip-priority-low" type="button" data-cell-menu="priority">낮음</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-12</button></td>
+                        <td><button class="table-date-button" type="button" data-cell-menu="date">2025-07-24</button></td>
+                        <td><span class="person-cell is-readonly"><span class="table-avatar rose">조</span>조민지</span></td>
+                        <td>2025-07-12</td>
+                        <td>2025-07-10</td>
+                      </tr>
+                      <tr class="table-add-row" data-table-add-row>
+                        <td><span class="fake-checkbox is-disabled"></span></td>
+                        <td colspan="11">+ 작업 등록</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-cell-menu" data-table-menu hidden></div>
+              </section>
+
+            </div>
+          </div>
+
+          <div class="gantt-view-content board-view-panel" data-board-panel="gantt">
+            <div class="gantt-view-shell">
+              <section class="gantt-board-area" aria-label="간트 형 보기">
+                <div class="table-toolbar gantt-toolbar">
+                  <div class="table-toolbar-left">
+                    <button class="table-icon-button" type="button" aria-label="검색">
+                      <img src="./resources/Ico-System/app=search, style=line.svg" alt="">
+                    </button>
+                    <div class="toolbar-view-wrap">
+                      <button class="table-filter-button toolbar-view-button" type="button" aria-haspopup="menu" aria-expanded="false" data-toolbar-view-toggle>
+                        <span data-toolbar-view-label>기본</span>
+                        <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                      </button>
+                      <div class="toolbar-view-popover" role="menu" data-toolbar-view-popover hidden>
+                        <div class="toolbar-view-actions">
+                          <button type="button" aria-label="화면 추가" data-toolbar-view-toast="사용자 별로 맞춤형 화면을 추가하여 저장할 수 있습니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                          <button type="button" aria-label="순서 변경" data-toolbar-view-toast="화면들 간 순서를 변경할 수 있습니다."><img src="./resources/Ico-System/app=order-updown, style=line.svg" alt=""></button>
+                          <button type="button" aria-label="화면 저장" data-toolbar-view-toast="인터랙션으로 설정한 현재 화면을 저장할 수 있습니다."><img src="./resources/Ico-System/app=disk, style=line.svg" alt=""></button>
+                        </div>
+                        <div class="toolbar-view-divider" aria-hidden="true"></div>
+                        <div class="toolbar-view-list">
+                          <button type="button" role="menuitem" data-toolbar-view-option="기본"><span>기본</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                          <button type="button" role="menuitem" data-toolbar-view-option="진행중"><span>진행중</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                          <button type="button" role="menuitem" data-toolbar-view-option="우리팀만"><span>우리팀만</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="toolbar-filter-wrap">
+                      <div class="toolbar-filter-group">
+                        <button class="table-icon-button toolbar-filter-main" type="button" aria-label="필터" data-open-filter-canvas>
+                          <img src="./resources/Ico-System/app=funnel, style=line.svg" alt="">
+                        </button>
+                        <button class="table-icon-button toolbar-filter-arrow" type="button" aria-label="기본 필터" aria-haspopup="menu" aria-expanded="false" data-basic-filter-toggle>
+                          <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                        </button>
+                      </div>
+                      <div class="basic-filter-popover" role="menu" data-basic-filter-popover hidden>
+                        <h4>기본 필터</h4>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>내가 담당하고 있는 작업</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>완료 작업 제외</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>지연된 작업</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>안읽은 작업</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>안읽은 댓글</button>
+                        <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>내가 쓴 댓글</button>
+                      </div>
+                    </div>
+                    <button class="table-icon-button" type="button" aria-label="내보내기" data-task-action-toast="항목을 선택하여 엑셀 또는 PDF로 다운받을 수 있는 기능을 제공합니다.">
+                      <img src="./resources/Ico-System/app=export, style=line.svg" alt="">
+                    </button>
+                    <button class="table-icon-button" type="button" aria-label="더보기" data-task-action-toast="보기 타입 별로 추가 설정을 제공합니다.">
+                      <img src="./resources/Ico-System/app=kebab, style=line.svg" alt="">
+                    </button>
+                  </div>
+                  <button class="table-add-button" type="button" data-open-create-task aria-label="작업 등록">
+                    <img src="./resources/Ico-System/app=plus, style=line.svg" alt="">
+                  </button>
+                </div>
+
+                <div class="gantt-control-row">
+                  <div class="gantt-month-control">
+                    <strong>2026년 8월</strong>
+                    <button type="button" aria-label="이전 달"><img src="./resources/Ico-System/app=chevron-left-sm, style=line.svg" alt=""></button>
+                    <button type="button" aria-label="다음 달"><img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt=""></button>
+                    <button type="button">오늘</button>
+                  </div>
+                  <div class="gantt-side-controls">
+                    <button type="button" data-task-action-toast="시작일과 완료일이 없는 작업을 모아서 보는 기능을 제공합니다.">일정 없는 작업 <span>3</span></button>
+                  </div>
+                </div>
+
+                <div class="gantt-grid-shell" data-gantt-board>
+                  <div class="gantt-left-pane">
+                    <div class="gantt-left-head">
+                      <span>ID</span>
+                      <span>제목</span>
+                      <span>상태</span>
+                      <span>담당자</span>
+                    </div>
+                    <div class="gantt-left-row">
+                      <span>plan-1001</span>
+                      <button type="button" data-open-task-panel>모바일 전자결재 개선 요구사항 정리</button>
+                      <b>완료</b>
+                      <span><span class="table-avatar navy">김</span>김지은</span>
+                    </div>
+                    <div class="gantt-left-row">
+                      <span>plan-1002</span>
+                      <button type="button" data-open-task-panel>프로젝트 기능 통합 구조 설계안 작성</button>
+                      <b>완료</b>
+                      <span><span class="table-avatar yellow">윤</span>윤대현</span>
+                    </div>
+                    <div class="gantt-left-row is-parent" data-gantt-tree-parent="ai-summary">
+                      <span>plan-1003</span>
+                      <button type="button" data-open-task-panel><img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">AI 요약 기능 개선을 위한 사용자 시나리오</button>
+                      <b>진행</b>
+                      <span><span class="table-avatar violet">박</span>박정훈</span>
+                    </div>
+                    <div class="gantt-left-row is-child" data-gantt-tree-child="ai-summary">
+                      <span>plan-1004</span>
+                      <button type="button" data-open-task-panel><img src="./resources/Ico-System/app=child-task, style=line.svg" alt="">게시판 사용자 시나리오</button>
+                      <b>완료</b>
+                      <span><span class="table-avatar violet">박</span>박정훈</span>
+                    </div>
+                    <div class="gantt-left-row">
+                      <span>plan-1005</span>
+                      <button type="button" data-open-task-panel>스마트워크 보고 양식 개선 의견 수렴</button>
+                      <b>완료</b>
+                      <span><span class="table-avatar yellow">윤</span>윤대현</span>
+                    </div>
+                    <div class="gantt-left-row">
+                      <span>plan-1006</span>
+                      <button type="button" data-open-task-panel>외부 연동 가이드 초안 작성</button>
+                      <b>완료</b>
+                      <span><span class="table-avatar violet">박</span>박정훈</span>
+                    </div>
+                    <div class="gantt-left-row">
+                      <span>plan-1007</span>
+                      <button type="button" data-open-task-panel><img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt="">차기 릴리즈 기획 우선순위 협의안 작성</button>
+                      <b>완료</b>
+                      <span><span class="table-avatar rose">조</span>조민지</span>
+                    </div>
+                    <div class="gantt-left-row">
+                      <span>plan-1008</span>
+                      <button type="button" data-open-task-panel>관리자 화면 접근 권한 설정 정책 검토</button>
+                      <b>완료</b>
+                      <span><span class="table-avatar navy">김</span>김지은</span>
+                    </div>
+                  </div>
+
+                  <div class="gantt-timeline-pane" data-gantt-horizontal-scroll>
+                    <div class="gantt-week-row">
+                      <span>Jan</span>
+                      <span>2 week</span>
+                      <span>3 week</span>
+                      <span>4 week</span>
+                    </div>
+                    <div class="gantt-date-row" aria-label="날짜">
+                      <span>30</span><span>31</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span class="is-today">13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+                    </div>
+                    <div class="gantt-bars" style="--days: 32;">
+                      <div class="gantt-today-line" aria-hidden="true"></div>
+                      <div class="gantt-chart-row" data-gantt-row>
+                        <div class="gantt-bar magenta" data-gantt-bar style="--start: 5; --duration: 5;"><i data-gantt-resize="start"></i><span></span><i data-gantt-resize="end"></i></div>
+                      </div>
+                      <div class="gantt-chart-row" data-gantt-row>
+                        <div class="gantt-bar navy" data-gantt-bar style="--start: 2; --duration: 30;"><i data-gantt-resize="start"></i><span></span><i data-gantt-resize="end"></i></div>
+                      </div>
+                      <div class="gantt-chart-row" data-gantt-row data-gantt-tree-parent="ai-summary">
+                        <div class="gantt-bar danger" data-gantt-bar style="--start: 3; --duration: 10;"><i data-gantt-resize="start"></i><span>!</span><i data-gantt-resize="end"></i></div>
+                      </div>
+                      <div class="gantt-chart-row" data-gantt-row data-gantt-tree-child="ai-summary">
+                        <div class="gantt-bar blue" data-gantt-bar style="--start: 15; --duration: 11;"><i data-gantt-resize="start"></i><span></span><i data-gantt-resize="end"></i></div>
+                      </div>
+                      <div class="gantt-chart-row" data-gantt-row>
+                        <div class="gantt-bar orange" data-gantt-bar style="--start: 25; --duration: 8;"><i data-gantt-resize="start"></i><span></span><i data-gantt-resize="end"></i></div>
+                      </div>
+                      <div class="gantt-chart-row" data-gantt-row></div>
+                      <div class="gantt-chart-row" data-gantt-row>
+                        <div class="gantt-bar navy short" data-gantt-bar style="--start: 5; --duration: 4;"><i data-gantt-resize="start"></i><span></span><i data-gantt-resize="end"></i></div>
+                      </div>
+                      <div class="gantt-chart-row" data-gantt-row>
+                        <div class="gantt-bar navy short" data-gantt-bar style="--start: 5; --duration: 4;"><i data-gantt-resize="start"></i><span></span><i data-gantt-resize="end"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="feed-view-content board-view-panel" data-board-panel="feed">
+            <section class="feed-board-area" aria-label="피드 형 보기">
+              <div class="table-toolbar feed-toolbar">
+                <div class="table-toolbar-left">
+                  <button class="table-icon-button" type="button" aria-label="검색">
+                    <img src="./resources/Ico-System/app=search, style=line.svg" alt="">
+                  </button>
+                  <div class="toolbar-view-wrap">
+                    <button class="table-filter-button toolbar-view-button" type="button" aria-haspopup="menu" aria-expanded="false" data-toolbar-view-toggle>
+                      <span data-toolbar-view-label>기본</span>
+                      <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                    </button>
+                    <div class="toolbar-view-popover" role="menu" data-toolbar-view-popover hidden>
+                      <div class="toolbar-view-actions">
+                        <button type="button" aria-label="화면 추가" data-toolbar-view-toast="사용자 별로 맞춤형 화면을 추가하여 저장할 수 있습니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                        <button type="button" aria-label="순서 변경" data-toolbar-view-toast="화면들 간 순서를 변경할 수 있습니다."><img src="./resources/Ico-System/app=order-updown, style=line.svg" alt=""></button>
+                        <button type="button" aria-label="화면 저장" data-toolbar-view-toast="인터랙션으로 설정한 현재 화면을 저장할 수 있습니다."><img src="./resources/Ico-System/app=disk, style=line.svg" alt=""></button>
+                      </div>
+                      <div class="toolbar-view-divider" aria-hidden="true"></div>
+                      <div class="toolbar-view-list">
+                        <button type="button" role="menuitem" data-toolbar-view-option="기본"><span>기본</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                        <button type="button" role="menuitem" data-toolbar-view-option="고정 작업"><span>고정 작업</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                        <button type="button" role="menuitem" data-toolbar-view-option="내 담당"><span>내 담당</span><img data-toolbar-view-edit src="./resources/Ico-System/app=pencil, style=line.svg" alt="수정"></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="toolbar-filter-wrap">
+                    <div class="toolbar-filter-group">
+                      <button class="table-icon-button toolbar-filter-main" type="button" aria-label="필터" data-open-filter-canvas>
+                        <img src="./resources/Ico-System/app=funnel, style=line.svg" alt="">
+                      </button>
+                      <button class="table-icon-button toolbar-filter-arrow" type="button" aria-label="기본 필터" aria-haspopup="menu" aria-expanded="false" data-basic-filter-toggle>
+                        <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                      </button>
+                    </div>
+                    <div class="basic-filter-popover" role="menu" data-basic-filter-popover hidden>
+                      <h4>기본 필터</h4>
+                      <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>내가 담당하고 있는 작업</button>
+                      <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>완료 작업 제외</button>
+                      <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>상단 고정 작업</button>
+                      <button type="button" role="menuitemcheckbox" aria-checked="false" data-basic-filter-option><span class="fake-checkbox"></span>안읽은 댓글</button>
+                    </div>
+                  </div>
+                  <button class="table-icon-button" type="button" aria-label="내보내기" data-task-action-toast="항목을 선택하여 엑셀 또는 PDF로 다운받을 수 있는 기능을 제공합니다.">
+                    <img src="./resources/Ico-System/app=export, style=line.svg" alt="">
+                  </button>
+                  <button class="table-icon-button" type="button" aria-label="더보기" data-task-action-toast="피드 보기 설정 메뉴를 표시합니다.">
+                    <img src="./resources/Ico-System/app=kebab, style=line.svg" alt="">
+                  </button>
+                </div>
+                <button class="table-add-button" type="button" data-open-create-task aria-label="작업 등록">
+                  <img src="./resources/Ico-System/app=plus, style=line.svg" alt="">
+                </button>
+              </div>
+
+              <div class="feed-scroll">
+                <div class="feed-pin-card" role="button" tabindex="0" data-open-task-panel>
+                  <span>plan-1009</span>
+                  <strong>관리자 화면 접근 권한 설정 정책 검토</strong>
+                  <span class="feed-pin-owner"><span class="table-avatar navy">김</span>김지은</span>
+                  <img src="./resources/Ico-System/app=pin, style=filled.svg" alt="">
+                </div>
+
+                <article class="feed-card" data-open-task-panel tabindex="0">
+                  <header class="feed-card-head">
+                    <span class="fake-checkbox"></span>
+                    <div class="feed-card-actions">
+                      <button type="button" aria-label="메모 보기" data-task-action-toast="작성된 메모 팝업이 뜹니다."><img src="./resources/Ico-System/app=memo, style=line.svg" alt=""></button>
+                      <button type="button" aria-label="상단 고정" data-task-action-toast="중요 작업을 상단에 고정합니다."><img src="./resources/Ico-System/app=pin, style=line.svg" alt=""></button>
+                      <button type="button" aria-label="더보기" data-task-action-toast="작업 메뉴를 표시합니다."><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button>
+                    </div>
+                  </header>
+                  <div class="feed-title-row">
+                    <span>plan-1001</span>
+                    <b class="feed-label brown">라벨명01</b>
+                    <h3>모바일 전자결재 개선 요구사항 정리</h3>
+                  </div>
+                  <div class="feed-people-grid">
+                    <div><span>담당자</span><strong><span class="table-avatar navy">김</span>김지은 대리(솔루션기획팀)</strong></div>
+                    <div><span>등록자</span><strong><img class="feed-photo-avatar" src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">홍길동 대리(솔루션기획팀)</strong></div>
+                  </div>
+                  <dl class="feed-meta-list">
+                    <div><dt>상태</dt><dd><b class="feed-state done">완료</b></dd></div>
+                    <div><dt>우선순위</dt><dd><b class="feed-priority high"><i></i>높음</b></dd></div>
+                    <div><dt>수정일</dt><dd>2025-07-02</dd></div>
+                    <div><dt>등록일</dt><dd>2025-07-02</dd></div>
+                    <div><dt>시작일</dt><dd>2025-07-02</dd></div>
+                    <div><dt>완료일</dt><dd>2025-07-02</dd></div>
+                    <div><dt>단계</dt><dd>요청</dd></div>
+                  </dl>
+                  <section class="feed-note">
+                    <div class="feed-note-tabs">
+                      <button class="is-active" type="button">정리 목적</button>
+                      <button type="button" data-feed-expanded-toast="노트 탭을 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt="">추가</button>
+                    </div>
+                    <p data-task-note-text>모바일 환경에서 전자결재 기능 사용 시 불편함을 호소하는 사용자가 증가하고 있습니다. 주요 이슈로는 결재 버튼 위치 혼란, 도장 확인 영역 협소, 터치 반응 속도 저하, 확대/축소 미지원 등이 있습니다. 이러한 문제를 해결하기 위해 조직의 피드백을 바탕으로 구체적인 기능 요구사항과 화면 흐름 변경안을 문서화할 필요가 있습니다.</p>
+                    <div class="feed-extra" hidden>
+                      <section class="feed-linked-section" aria-label="연관 작업">
+                        <div class="feed-linked-head">
+                          <h4>연관 작업</h4>
+                          <div>
+                            <button type="button" data-task-action-toast="기존 작업을 검색하여 연관 작업으로 연결합니다."><img src="./resources/Ico-System/app=flow, style=line.svg" alt="">연결</button>
+                            <button type="button" aria-label="연관 작업 추가" data-task-action-toast="새로운 작업을 연관 작업으로 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                          </div>
+                        </div>
+                        <div class="feed-linked-table">
+                          <div class="feed-linked-row is-head"><span>제목</span><span>상태</span><span>담당자</span><span>우선순위</span></div>
+                          <button type="button" data-task-action-toast="연관 작업으로 이동합니다."><strong>전자결재 프로세스 정리 및 정책 수립</strong><b class="task-state progress">진행</b><span><span class="table-avatar rose">조</span>조민지</span><em class="task-priority low"><i></i>낮음</em></button>
+                          <button type="button" data-task-action-toast="연관 작업으로 이동합니다."><strong>프로젝트 기능 통합 구조 설계안 작성</strong><b class="task-state done">완료</b><span><span class="table-avatar yellow">윤</span>윤대현</span><em class="task-priority high"><i></i>높음</em></button>
+                        </div>
+                      </section>
+                      <section class="feed-linked-section" aria-label="하위 작업">
+                        <div class="feed-linked-head with-progress">
+                          <h4>하위 작업</h4>
+                          <span class="feed-progress-summary"><em>진척률</em><strong>50%</strong><i><b style="--progress:50%"></b></i></span>
+                          <div>
+                            <button type="button" data-task-action-toast="기존 작업을 검색하여 하위 작업으로 연결합니다."><img src="./resources/Ico-System/app=flow, style=line.svg" alt="">연결</button>
+                            <button type="button" aria-label="하위 작업 추가" data-task-action-toast="새로운 작업을 하위 작업으로 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                          </div>
+                        </div>
+                        <div class="feed-subtask-list">
+                          <button type="button" data-task-action-toast="하위 작업으로 이동합니다."><span><em>plan-1011</em><strong>게시판 사용자 시나리오</strong></span><b class="task-state done">완료</b><span><span class="table-avatar yellow">윤</span>윤대현</span><em class="task-priority high"><i></i>높음</em><time>2025-07-18</time></button>
+                          <button type="button" data-task-action-toast="하위 작업으로 이동합니다."><span><em>plan-1012</em><strong>스마트워크 사용자 시나리오</strong></span><b class="task-state wait">대기</b><span><span class="table-avatar taupe">황</span>황찬호</span><em class="task-priority normal"><i></i>보통</em><time>2025-07-20</time></button>
+                        </div>
+                      </section>
+                    </div>
+                    <footer>
+                      <div class="feed-subtask-wrap">
+                        <button class="feed-subtask-button" type="button" aria-expanded="false" data-feed-subtask-toggle>
+                          <img src="./resources/Ico-System/app=child-task, style=line.svg" alt="">
+                          하위 작업 <i></i> 2
+                        </button>
+                        <div class="feed-subtask-popover" data-feed-subtask-popover hidden>
+                          <h4>하위 작업</h4>
+                          <button type="button" data-task-action-toast="게시판 사용자 시나리오 하위 작업이 패널로 열립니다."><span class="subtask-branch"></span><em>plan-1011</em><strong>게시판 사용자 시나리오</strong><b><span class="table-avatar yellow">윤</span>윤대현</b><img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt=""></button>
+                          <button type="button" data-task-action-toast="스마트워크 사용자 시나리오 하위 작업이 패널로 열립니다."><span class="subtask-branch"></span><em>plan-1012</em><strong>스마트워크 사용자 시나리오</strong><b><span class="table-avatar taupe">황</span>황찬호</b><img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt=""></button>
+                        </div>
+                      </div>
+                      <button class="feed-detail-button" type="button" data-feed-expand>상세보기 <img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt=""></button>
+                    </footer>
+                  </section>
+                </article>
+
+                <article class="feed-card" data-open-task-panel tabindex="0">
+                  <header class="feed-card-head">
+                    <span class="fake-checkbox"></span>
+                    <div class="feed-card-actions">
+                      <button type="button" aria-label="상단 고정" data-task-action-toast="중요 작업을 상단에 고정합니다."><img src="./resources/Ico-System/app=pin, style=line.svg" alt=""></button>
+                      <button type="button" aria-label="더보기" data-task-action-toast="작업 메뉴를 표시합니다."><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button>
+                    </div>
+                  </header>
+                  <div class="feed-title-row">
+                    <span>plan-1002</span>
+                    <b class="feed-label brown">라벨명01</b>
+                    <b class="feed-label pink">라벨명02</b>
+                    <h3>프로젝트 기능 통합 구조 설계안 작성</h3>
+                  </div>
+                  <div class="feed-people-grid">
+                    <div><span>담당자</span><strong><span class="table-avatar yellow">윤</span>윤대현 주임(솔루션기획팀)</strong></div>
+                    <div><span>등록자</span><strong><img class="feed-photo-avatar" src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">홍길동 대리(솔루션기획팀)</strong></div>
+                  </div>
+                  <dl class="feed-meta-list">
+                    <div><dt>상태</dt><dd><b class="feed-state done">완료</b></dd></div>
+                    <div><dt>우선순위</dt><dd><b class="feed-priority high"><i></i>높음</b></dd></div>
+                    <div><dt>수정일</dt><dd>2025-07-02</dd></div>
+                    <div><dt>등록일</dt><dd>2025-07-02</dd></div>
+                    <div><dt>시작일</dt><dd>2025-07-02</dd></div>
+                    <div><dt>완료일</dt><dd>2025-07-02</dd></div>
+                    <div><dt>단계</dt><dd>요청</dd></div>
+                  </dl>
+                  <section class="feed-note">
+                    <div class="feed-note-tabs">
+                      <button class="is-active" type="button">설계 목적</button>
+                      <button type="button" data-feed-expanded-toast="노트 탭을 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt="">추가</button>
+                    </div>
+                    <p data-task-note-text>현재 운영 중인 프로젝트, 스페이스, 태스크보드 기능을 하나의 협업 모듈로 통합하기 위한 구조 설계 작업입니다. 워크스페이스, 폴더, 보드, 작업, 하위작업으로 구성된 계층 구조를 기준으로, 각 단위의 기능 요구사항과 화면 흐름 변경안을 문서화할 필요가 있습니다.</p>
+                    <div class="feed-extra" hidden>
+                      <section class="feed-linked-section" aria-label="연관 작업">
+                        <div class="feed-linked-head">
+                          <h4>연관 작업</h4>
+                          <div>
+                            <button type="button" data-task-action-toast="기존 작업을 검색하여 연관 작업으로 연결합니다."><img src="./resources/Ico-System/app=flow, style=line.svg" alt="">연결</button>
+                            <button type="button" aria-label="연관 작업 추가" data-task-action-toast="새로운 작업을 연관 작업으로 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                          </div>
+                        </div>
+                        <div class="feed-linked-table">
+                          <div class="feed-linked-row is-head"><span>제목</span><span>상태</span><span>담당자</span><span>우선순위</span></div>
+                          <button type="button" data-task-action-toast="연관 작업으로 이동합니다."><strong>모바일 전자결재 개선 요구사항 정리</strong><b class="task-state done">완료</b><span><span class="table-avatar navy">김</span>김지은</span><em class="task-priority high"><i></i>높음</em></button>
+                          <button type="button" data-task-action-toast="연관 작업으로 이동합니다."><strong>외부 연동 가이드 초안 작성</strong><b class="task-state progress">진행</b><span><span class="table-avatar violet">박</span>박정훈</span><em class="task-priority normal"><i></i>보통</em></button>
+                        </div>
+                      </section>
+                      <section class="feed-linked-section" aria-label="하위 작업">
+                        <div class="feed-linked-head with-progress">
+                          <h4>하위 작업</h4>
+                          <span class="feed-progress-summary"><em>진척률</em><strong>67%</strong><i><b style="--progress:67%"></b></i></span>
+                          <div>
+                            <button type="button" data-task-action-toast="기존 작업을 검색하여 하위 작업으로 연결합니다."><img src="./resources/Ico-System/app=flow, style=line.svg" alt="">연결</button>
+                            <button type="button" aria-label="하위 작업 추가" data-task-action-toast="새로운 작업을 하위 작업으로 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                          </div>
+                        </div>
+                        <div class="feed-subtask-list">
+                          <button type="button" data-task-action-toast="하위 작업으로 이동합니다."><span><em>plan-1022</em><strong>폴더와 보드 계층 구조 정의</strong></span><b class="task-state done">완료</b><span><span class="table-avatar yellow">윤</span>윤대현</span><em class="task-priority normal"><i></i>보통</em><time>2025-07-15</time></button>
+                          <button type="button" data-task-action-toast="하위 작업으로 이동합니다."><span><em>plan-1023</em><strong>권한 정책 화면 흐름 정리</strong></span><b class="task-state progress">진행</b><span><span class="table-avatar navy">김</span>김지은</span><em class="task-priority high"><i></i>높음</em><time>2025-07-19</time></button>
+                        </div>
+                      </section>
+                    </div>
+                    <footer>
+                      <button class="feed-detail-button" type="button" data-feed-expand>상세보기 <img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt=""></button>
+                    </footer>
+                  </section>
+                </article>
+              </div>
+            </section>
+          </div>
+
+          <aside class="filter-offcanvas" id="boardFilterOffcanvas" aria-hidden="true" aria-label="필터 설정">
+            <div class="filter-offcanvas-panel" role="dialog" aria-modal="true" aria-labelledby="boardFilterTitle">
+              <header class="filter-offcanvas-header">
+                <button type="button" aria-label="필터 닫기" data-close-filter-canvas><img src="./resources/Ico-System/app=x-md, style=line.svg" alt=""></button>
+                <h2 id="boardFilterTitle">필터</h2>
+              </header>
+              <div class="filter-offcanvas-body">
+                <section class="filter-field">
+                  <h3>정렬</h3>
+                  <div class="filter-inline">
+                    <button class="filter-select" type="button">항목 선택<img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
+                    <button class="filter-square" type="button" aria-label="오름차순"><img src="./resources/Ico-System/app=order-up, style=line.svg" alt=""></button>
+                    <button class="filter-square" type="button" aria-label="내림차순"><img src="./resources/Ico-System/app=order-down, style=line.svg" alt=""></button>
+                  </div>
+                </section>
+                <section class="filter-field">
+                  <h3>작업 제목</h3>
+                  <div class="filter-inline">
+                    <input type="text" placeholder="기간 선택">
+                    <button class="filter-square" type="button" aria-label="작업 제목 검색"><img src="./resources/Ico-System/app=search, style=line.svg" alt=""></button>
+                  </div>
+                </section>
+                <section class="filter-field">
+                  <h3>등록일</h3>
+                  <button class="filter-date" type="button">YYYY - MM - DD&nbsp;&nbsp; ~ &nbsp;&nbsp;YYYY - MM - DD<img src="./resources/Ico-System/app=calender, style=line.svg" alt=""></button>
+                </section>
+                <section class="filter-field">
+                  <h3>등록자</h3>
+                  <div class="filter-inline">
+                    <input type="text" placeholder="등록자 선택">
+                    <button class="filter-square" type="button" aria-label="등록자 선택"><img src="./resources/Ico-System/app=organization, style=line.svg" alt=""></button>
+                  </div>
+                </section>
+                <section class="filter-field">
+                  <h3>상태</h3>
+                  <button class="filter-select" type="button">진행<img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
+                </section>
+                <section class="filter-field">
+                  <h3>담당자</h3>
+                  <div class="filter-inline">
+                    <input type="text" placeholder="담당자 선택">
+                    <button class="filter-square" type="button" aria-label="담당자 선택"><img src="./resources/Ico-System/app=organization, style=line.svg" alt=""></button>
+                  </div>
+                </section>
+                <section class="filter-field">
+                  <h3>수정일</h3>
+                  <button class="filter-date" type="button">YYYY - MM - DD&nbsp;&nbsp; ~ &nbsp;&nbsp;YYYY - MM - DD<img src="./resources/Ico-System/app=calender, style=line.svg" alt=""></button>
+                </section>
+                <section class="filter-field">
+                  <h3>시작일</h3>
+                  <button class="filter-date" type="button">YYYY - MM - DD&nbsp;&nbsp; ~ &nbsp;&nbsp;YYYY - MM - DD<img src="./resources/Ico-System/app=calender, style=line.svg" alt=""></button>
+                </section>
+                <section class="filter-field">
+                  <h3>완료일</h3>
+                  <button class="filter-date" type="button">YYYY - MM - DD&nbsp;&nbsp; ~ &nbsp;&nbsp;YYYY - MM - DD<img src="./resources/Ico-System/app=calender, style=line.svg" alt=""></button>
+                </section>
+                <section class="filter-field">
+                  <h3>우선순위</h3>
+                  <label><span class="fake-checkbox"></span>매우 낮음</label>
+                  <label><span class="fake-checkbox"></span>낮음</label>
+                  <label><span class="fake-checkbox"></span>보통</label>
+                  <label><span class="fake-checkbox"></span>높음</label>
+                  <label><span class="fake-checkbox"></span>매우 높음</label>
+                </section>
+                <section class="filter-field">
+                  <h3>유형</h3>
+                  <button class="filter-select" type="button">기능 개선<img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
+                </section>
+              </div>
+              <footer class="filter-offcanvas-footer">
+                <button type="button" data-close-filter-canvas>취소</button>
+                <button type="button" data-close-filter-canvas>확인</button>
+              </footer>
+            </div>
+          </aside>
+
+          <aside class="task-detail-panel" aria-label="작업 상세 패널" hidden>
+                <header class="task-panel-header">
+                  <button class="task-panel-back" type="button" aria-label="작업 패널 닫기" data-close-task-panel>
+                    <img src="./resources/Ico-System/app=chevron-left-lg, style=line.svg" alt="">
+                  </button>
+                  <div class="task-panel-header-actions">
+                    <button class="task-panel-expand-button" type="button" aria-label="패널 확장" aria-pressed="false" data-toggle-task-expand>
+                      <img src="./resources/Ico-System/app=expand, style=line.svg" alt="">
+                    </button>
+                    <button class="task-panel-view-select" type="button" aria-haspopup="menu" aria-expanded="false" data-task-popover-toggle="taskViewPopover">
+                      <span data-task-view-label>기본</span>
+                      <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                    </button>
+                    <div class="task-panel-popover task-view-popover" id="taskViewPopover" role="menu">
+                      <div class="task-popover-icons">
+                        <button type="button" aria-label="항목 추가" data-task-view-add data-task-toast="표시 항목과 순서를 설정하여 화면을 저장할 수 있습니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                        <button type="button" aria-label="순서 변경" data-task-view-order data-task-toast="하단 화면들의 순서를 조정할 수 있습니다."><img src="./resources/Ico-System/app=order-updown, style=line.svg" alt=""></button>
+                      </div>
+                      <div class="task-popover-divider" aria-hidden="true"></div>
+                      <div class="task-popover-list">
+                        <button type="button" role="menuitem" data-task-view-option="기본" data-task-edit-toast="저장한 화면 설정을 수정할 수 있습니다.">기본<img src="./resources/Ico-System/app=pencil, style=line.svg" alt=""></button>
+                        <button type="button" role="menuitem" data-task-view-option="필수 항목" data-task-edit-toast="저장한 화면 설정을 수정할 수 있습니다.">필수 항목<img src="./resources/Ico-System/app=pencil, style=line.svg" alt=""></button>
+                        <button type="button" role="menuitem" data-task-view-option="전체 항목" data-task-edit-toast="저장한 화면 설정을 수정할 수 있습니다.">전체 항목<img src="./resources/Ico-System/app=pencil, style=line.svg" alt=""></button>
+                      </div>
+                    </div>
+                    <button class="task-panel-icon-button" type="button" aria-label="더보기" aria-haspopup="menu" aria-expanded="false" data-task-popover-toggle="taskMorePopover">
+                      <img src="./resources/Ico-System/app=kebab, style=line.svg" alt="">
+                    </button>
+                    <div class="task-panel-popover task-more-popover" id="taskMorePopover" role="menu">
+                      <div class="task-popover-icons">
+                        <button type="button" aria-label="공유" data-task-toast="작업 공유 기능을 제공합니다."><img src="./resources/Ico-System/app=share, style=line.svg" alt=""></button>
+                        <button type="button" aria-label="내보내기" data-task-toast="작업 새창으로 보기 기능을 제공합니다."><img src="./resources/Ico-System/app=export, style=line.svg" alt=""></button>
+                        <button type="button" aria-label="인쇄" data-task-toast="작업 인쇄 기능을 제공합니다."><img src="./resources/Ico-System/app=print, style=line.svg" alt=""></button>
+                      </div>
+                      <div class="task-popover-divider" aria-hidden="true"></div>
+                      <div class="task-popover-list">
+                        <button type="button" role="menuitem" data-task-toast="작업 복사 기능을 제공합니다.">복사</button>
+                        <button type="button" role="menuitem" data-task-toast="작업 이동 기능을 제공합니다.">이동</button>
+                        <button type="button" role="menuitem" data-task-toast="작업 보관 기능을 제공합니다.">보관</button>
+                        <button type="button" role="menuitem" data-task-toast="작업 삭제 기능을 제공합니다.">삭제</button>
+                        <button type="button" role="menuitem" data-task-toast="AI로 작업을 조회하는 기능을 제공합니다.">AI 조회</button>
+                        <button type="button" role="menuitem" data-task-toast="작업 라벨 설정 기능을 제공합니다.">라벨</button>
+                        <button type="button" role="menuitem" data-task-toast="작업 메모 작성 기능을 제공합니다.">메모 작성</button>
+                        <button type="button" role="menuitem" data-task-toast="AI 연결 기능을 제공합니다.">AI 연결</button>
+                        <button type="button" role="menuitem" data-task-toast="작업 추천 기능을 제공합니다.">추천</button>
+                        <button type="button" role="menuitem" data-task-toast="작업 조회 목록 기능을 제공합니다.">조회 목록</button>
+                        <button type="button" role="menuitem" data-task-toast="작업 추천 목록 기능을 제공합니다.">추천 목록</button>
+                        <button type="button" role="menuitem" data-task-toast="작업 더보기 기능을 제공합니다.">더보기<img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt=""></button>
+                      </div>
+                    </div>
+                    <button class="task-panel-temp-button" type="button" data-create-only>임시저장</button>
+                    <button class="task-panel-save-button" type="button" data-save-created-task data-create-only>저장</button>
+                    <button class="task-panel-icon-button" type="button" aria-label="활동" data-task-activity-toast data-task-toast="댓글과 활동 내역 팝업이 뜹니다.">
+                      <img src="./resources/Ico-System/app=activity, style=line.svg" alt="">
+                    </button>
+                  </div>
+                </header>
+                <div class="task-panel-body task-create-body" data-create-only>
+                  <input class="task-create-title" type="text" placeholder="제목을 입력하세요." data-create-task-title>
+
+                  <section class="task-info-section is-collapsed" aria-labelledby="createTaskInfoTitle">
+                    <div class="task-section-title" role="button" tabindex="0" aria-expanded="false" data-task-section-toggle>
+                      <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                      <h3 id="createTaskInfoTitle">세부 정보</h3>
+                    </div>
+                    <div class="task-form-grid">
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=person, style=line.svg" alt="">등록자</span>
+                        <span class="task-form-field">
+                          <span class="task-field-icon"><img src="./resources/Ico-System/app=organization, style=line.svg" alt=""></span>
+                          <span class="task-person-pill"><span class="table-avatar navy">김</span>김지은 대리(솔루션기획팀)</span>
+                        </span>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">시작일</span>
+                        <button class="task-value-pill task-empty-pill" type="button" data-task-action-toast="시작일을 선택합니다.">비어 있음</button>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">수정일</span>
+                        <span class="task-value-pill is-readonly task-empty-pill">비어 있음</span>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=progress, style=line.svg" alt="">단계</span>
+                        <button class="task-value-pill is-dropdown task-empty-pill" type="button" data-task-action-toast="단계를 선택합니다.">비어 있음<img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=person, style=line.svg" alt="">담당자</span>
+                        <span class="task-form-field">
+                          <button class="task-field-icon" type="button" data-task-toast="조직도 선택 팝업이 뜹니다."><img src="./resources/Ico-System/app=organization, style=line.svg" alt=""></button>
+                          <button class="task-value-pill task-empty-pill" type="button" data-task-toast="담당자를 선택합니다.">비어 있음</button>
+                        </span>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">완료일</span>
+                        <button class="task-value-pill task-empty-pill" type="button" data-task-action-toast="완료일을 선택합니다.">비어 있음</button>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">등록일</span>
+                        <span class="task-value-pill is-readonly task-empty-pill">비어 있음</span>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=check-circle, style=line.svg" alt="">우선순위</span>
+                        <button class="task-value-pill is-dropdown task-empty-pill" type="button" data-task-action-toast="우선순위를 선택합니다.">비어 있음<img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="task-note-section" aria-label="작업 설명">
+                    <div class="task-note-tabs">
+                      <button class="is-active" type="button">노트</button>
+                      <button type="button">노트02</button>
+                      <button type="button" data-task-note-add data-task-toast="작업 노트를 추가할 수 있습니다.">+ 추가</button>
+                    </div>
+                    <article class="task-note-card">
+                      <textarea class="task-create-note" placeholder="텍스트를 입력하거나 /를 입력하여 명령을 입력하세요."></textarea>
+                    </article>
+                  </section>
+
+                  <section class="task-linked-section is-empty" aria-label="연관 작업">
+                    <div class="task-section-head">
+                      <div class="task-section-title" role="button" tabindex="0" aria-expanded="true" data-task-section-toggle>
+                        <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                        <h3>연관 작업</h3>
+                      </div>
+                      <div class="task-section-actions">
+                        <button type="button" data-task-action-toast="기존 작업을 검색하여 연관 작업으로 연결합니다."><img src="./resources/Ico-System/app=flow, style=line.svg" alt="">연결</button>
+                        <button type="button" aria-label="연관 작업 추가" data-task-action-toast="새로운 작업을 연관 작업으로 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                      </div>
+                    </div>
+                    <p class="task-empty-message">작업 간 관계를 설정하여 체계적으로 관리해보세요.</p>
+                  </section>
+
+                  <section class="task-linked-section is-empty" aria-label="하위 작업">
+                    <div class="task-section-head">
+                      <div class="task-section-title" role="button" tabindex="0" aria-expanded="true" data-task-section-toggle>
+                        <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                        <h3>하위 작업</h3>
+                      </div>
+                      <div class="task-section-actions">
+                        <button type="button" data-task-action-toast="기존 작업을 검색하여 하위 작업으로 연결합니다."><img src="./resources/Ico-System/app=flow, style=line.svg" alt="">연결</button>
+                        <button type="button" aria-label="하위 작업 추가" data-task-action-toast="새로운 작업을 하위 작업으로 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                      </div>
+                    </div>
+                    <p class="task-empty-message">복잡한 작업을 세분화하여 효율적으로 할당하세요.</p>
+                  </section>
+                </div>
+                <div class="task-panel-body task-view-body" data-view-only>
+                  <h2>게시판 사용자 시나리오</h2>
+
+                  <section class="task-info-section" aria-labelledby="taskInfoTitle">
+                    <div class="task-section-title" role="button" tabindex="0" aria-expanded="true" data-task-section-toggle>
+                      <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                      <h3 id="taskInfoTitle">세부 정보</h3>
+                    </div>
+                    <div class="task-form-grid">
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=person, style=line.svg" alt="">등록자</span>
+                        <span class="task-form-field">
+                          <span class="task-field-icon"><img src="./resources/Ico-System/app=organization, style=line.svg" alt=""></span>
+                          <span class="task-person-pill"><span class="table-avatar navy">김</span>김지은 대리(솔루션기획팀)</span>
+                        </span>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=person, style=line.svg" alt="">담당자</span>
+                        <span class="task-form-field">
+                          <button class="task-field-icon" type="button" data-task-toast="조직도 선택 팝업이 뜹니다."><img src="./resources/Ico-System/app=organization, style=line.svg" alt=""></button>
+                          <span class="task-person-pill"><span class="table-avatar violet">윤</span>윤대현 과장(개발팀)</span>
+                        </span>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">시작일</span>
+                        <button class="task-value-pill" type="button" aria-expanded="false" data-task-date-toggle="taskStartDatePopover"><span data-task-date-label>2025-12-13</span></button>
+                        <div class="task-field-popover task-date-popover" id="taskStartDatePopover">
+                          <div class="task-calendar-head">
+                            <button type="button" aria-label="이전 달"><img src="./resources/Ico-System/app=chevron-left-sm, style=line.svg" alt=""></button>
+                            <strong>2025년 12월</strong>
+                            <button type="button" aria-label="다음 달"><img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt=""></button>
+                          </div>
+                          <div class="task-calendar-week" aria-hidden="true"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+                          <div class="task-calendar-grid">
+                            <span></span><button type="button" data-task-date-value="2025-12-01">1</button><button type="button" data-task-date-value="2025-12-02">2</button><button type="button" data-task-date-value="2025-12-03">3</button><button type="button" data-task-date-value="2025-12-04">4</button><button type="button" data-task-date-value="2025-12-05">5</button><button type="button" data-task-date-value="2025-12-06">6</button>
+                            <button type="button" data-task-date-value="2025-12-07">7</button><button type="button" data-task-date-value="2025-12-08">8</button><button type="button" data-task-date-value="2025-12-09">9</button><button type="button" data-task-date-value="2025-12-10">10</button><button type="button" data-task-date-value="2025-12-11">11</button><button type="button" data-task-date-value="2025-12-12">12</button><button class="is-selected" type="button" data-task-date-value="2025-12-13">13</button>
+                            <button type="button" data-task-date-value="2025-12-14">14</button><button type="button" data-task-date-value="2025-12-15">15</button><button type="button" data-task-date-value="2025-12-16">16</button><button type="button" data-task-date-value="2025-12-17">17</button><button type="button" data-task-date-value="2025-12-18">18</button><button type="button" data-task-date-value="2025-12-19">19</button><button type="button" data-task-date-value="2025-12-20">20</button>
+                            <button type="button" data-task-date-value="2025-12-21">21</button><button type="button" data-task-date-value="2025-12-22">22</button><button type="button" data-task-date-value="2025-12-23">23</button><button type="button" data-task-date-value="2025-12-24">24</button><button type="button" data-task-date-value="2025-12-25">25</button><button type="button" data-task-date-value="2025-12-26">26</button><button type="button" data-task-date-value="2025-12-27">27</button>
+                            <button type="button" data-task-date-value="2025-12-28">28</button><button type="button" data-task-date-value="2025-12-29">29</button><button type="button" data-task-date-value="2025-12-30">30</button><button type="button" data-task-date-value="2025-12-31">31</button><span></span><span></span><span></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">완료일</span>
+                        <button class="task-value-pill" type="button" aria-expanded="false" data-task-date-toggle="taskEndDatePopover"><span data-task-date-label>2026-03-15</span></button>
+                        <div class="task-field-popover task-date-popover" id="taskEndDatePopover">
+                          <div class="task-calendar-head">
+                            <button type="button" aria-label="이전 달"><img src="./resources/Ico-System/app=chevron-left-sm, style=line.svg" alt=""></button>
+                            <strong>2026년 3월</strong>
+                            <button type="button" aria-label="다음 달"><img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt=""></button>
+                          </div>
+                          <div class="task-calendar-week" aria-hidden="true"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+                          <div class="task-calendar-grid">
+                            <button type="button" data-task-date-value="2026-03-01">1</button><button type="button" data-task-date-value="2026-03-02">2</button><button type="button" data-task-date-value="2026-03-03">3</button><button type="button" data-task-date-value="2026-03-04">4</button><button type="button" data-task-date-value="2026-03-05">5</button><button type="button" data-task-date-value="2026-03-06">6</button><button type="button" data-task-date-value="2026-03-07">7</button>
+                            <button type="button" data-task-date-value="2026-03-08">8</button><button type="button" data-task-date-value="2026-03-09">9</button><button type="button" data-task-date-value="2026-03-10">10</button><button type="button" data-task-date-value="2026-03-11">11</button><button type="button" data-task-date-value="2026-03-12">12</button><button type="button" data-task-date-value="2026-03-13">13</button><button type="button" data-task-date-value="2026-03-14">14</button>
+                            <button class="is-selected" type="button" data-task-date-value="2026-03-15">15</button><button type="button" data-task-date-value="2026-03-16">16</button><button type="button" data-task-date-value="2026-03-17">17</button><button type="button" data-task-date-value="2026-03-18">18</button><button type="button" data-task-date-value="2026-03-19">19</button><button type="button" data-task-date-value="2026-03-20">20</button><button type="button" data-task-date-value="2026-03-21">21</button>
+                            <button type="button" data-task-date-value="2026-03-22">22</button><button type="button" data-task-date-value="2026-03-23">23</button><button type="button" data-task-date-value="2026-03-24">24</button><button type="button" data-task-date-value="2026-03-25">25</button><button type="button" data-task-date-value="2026-03-26">26</button><button type="button" data-task-date-value="2026-03-27">27</button><button type="button" data-task-date-value="2026-03-28">28</button>
+                            <button type="button" data-task-date-value="2026-03-29">29</button><button type="button" data-task-date-value="2026-03-30">30</button><button type="button" data-task-date-value="2026-03-31">31</button><span></span><span></span><span></span><span></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=progress, style=line.svg" alt="">단계</span>
+                        <button class="task-value-pill is-dropdown" type="button" aria-expanded="false" data-task-select-toggle="taskStatusPopover"><span data-task-select-label>요청</span><img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
+                        <div class="task-field-popover task-select-popover task-status-popover" id="taskStatusPopover">
+                          <button type="button" data-task-select-option="요청">요청</button>
+                          <button type="button" data-task-select-option="담당자 배정">담당자 배정</button>
+                          <button type="button" data-task-select-option="시장조사">시장조사</button>
+                          <button type="button" data-task-select-option="초안 설계">초안 설계</button>
+                          <button type="button" data-task-select-option="피드백 반영">피드백 반영</button>
+                          <button type="button" data-task-select-option="리뷰">리뷰</button>
+                          <button type="button" data-task-select-option="등록 완료">등록 완료</button>
+                        </div>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=check-circle, style=line.svg" alt="">우선 순위</span>
+                        <button class="task-value-pill is-dropdown priority-low" type="button" aria-expanded="false" data-task-select-toggle="taskPriorityPopover" data-task-priority-button><i></i><span data-task-select-label>낮음</span><img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
+                        <div class="task-field-popover task-select-popover task-priority-popover" id="taskPriorityPopover">
+                          <button type="button" data-task-select-option="매우 낮음" data-task-priority-class="priority-very-low"><i></i>매우 낮음</button>
+                          <button type="button" data-task-select-option="낮음" data-task-priority-class="priority-low"><i></i>낮음</button>
+                          <button type="button" data-task-select-option="보통" data-task-priority-class="priority-normal"><i></i>보통</button>
+                          <button type="button" data-task-select-option="높음" data-task-priority-class="priority-high"><i></i>높음</button>
+                          <button type="button" data-task-select-option="매우 높음" data-task-priority-class="priority-very-high"><i></i>매우 높음</button>
+                        </div>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">수정일</span>
+                        <span class="task-value-pill is-readonly">2026-03-18</span>
+                      </div>
+                      <div class="task-form-row">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">등록일</span>
+                        <span class="task-value-pill is-readonly">2026-01-13</span>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="task-note-section" aria-label="작업 설명">
+                    <div class="task-note-tabs">
+                      <button class="is-active" type="button">정리 목적</button>
+                      <button type="button">현황 조사</button>
+                      <button type="button" data-task-note-add data-task-toast="작업 노트를 추가할 수 있습니다.">+ 추가</button>
+                    </div>
+                    <article class="task-note-card">
+                      <p data-task-note-text>사용자가 모바일 환경에서 게시판 글을 작성하고 검토 요청을 보내는 흐름을 정리합니다. 첨부 파일, 임시 저장, 알림 수신 상태까지 확인할 수 있도록 주요 예외 케이스를 함께 점검합니다.</p>
+                    </article>
+                  </section>
+
+                  <section class="task-linked-section" aria-labelledby="linkedTaskTitle">
+                    <div class="task-section-head">
+                      <div class="task-section-title" role="button" tabindex="0" aria-expanded="true" data-task-section-toggle>
+                        <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                        <h3 id="linkedTaskTitle">연관 작업</h3>
+                      </div>
+                      <div class="task-section-actions">
+                        <button type="button" data-task-action-toast="기존 작업을 검색하여 연관 작업으로 연결합니다."><img src="./resources/Ico-System/app=flow, style=line.svg" alt="">연결</button>
+                        <button type="button" aria-label="연관 작업 추가" data-task-action-toast="새로운 작업을 연관 작업으로 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                      </div>
+                    </div>
+                    <div class="task-related-table" role="table" aria-label="연관 작업">
+                      <div class="task-related-head" role="row">
+                        <span role="columnheader">관계</span>
+                        <span role="columnheader">ID</span>
+                        <span role="columnheader">제목</span>
+                        <span role="columnheader">등록자</span>
+                        <span role="columnheader">단계</span>
+                        <span role="columnheader">우선순위</span>
+                        <span role="columnheader">시작일</span>
+                      </div>
+                      <div role="row">
+                        <span role="cell">선행 작업</span>
+                        <span role="cell">plan-1005</span>
+                        <span role="cell"><button class="task-related-title" type="button" data-task-action-toast="연관 작업으로 이동합니다.">전자결재 프로세스 정리 및 정책 수립</button></span>
+                        <span role="cell"><span class="table-avatar violet">박</span>박정훈</span>
+                        <span role="cell"><b class="task-state progress">진행</b></span>
+                        <span role="cell"><b class="task-priority high"><i></i>높음</b></span>
+                        <span role="cell">2025-11-13</span>
+                      </div>
+                      <div role="row">
+                        <span role="cell">후속 작업</span>
+                        <span role="cell">plan-1002</span>
+                        <span role="cell"><button class="task-related-title" type="button" data-task-action-toast="연관 작업으로 이동합니다.">프로젝트 기능 통합 구조 설계안 작성</button></span>
+                        <span role="cell"><span class="table-avatar violet">박</span>박정훈</span>
+                        <span role="cell"><b class="task-state done">완료</b></span>
+                        <span role="cell"><b class="task-priority normal"><i></i>보통</b></span>
+                        <span role="cell">2025-11-13</span>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="task-linked-section" aria-labelledby="subTaskTitle">
+                    <div class="task-section-head with-progress">
+                      <div class="task-section-title" role="button" tabindex="0" aria-expanded="true" data-task-section-toggle>
+                        <img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt="">
+                        <h3 id="subTaskTitle">하위 작업</h3>
+                      </div>
+                      <div class="task-progress-summary">
+                        <span>진척률 35%</span>
+                        <b><i style="width: 35%;"></i></b>
+                      </div>
+                      <div class="task-section-actions">
+                        <button type="button" data-task-action-toast="기존 작업을 검색하여 하위 작업으로 연결합니다."><img src="./resources/Ico-System/app=flow, style=line.svg" alt="">연결</button>
+                        <button type="button" aria-label="하위 작업 추가" data-task-action-toast="새로운 작업을 하위 작업으로 추가합니다."><img src="./resources/Ico-System/app=plus, style=line.svg" alt=""></button>
+                      </div>
+                    </div>
+                    <div class="task-subtask-list">
+                      <button type="button">
+                        <span class="task-subtask-title" data-task-action-toast="하위 작업으로 이동합니다."><em>plan-1022</em><strong>안드로이드 기기 테스트</strong></span>
+                        <b class="task-state done">완료</b>
+                        <span class="task-subtask-assignee"><span class="table-avatar navy">김</span>김지은</span>
+                        <b class="task-priority normal"><i></i>보통</b>
+                        <time>2026-01-23</time>
+                      </button>
+                      <button type="button">
+                        <span class="task-subtask-title" data-task-action-toast="하위 작업으로 이동합니다."><em>plan-1022</em><strong>게시판 사용자 시나리오</strong></span>
+                        <b class="task-state done">완료</b>
+                        <span class="task-subtask-assignee"><span class="table-avatar navy">김</span>김지은</span>
+                        <b class="task-priority low"><i></i>낮음</b>
+                        <time>2026-01-23</time>
+                      </button>
+                    </div>
+                  </section>
+                </div>
+          </aside>
+        </section>
+
+        <section class="workspace-create prototype-screen" id="workspaceCreateScreen" aria-labelledby="workspaceCreateTitle">
+          <header class="create-header">
+            <div class="create-title">
+              <button class="back-button" type="button" aria-label="워크스페이스 홈으로 돌아가기" data-screen-target="workspaceHomeScreen" data-lnb-target="lnbHomePanel">
+                <img src="./resources/Ico-System/app=chevron-left-lg, style=line.svg" alt="">
+              </button>
+              <h1 id="workspaceCreateTitle">워크스페이스 추가</h1>
+            </div>
+            <button class="next-button" type="button" data-screen-target="workspaceBoardSetupScreen">
+              다음
+              <img src="./resources/Ico-System/app=chevron-right-sm, style=line.svg" alt="">
+            </button>
+          </header>
+
+          <form class="create-form">
+            <section class="title-editor" aria-label="워크스페이스 제목">
+              <div class="title-main-row">
+                <input class="title-input" type="text" value="연구소 업무 공간" aria-label="워크스페이스 제목">
+                <button class="language-button" type="button" aria-label="다국어 입력">
+                  <img src="./resources/Ico-System/app=translate, style=line.svg" alt="">
+                </button>
+              </div>
+              <label class="locale-field">
+                <img src="./resources/flag/ico-image-1.svg" alt="">
+                <input type="text" value="R&amp;A space" aria-label="영문 제목">
+              </label>
+              <label class="locale-field">
+                <img src="./resources/flag/ico-image.svg" alt="">
+                <input type="text" value="研究所办公空间" aria-label="중문 제목">
+              </label>
+              <label class="locale-field">
+                <img src="./resources/flag/Frame 2087328413.svg" alt="">
+                <input type="text" value="研究所の執務空間" aria-label="일문 제목">
+              </label>
+              <label class="locale-field">
+                <img src="./resources/flag/Frame 2087328415.svg" alt="">
+                <input type="text" value="Không gian làm việc của viện nghiên cứu" aria-label="베트남어 제목">
+              </label>
+            </section>
+
+            <div class="form-row">
+              <label class="form-label" for="workspaceDesc">
+                <img src="./resources/Ico-System/app=memo, style=line.svg" alt="">
+                설명
+              </label>
+              <textarea id="workspaceDesc" rows="5">전략, 설계, 디자인, 개발팀 업무 공간입니다.</textarea>
+            </div>
+
+            <div class="form-row compact">
+              <span class="form-label">
+                <img src="./resources/Ico-System/app=company, style=line.svg" alt="">
+                워크스페이스 소속
+              </span>
+              <div class="radio-group">
+                <label><input type="radio" name="workspaceOwner"> 회사</label>
+                <label><input type="radio" name="workspaceOwner" checked> 그룹사</label>
+              </div>
+            </div>
+
+            <div class="form-row compact">
+              <span class="form-label">
+                <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                폴더 선택
+              </span>
+              <div class="chip-line">
+                <button class="square-add" type="button" data-picker-title="폴더 선택">+</button>
+                <span class="selection-chip"><img src="./resources/Ico-System/app=folder, style=line.svg" alt="">연구소/개발팀<button type="button" aria-label="삭제">×</button></span>
+              </div>
+            </div>
+
+            <div class="form-row compact">
+              <span class="form-label">
+                <img src="./resources/Ico-System/app=layout, style=line.svg" alt="">
+                템플릿 선택
+              </span>
+              <div class="chip-line">
+                <button class="square-add" type="button" data-picker-title="템플릿 선택">+</button>
+                <span class="selection-chip">사업본부 프로젝트<button type="button" aria-label="삭제">×</button></span>
+              </div>
+            </div>
+
+            <div class="form-row compact">
+              <span class="form-label">
+                <img src="./resources/Ico-System/app=eye-open, style=line.svg" alt="">
+                공개 여부
+              </span>
+              <div class="toggle-line">
+                <button class="switch is-on" type="button" role="switch" aria-checked="true"><span></span></button>
+                <p>공개로 전환 시, 전체 워크스페이스에 표시되며, 누구나 참여 신청이 가능합니다.</p>
+              </div>
+            </div>
+
+            <div class="form-row permissions">
+              <span class="form-label">
+                <img src="./resources/Ico-System/app=people, style=line.svg" alt="">
+                권한 설정
+              </span>
+              <div class="permission-stack">
+                <div class="permission-line">
+                  <b>관리자</b>
+                  <button class="square-add" type="button" data-picker-title="조직도 선택">+</button>
+                  <span class="selection-chip"><span class="mini-avatar">홍</span>홍길동 과장(개발팀)<button type="button" aria-label="삭제">×</button></span>
+                </div>
+                <div class="permission-line">
+                  <b>참여자</b>
+                  <button class="square-add" type="button" data-picker-title="조직도 선택">+</button>
+                  <span class="selection-chip"><span class="mini-avatar">홍</span>홍길동 과장(개발팀)<button type="button" aria-label="삭제">×</button></span>
+                  <span class="selection-chip"><img class="chip-avatar-img" src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">김나온 대리(개발팀)<button type="button" aria-label="삭제">×</button></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row icon-pick-row">
+              <span class="form-label">
+                <img src="./resources/Ico-System/app=paint, style=line.svg" alt="">
+                아이콘
+              </span>
+              <div class="icon-picker">
+                <div class="selected-icon">
+                  <img src="./resources/Img-Folder/ChatGPT Image Mar 14, 2026 at 09_21_22 AM 1.png" alt="">
+                </div>
+                <button class="btn-secondary" type="button" data-picker-title="아이콘 선택">아이콘 선택</button>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <section class="board-setup-screen prototype-screen" id="workspaceBoardSetupScreen" aria-labelledby="boardSetupTitle">
+          <header class="create-header">
+            <div class="create-title">
+              <button class="back-button" type="button" aria-label="워크스페이스 추가로 돌아가기" data-screen-target="workspaceCreateScreen">
+                <img src="./resources/Ico-System/app=chevron-left-lg, style=line.svg" alt="">
+              </button>
+              <h1>이전</h1>
+            </div>
+            <button class="next-button" type="button" data-screen-target="workspaceHomeScreen" data-lnb-target="lnbHomePanel">저장</button>
+          </header>
+
+          <form class="board-setup-form">
+            <h2 id="boardSetupTitle">보드 설정</h2>
+
+            <div class="setup-field">
+              <label for="boardName">보드 이름<span>*</span></label>
+              <div class="inline-control">
+                <input id="boardName" type="text" value="솔루션 설계 관리">
+                <button class="square-icon" type="button" aria-label="다국어 입력">
+                  <img src="./resources/Ico-System/app=translate, style=line.svg" alt="">
+                </button>
+              </div>
+            </div>
+
+            <div class="setup-field">
+              <label for="boardId">ID<span>*</span></label>
+              <div class="inline-control">
+                <input id="boardId" type="text" value="plan">
+                <button class="btn-secondary validity-button" type="button">유효성 체크</button>
+              </div>
+              <p class="helper">*영어 대소문자 구분, 숫자만 사용 가능, 수정 불가</p>
+            </div>
+
+            <div class="setup-field">
+              <label>보드 관리자</label>
+              <div class="inline-control">
+                <div class="chip-input">
+                  <span class="selection-chip"><img class="chip-avatar-img" src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">김나온 대리(개발팀)<button type="button" aria-label="삭제">×</button></span>
+                  <span class="selection-chip"><span class="mini-avatar pink">나</span>나연구 수석(연구개발팀)<button type="button" aria-label="삭제">×</button></span>
+                </div>
+                <button class="square-icon" type="button" data-picker-title="조직도 선택">
+                  <img src="./resources/Ico-System/app=organization, style=line.svg" alt="">
+                </button>
+              </div>
+            </div>
+
+            <div class="setup-field">
+              <label>작업 등록자</label>
+              <div class="inline-control">
+                <div class="chip-input">
+                  <span class="selection-chip"><span class="mini-avatar">송</span>연구소<button type="button" aria-label="삭제">×</button></span>
+                </div>
+                <button class="square-icon" type="button" data-picker-title="조직도 선택">
+                  <img src="./resources/Ico-System/app=organization, style=line.svg" alt="">
+                </button>
+              </div>
+            </div>
+
+            <div class="setup-field">
+              <label>기본 담당자</label>
+              <div class="inline-control">
+                <div class="chip-input">
+                  <span class="selection-chip"><img class="chip-avatar-img" src="./resources/Gnb/shutterstock_2588094639 1.png" alt="">김나온 대리(개발팀)<button type="button" aria-label="삭제">×</button></span>
+                </div>
+                <button class="square-icon" type="button" data-picker-title="조직도 선택">
+                  <img src="./resources/Ico-System/app=organization, style=line.svg" alt="">
+                </button>
+              </div>
+              <p class="helper">새로운 작업의 추가될 때 담당자로 자동 입력됩니다.</p>
+            </div>
+
+            <div class="setup-field">
+              <div class="setup-label-row">
+                <label>커스텀 항목</label>
+                <button class="square-add" type="button" data-picker-title="커스텀 항목 추가">+</button>
+              </div>
+              <div class="settings-table">
+                <div class="settings-row table-head"><span>항목 이름</span><span>속성</span><span>기본값</span><span>필수/선택</span><span></span></div>
+                <div class="settings-row is-selected"><span>투입 공수</span><span>숫자</span><span>1</span><span>필수</span><span class="table-icon-actions"><img src="./resources/Ico-System/trashcan.svg" alt=""></span></div>
+                <div class="settings-row"><span>예산</span><span>금액</span><span></span><span>선택</span><span class="table-icon-actions"><img src="./resources/Ico-System/trashcan.svg" alt=""></span></div>
+                <div class="settings-row"><span>유형</span><span>선택 [기능 개선, 결함, 사용 종료]</span><span></span><span>필수</span><span class="table-icon-actions"><img src="./resources/Ico-System/trashcan.svg" alt=""></span></div>
+              </div>
+            </div>
+
+            <div class="setup-field">
+              <div class="setup-label-row">
+                <label>작업 플로우<span>*</span></label>
+                <div class="toggle-line">
+                  <span>사용</span>
+                  <button class="switch is-on" type="button" role="switch" aria-checked="true" data-toggle-target="flowFields"><span></span></button>
+                </div>
+              </div>
+              <div class="inline-control flow-fields" id="flowFields">
+                <input type="text" placeholder="플로우 추가">
+                <button class="square-add" type="button" data-picker-title="작업 플로우 선택">+</button>
+              </div>
+            </div>
+
+            <div class="setup-field">
+              <div class="setup-label-row">
+                <label>보기 설정<span>*</span></label>
+                <div class="table-actions">
+                  <button class="square-add" type="button" data-picker-title="순서 변경">↕</button>
+                  <button class="square-add" type="button" data-picker-title="보기 추가">+</button>
+                </div>
+              </div>
+              <div class="settings-table view-table">
+                <div class="settings-row table-head"><span>보기 종류</span><span>보기 이름</span><span>화면 구성</span></div>
+                <div class="settings-row is-selected"><span>요약</span><span>대시보드</span><span class="table-icon-actions"><img src="./resources/Ico-System/screen.svg" alt=""><img src="./resources/Ico-System/trashcan.svg" alt=""></span></div>
+                <div class="settings-row"><span>테이블</span><span>전체 목록</span><span class="table-icon-actions"><img src="./resources/Ico-System/screen.svg" alt=""><img src="./resources/Ico-System/trashcan.svg" alt=""></span></div>
+                <div class="settings-row"><span>칸반</span><span>TO DO</span><span class="table-icon-actions"><img src="./resources/Ico-System/screen.svg" alt=""><img src="./resources/Ico-System/trashcan.svg" alt=""></span></div>
+                <div class="settings-row"><span>간트</span><span>WBS</span><span class="table-icon-actions"><img src="./resources/Ico-System/screen.svg" alt=""><img src="./resources/Ico-System/trashcan.svg" alt=""></span></div>
+              </div>
+            </div>
+
+            <div class="setup-field">
+              <label for="taskAlias">작업 명칭</label>
+              <div class="inline-control">
+                <input id="taskAlias" type="text" placeholder="명칭 입력">
+                <button class="square-icon" type="button" aria-label="다국어 입력">
+                  <img src="./resources/Ico-System/app=translate, style=line.svg" alt="">
+                </button>
+              </div>
+              <p class="helper">빈 칸으로 두면 “작업”을 사용합니다.</p>
+            </div>
+
+            <div class="setup-field">
+              <label>색상</label>
+              <div class="color-palette" aria-label="보드 색상 선택">
+                <button class="color-swatch is-selected" style="--swatch:#ff6f6f" type="button">✓</button>
+                <button class="color-swatch" style="--swatch:#ff970f" type="button"></button>
+                <button class="color-swatch" style="--swatch:#f7ce00" type="button"></button>
+                <button class="color-swatch" style="--swatch:#7fb513" type="button"></button>
+                <button class="color-swatch" style="--swatch:#00b475" type="button"></button>
+                <button class="color-swatch" style="--swatch:#4d9d87" type="button"></button>
+                <button class="color-swatch" style="--swatch:#00bfea" type="button"></button>
+                <button class="color-swatch" style="--swatch:#03c0ff" type="button"></button>
+                <button class="color-swatch" style="--swatch:#507fff" type="button"></button>
+                <button class="color-swatch" style="--swatch:#5f25c4" type="button"></button>
+                <button class="color-swatch" style="--swatch:#9282e3" type="button"></button>
+                <button class="color-swatch" style="--swatch:#ff72d7" type="button"></button>
+                <button class="color-swatch" style="--swatch:#d88194" type="button"></button>
+                <button class="color-swatch" style="--swatch:#af0b65" type="button"></button>
+                <button class="color-swatch" style="--swatch:#4d639d" type="button"></button>
+                <button class="color-swatch" style="--swatch:#4f5462" type="button"></button>
+                <button class="color-swatch" style="--swatch:#844404" type="button"></button>
+                <button class="color-swatch" style="--swatch:#b0947b" type="button"></button>
+                <button class="color-swatch" style="--swatch:#ff140b" type="button"></button>
+                <button class="color-swatch" style="--swatch:#ffc4e8" type="button"></button>
+              </div>
+            </div>
+
+            <footer class="board-form-footer">
+              <button class="btn-secondary" type="button" data-screen-target="workspaceHomeScreen" data-lnb-target="lnbHomePanel">취소</button>
+              <button class="btn-primary" type="button" data-screen-target="workspaceHomeScreen" data-lnb-target="lnbHomePanel">저장</button>
+            </footer>
+          </form>
+        </section>
+      </main>
+
+      <div class="modal-backdrop" id="pickerModal" aria-hidden="true">
+        <section class="modal picker-modal" role="dialog" aria-modal="true" aria-labelledby="pickerModalTitle">
+          <header>
+            <h2 id="pickerModalTitle">선택</h2>
+            <button class="icon-button" type="button" aria-label="닫기" data-close-modal>
+              <img src="./resources/Ico-System/app=x-md, style=line.svg" alt="">
+            </button>
+          </header>
+          <p class="picker-message" id="pickerModalMessage">본 페이지는 웹 프로토타입으로 실제 화면과 다릅니다.</p>
+        </section>
+      </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
