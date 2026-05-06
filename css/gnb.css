@@ -3973,8 +3973,8 @@ button.table-chip {
 .board-dashboard-screen.has-task-panel.is-task-expanded .task-panel-body,
 .workspace-home.has-task-panel.is-task-expanded .task-panel-body,
 .workspace-overview.has-task-panel.is-task-expanded .task-panel-body {
-  padding-right: 28px;
-  padding-left: 28px;
+  padding-right: 48px;
+  padding-left: 48px;
 }
 
 .task-panel-body::-webkit-scrollbar {
@@ -4296,6 +4296,10 @@ button.table-chip {
   gap: 4px;
 }
 
+.task-form-row[hidden] {
+  display: none;
+}
+
 .task-form-label {
   display: flex;
   align-items: center;
@@ -4396,7 +4400,7 @@ button.task-field-icon:hover {
   padding-right: 6px;
 }
 
-.task-value-pill:not(.is-dropdown)::after {
+.task-value-pill:not(.is-dropdown):not(.is-readonly)::after {
   display: block;
   flex: 0 0 auto;
   width: 20px;
@@ -4440,11 +4444,28 @@ button.task-field-icon:hover {
   color: #ff4d4f;
 }
 
+.task-value-pill.task-state-value {
+  min-width: 96px;
+}
+
+.task-value-pill.state-wait {
+  color: #8a8f99;
+}
+
+.task-value-pill.state-progress {
+  color: var(--accent);
+}
+
+.task-value-pill.state-done {
+  color: #00a443;
+}
+
 .task-value-pill.priority-very-low img,
 .task-value-pill.priority-low img,
 .task-value-pill.priority-normal img,
 .task-value-pill.priority-high img,
-.task-value-pill.priority-very-high img {
+.task-value-pill.priority-very-high img,
+.task-value-pill.task-state-value img {
   margin-left: auto;
 }
 
@@ -4748,16 +4769,30 @@ button.task-field-icon:hover {
 .board-dashboard-screen.has-task-panel.is-task-expanded .task-section-head.with-progress,
 .workspace-home.has-task-panel.is-task-expanded .task-section-head.with-progress,
 .workspace-overview.has-task-panel.is-task-expanded .task-section-head.with-progress {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 8px 12px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
 }
 
 .board-dashboard-screen.has-task-panel.is-task-expanded .task-section-head.with-progress .task-progress-summary,
 .workspace-home.has-task-panel.is-task-expanded .task-section-head.with-progress .task-progress-summary,
 .workspace-overview.has-task-panel.is-task-expanded .task-section-head.with-progress .task-progress-summary {
-  grid-column: 1 / -1;
-  width: 100%;
+  flex: 1 1 auto;
+  width: auto;
+  max-width: none;
+}
+
+.board-dashboard-screen.has-task-panel.is-task-expanded .task-section-head.with-progress .task-section-title,
+.workspace-home.has-task-panel.is-task-expanded .task-section-head.with-progress .task-section-title,
+.workspace-overview.has-task-panel.is-task-expanded .task-section-head.with-progress .task-section-title {
+  flex: 0 0 auto;
+  min-width: 160px;
+}
+
+.board-dashboard-screen.has-task-panel.is-task-expanded .task-section-head.with-progress .task-section-actions,
+.workspace-home.has-task-panel.is-task-expanded .task-section-head.with-progress .task-section-actions,
+.workspace-overview.has-task-panel.is-task-expanded .task-section-head.with-progress .task-section-actions {
+  margin-left: 0;
 }
 
 .task-section-actions {

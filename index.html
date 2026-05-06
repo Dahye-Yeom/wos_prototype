@@ -2243,21 +2243,20 @@
                       <h3 id="taskInfoTitle">세부 정보</h3>
                     </div>
                     <div class="task-form-grid">
-                      <div class="task-form-row">
+                      <div class="task-form-row" data-task-detail-field="registrar">
                         <span class="task-form-label"><img src="./resources/Ico-System/app=person, style=line.svg" alt="">등록자</span>
                         <span class="task-form-field">
-                          <span class="task-field-icon"><img src="./resources/Ico-System/app=organization, style=line.svg" alt=""></span>
                           <span class="task-person-pill"><span class="table-avatar navy">김</span>김지은 대리(솔루션기획팀)</span>
                         </span>
                       </div>
-                      <div class="task-form-row">
+                      <div class="task-form-row" data-task-detail-field="assignee">
                         <span class="task-form-label"><img src="./resources/Ico-System/app=person, style=line.svg" alt="">담당자</span>
                         <span class="task-form-field">
                           <button class="task-field-icon" type="button" data-task-toast="조직도 선택 팝업이 뜹니다."><img src="./resources/Ico-System/app=organization, style=line.svg" alt=""></button>
                           <span class="task-person-pill"><span class="table-avatar violet">윤</span>윤대현 과장(개발팀)</span>
                         </span>
                       </div>
-                      <div class="task-form-row">
+                      <div class="task-form-row" data-task-detail-field="start">
                         <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">시작일</span>
                         <button class="task-value-pill" type="button" aria-expanded="false" data-task-date-toggle="taskStartDatePopover"><span data-task-date-label>2025-12-13</span></button>
                         <div class="task-field-popover task-date-popover" id="taskStartDatePopover">
@@ -2276,7 +2275,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="task-form-row">
+                      <div class="task-form-row" data-task-detail-field="due">
                         <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">완료일</span>
                         <button class="task-value-pill" type="button" aria-expanded="false" data-task-date-toggle="taskEndDatePopover"><span data-task-date-label>2026-03-15</span></button>
                         <div class="task-field-popover task-date-popover" id="taskEndDatePopover">
@@ -2295,7 +2294,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="task-form-row">
+                      <div class="task-form-row" data-task-detail-field="stage">
                         <span class="task-form-label"><img src="./resources/Ico-System/app=progress, style=line.svg" alt="">단계</span>
                         <button class="task-value-pill is-dropdown" type="button" aria-expanded="false" data-task-select-toggle="taskStatusPopover"><span data-task-select-label>요청</span><img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
                         <div class="task-field-popover task-select-popover task-status-popover" id="taskStatusPopover">
@@ -2308,7 +2307,16 @@
                           <button type="button" data-task-select-option="등록 완료">등록 완료</button>
                         </div>
                       </div>
-                      <div class="task-form-row">
+                      <div class="task-form-row" data-task-detail-field="state">
+                        <span class="task-form-label"><img src="./resources/Ico-System/app=check-circle, style=line.svg" alt="">상태</span>
+                        <button class="task-value-pill is-dropdown task-state-value state-progress" type="button" aria-expanded="false" data-task-select-toggle="taskStatePopover" data-task-state-button><span data-task-select-label>진행</span><img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
+                        <div class="task-field-popover task-select-popover task-state-popover" id="taskStatePopover">
+                          <button type="button" data-task-select-option="대기" data-task-state-class="state-wait">대기</button>
+                          <button type="button" data-task-select-option="진행" data-task-state-class="state-progress">진행</button>
+                          <button type="button" data-task-select-option="완료" data-task-state-class="state-done">완료</button>
+                        </div>
+                      </div>
+                      <div class="task-form-row" data-task-detail-field="priority">
                         <span class="task-form-label"><img src="./resources/Ico-System/app=check-circle, style=line.svg" alt="">우선 순위</span>
                         <button class="task-value-pill is-dropdown priority-low" type="button" aria-expanded="false" data-task-select-toggle="taskPriorityPopover" data-task-priority-button><i></i><span data-task-select-label>낮음</span><img src="./resources/Ico-System/app=chevron-down, style=line.svg" alt=""></button>
                         <div class="task-field-popover task-select-popover task-priority-popover" id="taskPriorityPopover">
@@ -2319,11 +2327,11 @@
                           <button type="button" data-task-select-option="매우 높음" data-task-priority-class="priority-very-high"><i></i>매우 높음</button>
                         </div>
                       </div>
-                      <div class="task-form-row">
+                      <div class="task-form-row" data-task-detail-field="modified">
                         <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">수정일</span>
                         <span class="task-value-pill is-readonly">2026-03-18</span>
                       </div>
-                      <div class="task-form-row">
+                      <div class="task-form-row" data-task-detail-field="created">
                         <span class="task-form-label"><img src="./resources/Ico-System/app=calender, style=line.svg" alt="">등록일</span>
                         <span class="task-value-pill is-readonly">2026-01-13</span>
                       </div>

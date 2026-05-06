@@ -168,6 +168,7 @@ document.querySelectorAll(".task-panel-popover button").forEach((button) => {
       } else {
         const label = document.querySelector("[data-task-view-label]");
         if (label) label.textContent = button.dataset.taskViewOption;
+        applyTaskDetailView(button.dataset.taskViewOption);
       }
     } else if (button.dataset.taskToast) {
       showToast(button.dataset.taskToast);
@@ -177,6 +178,33 @@ document.querySelectorAll(".task-panel-popover button").forEach((button) => {
 
   });
 });
+
+const taskDetailViewFieldOrders = {
+  "기본": ["registrar", "assignee", "start", "due", "stage", "priority", "modified", "created"],
+  "필수 항목": ["assignee", "start", "due", "priority"],
+  "전체 항목": ["assignee", "start", "due", "stage", "state", "priority", "modified", "registrar", "created"],
+};
+
+function applyTaskDetailView(viewName) {
+  const grid = document.querySelector(".task-view-body .task-form-grid");
+  if (!grid) return;
+
+  const order = taskDetailViewFieldOrders[viewName] || taskDetailViewFieldOrders["기본"];
+  const fields = new Map(
+    Array.from(grid.querySelectorAll("[data-task-detail-field]")).map((field) => [field.dataset.taskDetailField, field]),
+  );
+
+  fields.forEach((field) => {
+    field.hidden = true;
+  });
+
+  order.forEach((fieldName) => {
+    const field = fields.get(fieldName);
+    if (!field) return;
+    field.hidden = false;
+    grid.append(field);
+  });
+}
 
 document.querySelectorAll("[data-task-date-toggle], [data-task-select-toggle]").forEach((button) => {
   button.addEventListener("click", (event) => {
@@ -215,6 +243,10 @@ document.querySelectorAll("[data-task-select-option]").forEach((button) => {
     if (trigger?.matches("[data-task-priority-button]")) {
       trigger.classList.remove("priority-very-low", "priority-low", "priority-normal", "priority-high", "priority-very-high");
       trigger.classList.add(button.dataset.taskPriorityClass);
+    }
+    if (trigger?.matches("[data-task-state-button]")) {
+      trigger.classList.remove("state-wait", "state-progress", "state-done");
+      trigger.classList.add(button.dataset.taskStateClass);
     }
     closeTaskFieldPopovers();
   });
