@@ -227,7 +227,10 @@ document.querySelectorAll("[data-task-date-value]").forEach((button) => {
   button.addEventListener("click", () => {
     const row = button.closest(".task-form-row");
     const label = row?.querySelector("[data-task-date-label]");
-    if (label) label.textContent = button.dataset.taskDateValue;
+    if (label) {
+      label.textContent = button.dataset.taskDateValue;
+      label.closest(".task-value-pill")?.classList.remove("task-empty-pill");
+    }
 
     button.closest(".task-calendar-grid")?.querySelectorAll("[data-task-date-value]").forEach((item) => {
       item.classList.toggle("is-selected", item === button);
@@ -241,7 +244,10 @@ document.querySelectorAll("[data-task-select-option]").forEach((button) => {
     const row = button.closest(".task-form-row");
     const trigger = row?.querySelector("[data-task-select-toggle]");
     const label = row?.querySelector("[data-task-select-label]");
-    if (label) label.textContent = button.dataset.taskSelectOption;
+    if (label) {
+      label.textContent = button.dataset.taskSelectOption;
+      label.closest(".task-value-pill")?.classList.remove("task-empty-pill");
+    }
 
     if (trigger?.matches("[data-task-priority-button]")) {
       trigger.classList.remove("priority-very-low", "priority-low", "priority-normal", "priority-high", "priority-very-high");
@@ -288,13 +294,16 @@ document.querySelectorAll("[data-task-section-toggle]").forEach((toggle) => {
 });
 
 document.querySelectorAll("[data-task-note-add]").forEach((button) => {
-  button.addEventListener("click", () => {
-    const section = button.closest(".task-note-section");
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const section = button.closest(".task-note-section, .feed-note");
     if (!section) return;
+    const feedCard = section.closest(".feed-card");
+    if (feedCard && !feedCard.classList.contains("is-expanded")) return;
 
-    const textarea = section.querySelector("[data-task-note-content]");
+    const editor = getNoteEditor(section);
     const activeTab = section.querySelector("[data-task-note-tab].is-active");
-    if (activeTab && textarea) activeTab.dataset.noteText = textarea.value;
+    if (activeTab && editor) activeTab.dataset.noteText = getNoteContent(editor);
 
     const tab = document.createElement("button");
     tab.type = "button";
@@ -302,7 +311,7 @@ document.querySelectorAll("[data-task-note-add]").forEach((button) => {
     tab.dataset.noteText = "";
     setTaskNoteTabLabel(tab, getNextTaskNoteLabel(section));
     button.before(tab);
-    bindTaskNoteTab(tab, section, textarea);
+    bindTaskNoteTab(tab, section, editor);
     tab.click();
   });
 });
@@ -316,17 +325,17 @@ const taskNoteTextByTab = {
   "노트02": "추가 노트에는 담당자 검토 의견, 회의 중 결정된 보완 사항, 다음 단계에서 확인할 항목을 정리합니다.",
 };
 
-document.querySelectorAll(".task-note-section").forEach((section) => {
-  const textarea = section.querySelector("[data-task-note-content]");
-  if (!textarea) return;
+document.querySelectorAll(".task-note-section, .feed-note").forEach((section) => {
+  const editor = getNoteEditor(section);
+  if (!editor) return;
 
   section.querySelectorAll("[data-task-note-tab]").forEach((tab) => {
     const label = getTaskNoteTabLabel(tab);
     setTaskNoteTabLabel(tab, label);
     tab.dataset.noteText = tab.classList.contains("is-active")
-      ? textarea.value
+      ? getNoteContent(editor)
       : taskNoteTextByTab[label] || "";
-    bindTaskNoteTab(tab, section, textarea);
+    bindTaskNoteTab(tab, section, editor);
   });
 });
 
@@ -335,8 +344,10 @@ document.querySelectorAll("textarea[data-task-note-content], textarea[data-task-
   resizeTextareaToContent(textarea);
 });
 
-function bindTaskNoteTab(tab, section, textarea) {
+function bindTaskNoteTab(tab, section, editor) {
   tab.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const currentEditor = getNoteEditor(section) || editor;
     if (event.target.closest("[data-task-note-menu-toggle]")) {
       event.stopPropagation();
       toggleTaskNoteMenu(tab);
@@ -345,7 +356,7 @@ function bindTaskNoteTab(tab, section, textarea) {
 
     closeTaskNoteMenu();
     const activeTab = section.querySelector("[data-task-note-tab].is-active");
-    if (activeTab && textarea) activeTab.dataset.noteText = textarea.value;
+    if (activeTab && currentEditor) activeTab.dataset.noteText = getNoteContent(currentEditor);
 
     section.querySelectorAll("[data-task-note-tab]").forEach((item) => {
       const isActive = item === tab;
@@ -354,11 +365,28 @@ function bindTaskNoteTab(tab, section, textarea) {
     });
 
     const label = getTaskNoteTabLabel(tab);
-    textarea.value = Object.prototype.hasOwnProperty.call(tab.dataset, "noteText")
+    const nextText = Object.prototype.hasOwnProperty.call(tab.dataset, "noteText")
       ? tab.dataset.noteText
       : taskNoteTextByTab[label] || "";
-    resizeTextareaToContent(textarea);
+    if (currentEditor) setNoteContent(currentEditor, nextText);
   });
+}
+
+function getNoteEditor(section) {
+  return section.querySelector("[data-task-note-content], [data-task-note-text]");
+}
+
+function getNoteContent(editor) {
+  return editor.matches("textarea") ? editor.value : editor.textContent.trim();
+}
+
+function setNoteContent(editor, text) {
+  if (editor.matches("textarea")) {
+    editor.value = text;
+    resizeTextareaToContent(editor);
+  } else {
+    editor.textContent = text || "내용을 입력하세요.";
+  }
 }
 
 function setTaskNoteTabLabel(tab, label) {
@@ -382,11 +410,12 @@ function getTaskNoteTabLabel(tab) {
 }
 
 function getNextTaskNoteLabel(section) {
-  const maxNumber = Array.from(section.querySelectorAll("[data-task-note-tab]"))
+  const tabs = Array.from(section.querySelectorAll("[data-task-note-tab]"));
+  const maxNumber = tabs
     .map((tab) => getTaskNoteTabLabel(tab).match(/^노트(\d+)$/)?.[1])
     .filter(Boolean)
     .map(Number)
-    .reduce((max, value) => Math.max(max, value), 2);
+    .reduce((max, value) => Math.max(max, value), tabs.length);
   return `노트${String(maxNumber + 1).padStart(2, "0")}`;
 }
 
@@ -409,6 +438,10 @@ function toggleTaskNoteMenu(tab) {
     `;
     document.body.append(menu);
   }
+
+  const isFeedNote = Boolean(tab.closest(".feed-note"));
+  const renameButton = menu.querySelector('[data-task-note-menu-action="rename"]');
+  if (renameButton) renameButton.hidden = isFeedNote;
 
   menu.hidden = false;
   menu.dataset.forTab = getTaskNoteTabLabel(tab);
@@ -442,6 +475,7 @@ document.addEventListener("click", (event) => {
 
   const action = actionButton.dataset.taskNoteMenuAction;
   if (action === "rename") {
+    if (tab.closest(".feed-note")) return;
     startTaskNoteTabRename(tab);
   } else if (action === "move-left") {
     moveTaskNoteTab(tab, -1);
@@ -482,7 +516,7 @@ function startTaskNoteTabRename(tab) {
 }
 
 function moveTaskNoteTab(tab, direction) {
-  const tabs = Array.from(tab.closest(".task-note-tabs").querySelectorAll("[data-task-note-tab]"));
+  const tabs = Array.from(tab.closest(".task-note-tabs, .feed-note-tabs").querySelectorAll("[data-task-note-tab]"));
   const currentIndex = tabs.indexOf(tab);
   const target = tabs[currentIndex + direction];
   if (!target) return;
@@ -495,8 +529,8 @@ function moveTaskNoteTab(tab, direction) {
 }
 
 function deleteTaskNoteTab(tab) {
-  const section = tab.closest(".task-note-section");
-  const textarea = section?.querySelector("[data-task-note-content]");
+  const section = tab.closest(".task-note-section, .feed-note");
+  const editor = section ? getNoteEditor(section) : null;
   const tabs = Array.from(section?.querySelectorAll("[data-task-note-tab]") || []);
   if (tabs.length <= 1) {
     showToast("노트는 최소 1개 이상 필요합니다.");
@@ -508,11 +542,10 @@ function deleteTaskNoteTab(tab) {
   const fallbackTab = tabs[currentIndex + 1] || tabs[currentIndex - 1];
   tab.remove();
 
-  if (isActive && fallbackTab && textarea) {
+  if (isActive && fallbackTab && editor) {
     fallbackTab.classList.add("is-active");
     fallbackTab.setAttribute("aria-selected", "true");
-    textarea.value = fallbackTab.dataset.noteText || taskNoteTextByTab[getTaskNoteTabLabel(fallbackTab)] || "";
-    resizeTextareaToContent(textarea);
+    setNoteContent(editor, fallbackTab.dataset.noteText || taskNoteTextByTab[getTaskNoteTabLabel(fallbackTab)] || "");
   }
 }
 
@@ -631,16 +664,19 @@ document.querySelectorAll("[data-kanban-column-toggle]").forEach((button) => {
   });
 });
 
-document.querySelectorAll(".kanban-card-top button[aria-label='더보기']").forEach((button) => {
+document.querySelectorAll(".kanban-card-top button[aria-label='더보기']").forEach(bindKanbanCardMenuButton);
+
+function bindKanbanCardMenuButton(button) {
   button.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
     showToast("작업 메뉴가 표시됩니다.");
   });
-});
+}
 
 document.querySelectorAll(".kanban-card").forEach(bindKanbanCardDrag);
 document.querySelectorAll(".kanban-card-list").forEach(bindKanbanDropZone);
+document.querySelectorAll(".kanban-column").forEach(initKanbanQuickAdd);
 document.querySelectorAll("[data-gantt-bar]").forEach(bindGanttBar);
 
 function bindKanbanCardDrag(card) {
@@ -678,7 +714,7 @@ function bindKanbanDropZone(list) {
     if (nextCard) {
       list.insertBefore(dragging, nextCard);
     } else {
-      list.appendChild(dragging);
+      list.insertBefore(dragging, list.querySelector(".kanban-quick-add"));
     }
     updateKanbanCardState(dragging, list.closest(".kanban-column"));
   });
@@ -728,6 +764,122 @@ function updateKanbanColumnCounts() {
     if (!badge) return;
     badge.textContent = String(column.querySelectorAll(".kanban-card").length);
   });
+}
+
+function initKanbanQuickAdd(column) {
+  if (column.querySelector(".kanban-quick-add")) return;
+
+  const list = column.querySelector(".kanban-card-list");
+  if (!list) return;
+
+  const quickAdd = document.createElement("div");
+  quickAdd.className = "kanban-quick-add";
+  quickAdd.innerHTML = `
+    <button class="kanban-quick-add-button" type="button">작업 등록</button>
+    <div class="kanban-quick-add-form">
+      <input type="text" aria-label="새 작업 제목" placeholder="작업 제목 입력">
+      <div class="kanban-quick-add-actions">
+        <button class="kanban-quick-add-cancel" type="button">취소</button>
+        <button class="kanban-quick-add-submit" type="button">등록</button>
+      </div>
+    </div>
+  `;
+
+  const openButton = quickAdd.querySelector(".kanban-quick-add-button");
+  const input = quickAdd.querySelector("input");
+  const cancelButton = quickAdd.querySelector(".kanban-quick-add-cancel");
+  const submitButton = quickAdd.querySelector(".kanban-quick-add-submit");
+
+  const openEditor = () => {
+    quickAdd.classList.add("is-editing");
+    window.requestAnimationFrame(() => input.focus());
+  };
+  const closeEditor = () => {
+    quickAdd.classList.remove("is-editing");
+    input.value = "";
+  };
+  const submitTask = () => {
+    const title = input.value.trim();
+    if (!title) {
+      input.focus();
+      return;
+    }
+
+    const card = createKanbanCard(title, column);
+    list.insertBefore(card, quickAdd);
+    bindKanbanCardDrag(card);
+    bindTaskPanelTrigger(card);
+    const menuButton = card.querySelector(".kanban-card-top button[aria-label='더보기']");
+    if (menuButton) bindKanbanCardMenuButton(menuButton);
+    updateKanbanColumnCounts();
+    closeEditor();
+  };
+
+  openButton.addEventListener("click", openEditor);
+  cancelButton.addEventListener("click", closeEditor);
+  submitButton.addEventListener("click", submitTask);
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      submitTask();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      closeEditor();
+      openButton.focus();
+    }
+  });
+
+  list.append(quickAdd);
+}
+
+function createKanbanCard(title, column) {
+  const card = document.createElement("article");
+  card.className = "kanban-card priority-normal";
+  card.tabIndex = 0;
+  card.dataset.openTaskPanel = "";
+
+  const stage = getKanbanColumnStage(column);
+  const today = formatKanbanDate(new Date());
+  card.innerHTML = `
+    <div class="kanban-card-top">
+      <span class="fake-checkbox"></span>
+      <span>${getNextKanbanId()}</span>
+      <b class="${stage.className}">${stage.label}</b>
+      <em><i></i>보통</em>
+      <button type="button" aria-label="더보기"><img src="./resources/Ico-System/app=kebab, style=line.svg" alt=""></button>
+    </div>
+    <h4></h4>
+    <div class="kanban-card-assignee"><small>등록자</small><span><span class="table-avatar navy">김</span>김지은</span></div>
+    <div class="kanban-card-date"><span>등록일</span><time>${today}</time></div>
+  `;
+  card.querySelector("h4").textContent = title;
+  return card;
+}
+
+function getKanbanColumnStage(column) {
+  if (column.classList.contains("progress")) {
+    return { className: "stage-progress", label: "진행" };
+  }
+  if (column.classList.contains("finished")) {
+    return { className: "stage-finished", label: "완료" };
+  }
+  return { className: "stage-waiting", label: "대기" };
+}
+
+function getNextKanbanId() {
+  const maxId = Array.from(document.querySelectorAll(".kanban-card-top span"))
+    .map((span) => span.textContent.trim().match(/^plan-(\d+)$/)?.[1])
+    .filter(Boolean)
+    .map(Number)
+    .reduce((max, value) => Math.max(max, value), 1000);
+  return `plan-${String(maxId + 1).padStart(4, "0")}`;
+}
+
+function formatKanbanDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 
 function bindGanttBar(bar) {
@@ -1050,35 +1202,6 @@ document.querySelectorAll(".filter-field label").forEach((label) => {
 
 document.getElementById("boardFilterOffcanvas")?.addEventListener("click", (event) => {
   if (event.target === event.currentTarget) closeFilterOffcanvas();
-});
-
-document.querySelectorAll("[data-task-note-text]").forEach((note) => {
-  note.addEventListener("click", () => {
-    const feedCard = note.closest(".feed-card");
-    if (feedCard && !feedCard.classList.contains("is-expanded")) return;
-
-    const textarea = document.createElement("textarea");
-    textarea.value = note.textContent.trim();
-    textarea.dataset.taskNoteEditor = "";
-    note.replaceWith(textarea);
-    textarea.focus();
-    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
-    textarea.addEventListener("input", () => resizeTextareaToContent(textarea));
-    resizeTextareaToContent(textarea);
-
-    const save = () => {
-      const paragraph = document.createElement("p");
-      paragraph.dataset.taskNoteText = "";
-      paragraph.textContent = textarea.value.trim() || "내용을 입력하세요.";
-      textarea.replaceWith(paragraph);
-      bindTaskNoteText(paragraph);
-    };
-
-    textarea.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") textarea.blur();
-    });
-    textarea.addEventListener("blur", save, { once: true });
-  });
 });
 
 const dashboardTypeData = {
@@ -1924,35 +2047,6 @@ function bindInlineTitle(button) {
       if (keyEvent.key === "Enter") input.blur();
     });
     input.addEventListener("blur", save, { once: true });
-  });
-}
-
-function bindTaskNoteText(note) {
-  note.addEventListener("click", () => {
-    const feedCard = note.closest(".feed-card");
-    if (feedCard && !feedCard.classList.contains("is-expanded")) return;
-
-    const textarea = document.createElement("textarea");
-    textarea.value = note.textContent.trim();
-    textarea.dataset.taskNoteEditor = "";
-    note.replaceWith(textarea);
-    textarea.focus();
-    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
-    textarea.addEventListener("input", () => resizeTextareaToContent(textarea));
-    resizeTextareaToContent(textarea);
-
-    const save = () => {
-      const paragraph = document.createElement("p");
-      paragraph.dataset.taskNoteText = "";
-      paragraph.textContent = textarea.value.trim() || "내용을 입력하세요.";
-      textarea.replaceWith(paragraph);
-      bindTaskNoteText(paragraph);
-    };
-
-    textarea.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") textarea.blur();
-    });
-    textarea.addEventListener("blur", save, { once: true });
   });
 }
 
