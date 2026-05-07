@@ -268,27 +268,6 @@
                   <button class="lnb-section-head lnb-folder-head" type="button" aria-expanded="true">
                     <span>
                       <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
-                      전략
-                    </span>
-                    <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
-                  </button>
-                  <div class="lnb-section-body">
-                    <button class="lnb-item lnb-child" type="button" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
-                      <span>전략 설계 현황</span>
-                    </button>
-                    <button class="lnb-item lnb-child" type="button" data-route-target="전략 기획 위키">
-                      <span>전략 기획 위키</span>
-                    </button>
-                    <button class="lnb-item lnb-child" type="button" data-route-target="전사 전략 공유 게시판">
-                      <span>전사 전략 공유 게시판</span>
-                    </button>
-                  </div>
-                </section>
-
-                <section class="lnb-section workspace-folder is-open">
-                  <button class="lnb-section-head lnb-folder-head" type="button" aria-expanded="true">
-                    <span>
-                      <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
                       설계
                     </span>
                     <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
@@ -302,6 +281,27 @@
                     </button>
                     <button class="lnb-item lnb-child" type="button" data-route-target="화면설계서 완료 보고">
                       <span>화면설계서 완료 보고</span>
+                    </button>
+                  </div>
+                </section>
+
+                <section class="lnb-section workspace-folder is-open">
+                  <button class="lnb-section-head lnb-folder-head" type="button" aria-expanded="true">
+                    <span>
+                      <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                      전략
+                    </span>
+                    <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
+                  </button>
+                  <div class="lnb-section-body">
+                    <button class="lnb-item lnb-child" type="button" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                      <span>전략 설계 현황</span>
+                    </button>
+                    <button class="lnb-item lnb-child" type="button" data-route-target="전략 기획 위키">
+                      <span>전략 기획 위키</span>
+                    </button>
+                    <button class="lnb-item lnb-child" type="button" data-route-target="전사 전략 공유 게시판">
+                      <span>전사 전략 공유 게시판</span>
                     </button>
                   </div>
                 </section>
@@ -406,19 +406,19 @@
                   <img src="./resources/Ico-System/app=grid-2x2, style=line.svg" alt="">
                   <span>복합 대시보드</span>
                 </button>
+                <button class="lnb-item lnb-folder" type="button" data-route-target="설계 폴더">
+                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
+                  <span>설계</span>
+                </button>
+                <button class="lnb-item lnb-child" type="button" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                  <span>솔루션 설계 관리</span>
+                </button>
                 <button class="lnb-item lnb-folder" type="button" data-route-target="전략 폴더">
                   <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
                   <span>전략</span>
                 </button>
                 <button class="lnb-item lnb-child" type="button" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
                   <span>전략 설계 현황</span>
-                </button>
-                <button class="lnb-item lnb-folder" type="button" data-route-target="설계 폴더">
-                  <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
-                  <span>설계</span>
-                </button>
-                <button class="lnb-item lnb-child" type="button" data-route-target="솔루션 설계 관리 보드">
-                  <span>솔루션 설계 관리</span>
                 </button>
                 <button class="lnb-item lnb-folder" type="button" data-route-target="디자인 폴더">
                   <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
@@ -459,14 +459,18 @@
 
       <main class="prototype-stage" id="stage" tabindex="-1">
         <section class="workspace-home prototype-screen is-active" id="workspaceHomeScreen" aria-labelledby="workspaceHomeTitle">
+          <span class="demo-guide-page-backdrop demo-guide-backdrop-primary" aria-hidden="true"></span>
+          <span class="demo-guide-page-backdrop demo-guide-backdrop-workspace" aria-hidden="true"></span>
+          <span class="demo-guide-page-backdrop demo-guide-backdrop-board" aria-hidden="true"></span>
           <header class="page-header">
             <h1 id="workspaceHomeTitle">워크스페이스 홈</h1>
             <div class="page-actions">
               <button class="icon-button" type="button" aria-label="홈 설정" data-tooltip="홈 설정" data-home-toast="사용자 별로 원하는 목록으로 설정하는 화면이 뜹니다.">
                 <img src="./resources/Ico-System/app=gear, style=line.svg" alt="">
               </button>
-              <button class="icon-button is-primary" type="button" aria-label="새 워크스페이스" data-screen-target="workspaceCreateScreen" data-tooltip="새 워크스페이스" data-tooltip-placement="top">
+              <button class="icon-button is-primary demo-guide-primary" type="button" aria-label="새 워크스페이스" data-screen-target="workspaceCreateScreen" data-tooltip="새 워크스페이스" data-tooltip-placement="top">
                 <img src="./resources/Ico-System/app=plus, style=line.svg" alt="">
+                <span class="demo-guide-callout" aria-hidden="true">새 워크스페이스를 추가해보세요.</span>
               </button>
             </div>
           </header>
@@ -531,7 +535,7 @@
                   </div>
                 </article>
 
-                <article class="workspace-card" tabindex="0" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
+                <article class="workspace-card demo-guide-workspace" tabindex="0" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
                   <img class="card-illust" src="./resources/Img-Folder/48a2b90cd578e366a0a3988e5797323a6700c05f.png" alt="">
                   <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=line.svg" alt="">
                   <span class="chip chip-blue">관리자</span>
@@ -545,6 +549,7 @@
                     </div>
                     <span>김나온 대리 외 2명</span>
                   </div>
+                  <span class="demo-guide-callout" aria-hidden="true">개별 워크스페이스로 이동해보세요.</span>
                 </article>
 
                 <article class="workspace-card" tabindex="0" data-screen-target="workspaceOverviewScreen" data-lnb-target="lnbWorkspacePanel">
@@ -570,7 +575,7 @@
                 <h2 id="recentBoardTitle">최근 방문한 보드</h2>
               </div>
               <div class="board-card-grid">
-                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
+                <article class="board-card demo-guide-outline" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
                   <span class="status-dot dot-yellow"></span>
                   <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
                   <span class="chip chip-blue board-permission">관리자</span>
@@ -582,6 +587,7 @@
                     <span>완료됨 <strong>00건</strong></span>
                     <span>완료율 <strong class="danger">10%</strong></span>
                   </div>
+                  <span class="demo-guide-callout" aria-hidden="true">보드로 이동해보세요.</span>
                 </article>
 
                 <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
@@ -701,6 +707,7 @@
         </section>
 
         <section class="workspace-overview prototype-screen" id="workspaceOverviewScreen" aria-labelledby="workspaceOverviewTitle">
+          <span class="demo-guide-page-backdrop demo-guide-backdrop-overview-board" aria-hidden="true"></span>
           <header class="page-header overview-header">
             <div class="overview-breadcrumb" id="workspaceOverviewTitle">
               <button class="overview-breadcrumb-button" type="button" aria-expanded="false" aria-haspopup="menu" data-overview-menu-toggle>
@@ -816,7 +823,7 @@
                   </div>
                 </article>
 
-                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
+                <article class="board-card demo-guide-outline demo-guide-overview-board" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
                   <span class="status-dot dot-green"></span>
                   <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
                   <span class="chip chip-blue board-permission">관리자</span>
@@ -828,6 +835,7 @@
                     <span>완료 작업 <strong>17건</strong></span>
                     <span>완료율 <strong class="success">99%</strong></span>
                   </div>
+                  <span class="demo-guide-callout" aria-hidden="true">보드로 이동해보세요.</span>
                 </article>
               </div>
             </section>
@@ -915,6 +923,7 @@
         </section>
 
         <section class="board-dashboard-screen prototype-screen" id="boardDashboardScreen" aria-labelledby="boardDashboardTitle">
+          <span class="demo-guide-page-backdrop demo-guide-backdrop-tabs" aria-hidden="true"></span>
           <header class="page-header board-dashboard-header">
             <div class="board-breadcrumb" id="boardDashboardTitle">
               <span>설계</span>
@@ -960,7 +969,7 @@
             </div>
           </header>
 
-          <nav class="board-view-tabs" aria-label="보드 보기 타입">
+          <nav class="board-view-tabs demo-guide-tabs" aria-label="보드 보기 타입">
             <button class="is-active" type="button" role="tab" aria-selected="true" draggable="true" data-tab-drag data-board-view="dashboard">
               <img src="./resources/Ico-System/app=graph, style=line.svg" alt="" data-default-icon="./resources/Ico-System/app=graph, style=line.svg">
               대시보드
@@ -998,6 +1007,7 @@
                 <button type="button" role="menuitem" data-route-target="첨부파일 모아보기 추가">첨부파일 모아보기</button>
               </div>
             </div>
+            <span class="demo-guide-callout" aria-hidden="true">보기 타입 별로 보드를 확인해보세요.</span>
           </nav>
 
           <div class="dashboard-content board-view-panel is-active" data-board-panel="dashboard">
