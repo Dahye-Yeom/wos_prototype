@@ -94,6 +94,9 @@ document.querySelectorAll("[data-screen-target]").forEach((button) => {
   button.addEventListener("click", () => {
     showLnbPanel(button.dataset.lnbTarget);
     showScreen(button.dataset.screenTarget);
+    if (button.dataset.screenTarget === "boardDashboardScreen" && button.dataset.boardDefaultView) {
+      setBoardView(button.dataset.boardDefaultView);
+    }
   });
   button.addEventListener("keydown", (event) => {
     if (button.tagName === "BUTTON") return;
@@ -286,9 +289,283 @@ document.querySelectorAll("[data-task-section-toggle]").forEach((toggle) => {
 
 document.querySelectorAll("[data-task-note-add]").forEach((button) => {
   button.addEventListener("click", () => {
-    showToast(button.dataset.taskToast);
+    const section = button.closest(".task-note-section");
+    if (!section) return;
+
+    const textarea = section.querySelector("[data-task-note-content]");
+    const activeTab = section.querySelector("[data-task-note-tab].is-active");
+    if (activeTab && textarea) activeTab.dataset.noteText = textarea.value;
+
+    const tab = document.createElement("button");
+    tab.type = "button";
+    tab.dataset.taskNoteTab = "";
+    tab.dataset.noteText = "";
+    setTaskNoteTabLabel(tab, getNextTaskNoteLabel(section));
+    button.before(tab);
+    bindTaskNoteTab(tab, section, textarea);
+    tab.click();
   });
 });
+
+document.querySelectorAll("[data-task-panel-title]").forEach(bindTaskPanelTitle);
+
+const taskNoteTextByTab = {
+  "정리 목적": "사용자가 모바일 환경에서 게시판 글을 작성하고 검토 요청을 보내는 흐름을 정리합니다. 첨부 파일, 임시 저장, 알림 수신 상태까지 확인할 수 있도록 주요 예외 케이스를 함께 점검합니다.",
+  "현황 조사": "현재 모바일 게시판 작성 화면에서는 제목, 본문, 첨부 파일 영역이 한 화면 안에서 이어지지만 검토 요청으로 넘어가는 진입점이 명확하지 않습니다. 일부 사용자는 임시 저장 후 다시 작성 화면으로 돌아오는 흐름을 반복하고 있으며, 첨부 파일 업로드 상태와 알림 수신 여부를 확인하는 단계도 분리되어 있습니다.\n\n현황 조사에서는 최근 작성된 게시글, 검토 요청이 반려된 사례, 모바일에서 첨부 파일을 추가한 작업을 중심으로 흐름을 확인합니다. 특히 결재/게시판/알림 모듈 간 이동 시 사용자가 현재 작업 상태를 놓치지 않도록 필요한 안내 문구와 버튼 배치를 함께 검토합니다.",
+  "노트": "",
+  "노트02": "추가 노트에는 담당자 검토 의견, 회의 중 결정된 보완 사항, 다음 단계에서 확인할 항목을 정리합니다.",
+};
+
+document.querySelectorAll(".task-note-section").forEach((section) => {
+  const textarea = section.querySelector("[data-task-note-content]");
+  if (!textarea) return;
+
+  section.querySelectorAll("[data-task-note-tab]").forEach((tab) => {
+    const label = getTaskNoteTabLabel(tab);
+    setTaskNoteTabLabel(tab, label);
+    tab.dataset.noteText = tab.classList.contains("is-active")
+      ? textarea.value
+      : taskNoteTextByTab[label] || "";
+    bindTaskNoteTab(tab, section, textarea);
+  });
+});
+
+document.querySelectorAll("textarea[data-task-note-content], textarea[data-task-note-editor], .task-create-note").forEach((textarea) => {
+  textarea.addEventListener("input", () => resizeTextareaToContent(textarea));
+  resizeTextareaToContent(textarea);
+});
+
+function bindTaskNoteTab(tab, section, textarea) {
+  tab.addEventListener("click", (event) => {
+    if (event.target.closest("[data-task-note-menu-toggle]")) {
+      event.stopPropagation();
+      toggleTaskNoteMenu(tab);
+      return;
+    }
+
+    closeTaskNoteMenu();
+    const activeTab = section.querySelector("[data-task-note-tab].is-active");
+    if (activeTab && textarea) activeTab.dataset.noteText = textarea.value;
+
+    section.querySelectorAll("[data-task-note-tab]").forEach((item) => {
+      const isActive = item === tab;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-selected", String(isActive));
+    });
+
+    const label = getTaskNoteTabLabel(tab);
+    textarea.value = Object.prototype.hasOwnProperty.call(tab.dataset, "noteText")
+      ? tab.dataset.noteText
+      : taskNoteTextByTab[label] || "";
+    resizeTextareaToContent(textarea);
+  });
+}
+
+function setTaskNoteTabLabel(tab, label) {
+  tab.innerHTML = "";
+
+  const labelNode = document.createElement("span");
+  labelNode.className = "task-note-tab-label";
+  labelNode.textContent = label;
+
+  const menuIcon = document.createElement("img");
+  menuIcon.className = "task-note-tab-menu-icon";
+  menuIcon.src = "./resources/Ico-System/app=kebab, style=line.svg";
+  menuIcon.alt = "";
+  menuIcon.dataset.taskNoteMenuToggle = "";
+
+  tab.append(labelNode, menuIcon);
+}
+
+function getTaskNoteTabLabel(tab) {
+  return tab.querySelector(".task-note-tab-label")?.textContent.trim() || tab.textContent.trim();
+}
+
+function getNextTaskNoteLabel(section) {
+  const maxNumber = Array.from(section.querySelectorAll("[data-task-note-tab]"))
+    .map((tab) => getTaskNoteTabLabel(tab).match(/^노트(\d+)$/)?.[1])
+    .filter(Boolean)
+    .map(Number)
+    .reduce((max, value) => Math.max(max, value), 2);
+  return `노트${String(maxNumber + 1).padStart(2, "0")}`;
+}
+
+function toggleTaskNoteMenu(tab) {
+  let menu = document.querySelector("[data-task-note-menu]");
+  const isSameTab = menu?.dataset.forTab === getTaskNoteTabLabel(tab) && !menu.hidden;
+
+  closeTaskNoteMenu();
+  if (isSameTab) return;
+
+  if (!menu) {
+    menu = document.createElement("div");
+    menu.className = "task-note-tab-popover";
+    menu.dataset.taskNoteMenu = "";
+    menu.innerHTML = `
+      <button type="button" data-task-note-menu-action="rename">제목 변경</button>
+      <button type="button" data-task-note-menu-action="move-left">왼쪽 이동</button>
+      <button type="button" data-task-note-menu-action="move-right">오른쪽 이동</button>
+      <button type="button" data-task-note-menu-action="delete">노트 삭제</button>
+    `;
+    document.body.append(menu);
+  }
+
+  menu.hidden = false;
+  menu.dataset.forTab = getTaskNoteTabLabel(tab);
+  menu.currentTab = tab;
+  const rect = tab.getBoundingClientRect();
+  menu.style.left = `${rect.left}px`;
+  menu.style.top = `${rect.bottom + 6}px`;
+}
+
+function closeTaskNoteMenu() {
+  const menu = document.querySelector("[data-task-note-menu]");
+  if (!menu) return;
+  menu.hidden = true;
+  if (menu.currentTab) delete menu.currentTab;
+}
+
+document.addEventListener("click", (event) => {
+  const menu = document.querySelector("[data-task-note-menu]");
+  if (!menu || menu.hidden) return;
+  if (event.target.closest("[data-task-note-menu], [data-task-note-menu-toggle]")) return;
+  closeTaskNoteMenu();
+});
+
+document.addEventListener("click", (event) => {
+  const actionButton = event.target.closest("[data-task-note-menu-action]");
+  if (!actionButton) return;
+
+  const menu = actionButton.closest("[data-task-note-menu]");
+  const tab = menu?.currentTab;
+  if (!tab) return;
+
+  const action = actionButton.dataset.taskNoteMenuAction;
+  if (action === "rename") {
+    startTaskNoteTabRename(tab);
+  } else if (action === "move-left") {
+    moveTaskNoteTab(tab, -1);
+  } else if (action === "move-right") {
+    moveTaskNoteTab(tab, 1);
+  } else if (action === "delete") {
+    deleteTaskNoteTab(tab);
+  }
+
+  closeTaskNoteMenu();
+});
+
+function startTaskNoteTabRename(tab) {
+  const label = tab.querySelector(".task-note-tab-label");
+  if (!label) return;
+
+  label.contentEditable = "true";
+  label.focus();
+  const selection = window.getSelection();
+  const range = document.createRange();
+  range.selectNodeContents(label);
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  const finish = () => {
+    label.contentEditable = "false";
+    label.textContent = label.textContent.trim() || "노트";
+    label.removeEventListener("blur", finish);
+  };
+
+  label.addEventListener("blur", finish);
+  label.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      label.blur();
+    }
+  }, { once: true });
+}
+
+function moveTaskNoteTab(tab, direction) {
+  const tabs = Array.from(tab.closest(".task-note-tabs").querySelectorAll("[data-task-note-tab]"));
+  const currentIndex = tabs.indexOf(tab);
+  const target = tabs[currentIndex + direction];
+  if (!target) return;
+
+  if (direction < 0) {
+    target.before(tab);
+  } else {
+    target.after(tab);
+  }
+}
+
+function deleteTaskNoteTab(tab) {
+  const section = tab.closest(".task-note-section");
+  const textarea = section?.querySelector("[data-task-note-content]");
+  const tabs = Array.from(section?.querySelectorAll("[data-task-note-tab]") || []);
+  if (tabs.length <= 1) {
+    showToast("노트는 최소 1개 이상 필요합니다.");
+    return;
+  }
+
+  const isActive = tab.classList.contains("is-active");
+  const currentIndex = tabs.indexOf(tab);
+  const fallbackTab = tabs[currentIndex + 1] || tabs[currentIndex - 1];
+  tab.remove();
+
+  if (isActive && fallbackTab && textarea) {
+    fallbackTab.classList.add("is-active");
+    fallbackTab.setAttribute("aria-selected", "true");
+    textarea.value = fallbackTab.dataset.noteText || taskNoteTextByTab[getTaskNoteTabLabel(fallbackTab)] || "";
+    resizeTextareaToContent(textarea);
+  }
+}
+
+function bindTaskPanelTitle(title) {
+  const startEdit = () => {
+    const value = title.textContent.trim();
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "task-panel-title-input";
+    input.value = value;
+    input.setAttribute("aria-label", "작업 제목");
+    title.replaceWith(input);
+    input.focus();
+    input.select();
+
+    let isCancelled = false;
+    const save = () => {
+      if (isCancelled) return;
+      const nextTitle = document.createElement("h2");
+      nextTitle.dataset.taskPanelTitle = "";
+      nextTitle.tabIndex = 0;
+      nextTitle.textContent = input.value.trim() || value;
+      input.replaceWith(nextTitle);
+      bindTaskPanelTitle(nextTitle);
+    };
+
+    const cancel = () => {
+      isCancelled = true;
+      const nextTitle = document.createElement("h2");
+      nextTitle.dataset.taskPanelTitle = "";
+      nextTitle.tabIndex = 0;
+      nextTitle.textContent = value;
+      input.replaceWith(nextTitle);
+      bindTaskPanelTitle(nextTitle);
+    };
+
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") input.blur();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        cancel();
+      }
+    });
+    input.addEventListener("blur", save, { once: true });
+  };
+
+  title.addEventListener("click", startEdit);
+  title.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    startEdit();
+  });
+}
 
 document.querySelectorAll("[data-task-action-toast]").forEach((target) => {
   target.addEventListener("click", (event) => {
@@ -786,6 +1063,8 @@ document.querySelectorAll("[data-task-note-text]").forEach((note) => {
     note.replaceWith(textarea);
     textarea.focus();
     textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+    textarea.addEventListener("input", () => resizeTextareaToContent(textarea));
+    resizeTextareaToContent(textarea);
 
     const save = () => {
       const paragraph = document.createElement("p");
@@ -1065,14 +1344,7 @@ document.querySelectorAll("[data-board-view]").forEach((tab) => {
     const isTaskPanelOpen = Boolean(taskPanel && !taskPanel.hidden);
     const currentTaskTitle = taskPanel?.querySelector(".task-view-body h2")?.textContent.trim();
 
-    document.querySelectorAll("[data-board-view]").forEach((item) => {
-      const isActive = item === tab;
-      item.classList.toggle("is-active", isActive);
-      item.setAttribute("aria-selected", String(isActive));
-    });
-    document.querySelectorAll("[data-board-panel]").forEach((panel) => {
-      panel.classList.toggle("is-active", panel.dataset.boardPanel === view);
-    });
+    setBoardView(view);
 
     if (isTaskPanelOpen) {
       screen?.classList.add("has-task-panel");
@@ -1086,6 +1358,17 @@ document.querySelectorAll("[data-board-view]").forEach((tab) => {
     }
   });
 });
+
+function setBoardView(view) {
+  document.querySelectorAll("[data-board-view]").forEach((item) => {
+    const isActive = item.dataset.boardView === view;
+    item.classList.toggle("is-active", isActive);
+    item.setAttribute("aria-selected", String(isActive));
+  });
+  document.querySelectorAll("[data-board-panel]").forEach((panel) => {
+    panel.classList.toggle("is-active", panel.dataset.boardPanel === view);
+  });
+}
 
 document.querySelectorAll("[data-feed-expand]").forEach((button) => {
   button.addEventListener("click", (event) => {
@@ -1162,6 +1445,7 @@ function openTaskPanel(source, screen = source.closest(".board-dashboard-screen,
   const shell = source.closest(".table-view-shell") || screen?.querySelector(".table-view-shell");
   const panel = getTaskPanelForScreen(screen);
   if (!screen || !panel) return;
+  const workspaceScroll = getWorkspaceScreenScrollState(screen);
 
   setTaskPanelExpanded(screen, false);
   panel.classList.remove("is-create");
@@ -1175,6 +1459,26 @@ function openTaskPanel(source, screen = source.closest(".board-dashboard-screen,
   const sourceTitle = getTaskPanelSourceTitle(source);
   const panelTitle = panel.querySelector(".task-view-body h2");
   if (sourceTitle && panelTitle) panelTitle.textContent = sourceTitle;
+  restoreWorkspaceScreenScrollState(workspaceScroll);
+}
+
+function getWorkspaceScreenScrollState(screen) {
+  if (!screen?.matches(".workspace-home, .workspace-overview")) return null;
+
+  const content = screen.querySelector(".home-content, .overview-content");
+  const scroller = screen.classList.contains("has-task-panel") && content ? content : screen;
+  return {
+    content,
+    top: scroller.scrollTop,
+  };
+}
+
+function restoreWorkspaceScreenScrollState(state) {
+  if (!state?.content) return;
+
+  window.requestAnimationFrame(() => {
+    state.content.scrollTop = state.top;
+  });
 }
 
 function getTaskPanelSourceTitle(source) {
@@ -1584,6 +1888,7 @@ document.querySelectorAll(".color-swatch").forEach((swatch) => {
 
 document.querySelectorAll("[data-route-target]").forEach((item) => {
   item.addEventListener("click", () => {
+    if (item.closest("#boardDashboardScreen .dashboard-activity")) return;
     showToast(`${item.dataset.routeTarget} 화면으로 이동`);
   });
   item.addEventListener("keydown", (event) => {
@@ -1633,6 +1938,8 @@ function bindTaskNoteText(note) {
     note.replaceWith(textarea);
     textarea.focus();
     textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+    textarea.addEventListener("input", () => resizeTextareaToContent(textarea));
+    resizeTextareaToContent(textarea);
 
     const save = () => {
       const paragraph = document.createElement("p");
@@ -1647,6 +1954,11 @@ function bindTaskNoteText(note) {
     });
     textarea.addEventListener("blur", save, { once: true });
   });
+}
+
+function resizeTextareaToContent(textarea) {
+  textarea.style.height = "auto";
+  textarea.style.height = `${textarea.scrollHeight}px`;
 }
 
 function moveTableColumn(table, from, to) {

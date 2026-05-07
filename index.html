@@ -273,7 +273,7 @@
                     <img src="./resources/Ico-System/app=chevron-up, style=line.svg" alt="">
                   </button>
                   <div class="lnb-section-body">
-                    <button class="lnb-item lnb-child" type="button" data-route-target="전략 설계 현황 보드">
+                    <button class="lnb-item lnb-child" type="button" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
                       <span>전략 설계 현황</span>
                     </button>
                     <button class="lnb-item lnb-child" type="button" data-route-target="전략 기획 위키">
@@ -410,7 +410,7 @@
                   <img src="./resources/Ico-System/app=folder, style=line.svg" alt="">
                   <span>전략</span>
                 </button>
-                <button class="lnb-item lnb-child" type="button" data-route-target="전략 설계 현황 보드">
+                <button class="lnb-item lnb-child" type="button" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
                   <span>전략 설계 현황</span>
                 </button>
                 <button class="lnb-item lnb-folder" type="button" data-route-target="설계 폴더">
@@ -570,7 +570,7 @@
                 <h2 id="recentBoardTitle">최근 방문한 보드</h2>
               </div>
               <div class="board-card-grid">
-                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
                   <span class="status-dot dot-yellow"></span>
                   <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
                   <span class="chip chip-blue board-permission">관리자</span>
@@ -584,7 +584,7 @@
                   </div>
                 </article>
 
-                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
                   <span class="status-dot dot-blue"></span>
                   <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
                   <span class="chip chip-green board-permission">참여자</span>
@@ -598,7 +598,7 @@
                   </div>
                 </article>
 
-                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
                   <span class="status-dot dot-green"></span>
                   <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
                   <span class="chip chip-blue board-permission">관리자</span>
@@ -788,7 +788,7 @@
                 <h2 id="overviewRecentBoardTitle">최근 방문한 보드</h2>
               </div>
               <div class="board-card-grid overview-board-grid">
-                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
                   <span class="status-dot dot-blue"></span>
                   <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
                   <span class="chip chip-blue board-permission">관리자</span>
@@ -802,7 +802,7 @@
                   </div>
                 </article>
 
-                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
                   <span class="status-dot dot-yellow"></span>
                   <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
                   <span class="chip chip-green board-permission">참여자</span>
@@ -816,7 +816,7 @@
                   </div>
                 </article>
 
-                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel">
+                <article class="board-card" tabindex="0" data-screen-target="boardDashboardScreen" data-lnb-target="lnbWorkspacePanel" data-board-default-view="dashboard">
                   <span class="status-dot dot-green"></span>
                   <img class="bookmark" src="./resources/Ico-System/app=bookmark, style=filled.svg" alt="">
                   <span class="chip chip-blue board-permission">관리자</span>
@@ -2197,12 +2197,12 @@
 
                   <section class="task-note-section" aria-label="작업 설명">
                     <div class="task-note-tabs">
-                      <button class="is-active" type="button">노트</button>
-                      <button type="button">노트02</button>
+                      <button class="is-active" type="button" data-task-note-tab>노트</button>
+                      <button type="button" data-task-note-tab>노트02</button>
                       <button type="button" data-task-note-add data-task-toast="작업 노트를 추가할 수 있습니다.">+ 추가</button>
                     </div>
                     <article class="task-note-card">
-                      <textarea class="task-create-note" placeholder="텍스트를 입력하거나 /를 입력하여 명령을 입력하세요."></textarea>
+                      <textarea class="task-create-note" placeholder="텍스트를 입력하거나 /를 입력하여 명령을 입력하세요." data-task-note-content></textarea>
                     </article>
                   </section>
 
@@ -2235,7 +2235,7 @@
                   </section>
                 </div>
                 <div class="task-panel-body task-view-body" data-view-only>
-                  <h2>게시판 사용자 시나리오</h2>
+                  <h2 data-task-panel-title tabindex="0">게시판 사용자 시나리오</h2>
 
                   <section class="task-info-section" aria-labelledby="taskInfoTitle">
                     <div class="task-section-title" role="button" tabindex="0" aria-expanded="true" data-task-section-toggle>
@@ -2340,12 +2340,12 @@
 
                   <section class="task-note-section" aria-label="작업 설명">
                     <div class="task-note-tabs">
-                      <button class="is-active" type="button">정리 목적</button>
-                      <button type="button">현황 조사</button>
+                      <button class="is-active" type="button" data-task-note-tab>정리 목적</button>
+                      <button type="button" data-task-note-tab>현황 조사</button>
                       <button type="button" data-task-note-add data-task-toast="작업 노트를 추가할 수 있습니다.">+ 추가</button>
                     </div>
                     <article class="task-note-card">
-                      <p data-task-note-text>사용자가 모바일 환경에서 게시판 글을 작성하고 검토 요청을 보내는 흐름을 정리합니다. 첨부 파일, 임시 저장, 알림 수신 상태까지 확인할 수 있도록 주요 예외 케이스를 함께 점검합니다.</p>
+                      <textarea data-task-note-content>사용자가 모바일 환경에서 게시판 글을 작성하고 검토 요청을 보내는 흐름을 정리합니다. 첨부 파일, 임시 저장, 알림 수신 상태까지 확인할 수 있도록 주요 예외 케이스를 함께 점검합니다.</textarea>
                     </article>
                   </section>
 
@@ -2369,6 +2369,7 @@
                         <span role="columnheader">단계</span>
                         <span role="columnheader">우선순위</span>
                         <span role="columnheader">시작일</span>
+                        <span role="columnheader">완료일</span>
                       </div>
                       <div role="row">
                         <span role="cell">선행 작업</span>
@@ -2378,6 +2379,7 @@
                         <span role="cell"><b class="task-state progress">진행</b></span>
                         <span role="cell"><b class="task-priority high"><i></i>높음</b></span>
                         <span role="cell">2025-11-13</span>
+                        <span role="cell">2026-01-20</span>
                       </div>
                       <div role="row">
                         <span role="cell">후속 작업</span>
@@ -2387,6 +2389,7 @@
                         <span role="cell"><b class="task-state done">완료</b></span>
                         <span role="cell"><b class="task-priority normal"><i></i>보통</b></span>
                         <span role="cell">2025-11-13</span>
+                        <span role="cell">2026-03-15</span>
                       </div>
                     </div>
                   </section>

@@ -566,6 +566,7 @@ button {
 
 .workspace-home.has-task-panel,
 .workspace-overview.has-task-panel {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 440px;
   grid-template-rows: auto minmax(0, 1fr);
@@ -573,6 +574,17 @@ button {
   min-height: 0;
   padding-bottom: 0;
   overflow: hidden;
+}
+
+.workspace-home.has-task-panel::before,
+.workspace-overview.has-task-panel::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(100% - 440px - 20px);
+  width: 20px;
+  background: #f4f4f4;
+  content: "";
 }
 
 .workspace-home.has-task-panel .page-header,
@@ -595,6 +607,11 @@ button {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr);
   column-gap: 0;
+}
+
+.workspace-home.has-task-panel.is-task-expanded::before,
+.workspace-overview.has-task-panel.is-task-expanded::before {
+  display: none;
 }
 
 .workspace-home.has-task-panel.is-task-expanded .page-header,
@@ -1150,6 +1167,7 @@ button {
   flex-direction: column;
   gap: 20px;
   padding: 20px 28px 0;
+  overflow-x: auto;
 }
 
 .board-view-panel {
@@ -4213,10 +4231,38 @@ button.table-chip {
 
 .task-panel-body h2 {
   margin: 0;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px 6px;
+  border-radius: 6px;
   color: var(--text);
   font-size: 28px;
   font-weight: 700;
   line-height: 1.36;
+  cursor: text;
+}
+
+.task-panel-body h2[data-task-panel-title]:hover,
+.task-panel-body h2[data-task-panel-title]:focus-visible {
+  background: var(--hover);
+  outline: none;
+}
+
+.task-panel-title-input {
+  width: 100%;
+  min-height: 42px;
+  padding: 4px 6px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--text);
+  font: inherit;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.36;
+}
+
+.task-panel-title-input:focus {
+  outline: none;
 }
 
 .task-panel-body h2 + .task-info-section {
@@ -4398,6 +4444,13 @@ button.task-field-icon:hover {
   min-width: 116px;
   justify-content: space-between;
   padding-right: 6px;
+}
+
+.task-form-row[data-task-detail-field="modified"] .task-value-pill.is-readonly,
+.task-form-row[data-task-detail-field="created"] .task-value-pill.is-readonly {
+  min-width: 0;
+  justify-content: flex-start;
+  padding-right: 8px;
 }
 
 .task-value-pill:not(.is-dropdown):not(.is-readonly)::after {
@@ -4647,11 +4700,28 @@ button.task-field-icon:hover {
   align-items: flex-end;
   gap: 20px;
   height: 40px;
+  overflow-x: auto;
+  overflow-y: hidden;
   border-bottom: 1px solid var(--border);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.22) transparent;
+}
+
+.task-note-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.task-note-tabs::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
 }
 
 .task-note-tabs button {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 4px;
   height: 40px;
   padding: 0;
   border: 0;
@@ -4661,7 +4731,34 @@ button.task-field-icon:hover {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
+  white-space: nowrap;
   cursor: pointer;
+}
+
+.task-note-tabs button[data-task-note-tab] {
+  padding-right: 20px;
+}
+
+.task-note-tab-label[contenteditable="true"] {
+  min-width: 48px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: var(--hover);
+  outline: none;
+}
+
+.task-note-tab-menu-icon {
+  position: absolute;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.task-note-tabs button[data-task-note-tab]:hover .task-note-tab-menu-icon,
+.task-note-tabs button[data-task-note-tab]:focus-visible .task-note-tab-menu-icon {
+  opacity: 1;
 }
 
 .task-note-tabs button.is-active {
@@ -4676,6 +4773,45 @@ button.task-field-icon:hover {
   left: 0;
   height: 2px;
   background: var(--text);
+}
+
+.task-note-tab-popover {
+  position: fixed;
+  z-index: 80;
+  width: 160px;
+  padding: 6px;
+  border: 1px solid #e5e8eb;
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.task-note-tab-popover[hidden] {
+  display: none;
+}
+
+.task-note-tab-popover button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+}
+
+.task-note-tab-popover button:hover,
+.task-note-tab-popover button:focus-visible {
+  background: var(--hover);
+  outline: none;
 }
 
 .task-note-card {
@@ -4702,6 +4838,7 @@ button.task-field-icon:hover {
   display: block;
   width: 100%;
   min-height: 92px;
+  overflow: hidden;
   border: 0;
   padding: 0;
   background: transparent;
@@ -4842,9 +4979,9 @@ button.task-field-icon:hover {
 
 .task-related-table div {
   display: grid;
-  grid-template-columns: 76px 88px 240px 76px 70px 80px 88px;
+  grid-template-columns: 76px 88px 240px 76px 70px 80px 88px 88px;
   align-items: center;
-  min-width: 718px;
+  min-width: 806px;
   gap: 0;
   min-height: 40px;
   border-bottom: 1px solid var(--border-strong);
@@ -5222,15 +5359,18 @@ button.task-field-icon:hover {
   grid-template-columns: minmax(0, 2fr) minmax(280px, 0.9fr);
   gap: 28px;
   align-items: start;
+  width: 100%;
+  min-width: 980px;
 }
 
 .dashboard-main {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
   gap: 16px;
 }
 
 .dashboard-card {
+  min-width: 320px;
   min-height: 205px;
   padding: 22px;
   border-radius: 12px;
@@ -5918,7 +6058,7 @@ button.task-field-icon:hover {
 
 .workspace-card-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
 }
 
@@ -6046,6 +6186,10 @@ button.task-field-icon:hover {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+}
+
+.workspace-home.has-task-panel .board-card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .board-card {
@@ -7024,10 +7168,6 @@ button.task-field-icon:hover {
 }
 
 @media (max-width: 1440px) {
-  .workspace-card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .board-card-grid {
     grid-template-columns: 1fr;
   }
