@@ -678,6 +678,7 @@ document.querySelectorAll(".kanban-card").forEach(bindKanbanCardDrag);
 document.querySelectorAll(".kanban-card-list").forEach(bindKanbanDropZone);
 document.querySelectorAll(".kanban-column").forEach(initKanbanQuickAdd);
 document.querySelectorAll("[data-gantt-bar]").forEach(bindGanttBar);
+document.querySelectorAll("[data-gantt-splitter]").forEach(bindGanttSplitter);
 
 function bindKanbanCardDrag(card) {
   card.draggable = true;
@@ -1093,6 +1094,72 @@ function createGanttDependencyPath(from, to) {
   const elbowGap = 18;
   const midX = Math.max(from.x + elbowGap, (from.x + to.x) / 2);
   return `M ${from.x} ${from.y} L ${midX} ${from.y} L ${midX} ${to.y} L ${to.x} ${to.y}`;
+}
+
+function bindGanttSplitter(splitter) {
+  const shell = splitter.closest(".gantt-grid-shell");
+  if (!shell) return;
+
+  const setWidth = (width) => {
+    const { min, max } = getGanttSplitterLimits(shell);
+    const nextWidth = clamp(width, min, max);
+    shell.style.setProperty("--gantt-left-width", `${nextWidth}px`);
+    splitter.setAttribute("aria-valuemin", String(min));
+    splitter.setAttribute("aria-valuemax", String(max));
+    splitter.setAttribute("aria-valuenow", String(Math.round(nextWidth)));
+    shell.querySelectorAll(".gantt-bars").forEach(renderGanttDependencies);
+  };
+
+  splitter.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+    const shellRect = shell.getBoundingClientRect();
+    shell.classList.add("is-resizing");
+    splitter.setPointerCapture?.(event.pointerId);
+
+    const resize = (moveEvent) => {
+      setWidth(moveEvent.clientX - shellRect.left);
+    };
+
+    const stopResize = (upEvent) => {
+      shell.classList.remove("is-resizing");
+      splitter.releasePointerCapture?.(upEvent.pointerId);
+      document.removeEventListener("pointermove", resize);
+      document.removeEventListener("pointerup", stopResize);
+    };
+
+    document.addEventListener("pointermove", resize);
+    document.addEventListener("pointerup", stopResize);
+  });
+
+  splitter.addEventListener("keydown", (event) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+
+    const { min, max } = getGanttSplitterLimits(shell);
+    const current = getGanttLeftWidth(shell);
+    const step = event.shiftKey ? 48 : 16;
+    if (event.key === "ArrowLeft") setWidth(current - step);
+    if (event.key === "ArrowRight") setWidth(current + step);
+    if (event.key === "Home") setWidth(min);
+    if (event.key === "End") setWidth(max);
+  });
+
+  setWidth(getGanttLeftWidth(shell));
+}
+
+function getGanttLeftWidth(shell) {
+  const value = parseFloat(shell.style.getPropertyValue("--gantt-left-width"));
+  if (!Number.isNaN(value)) return value;
+
+  const paneWidth = shell.querySelector(".gantt-left-pane")?.getBoundingClientRect().width;
+  return paneWidth || 620;
+}
+
+function getGanttSplitterLimits(shell) {
+  const shellWidth = shell.getBoundingClientRect().width;
+  const min = 360;
+  const max = Math.max(min, Math.min(780, shellWidth - 360));
+  return { min, max };
 }
 
 function getGanttNumber(element, propertyName, fallback) {
@@ -1733,11 +1800,11 @@ function openCreateTaskPanel(trigger) {
   screen.querySelectorAll("[data-open-task-panel].is-selected").forEach((item) => {
     item.classList.remove("is-selected");
   });
-  setTaskPanelExpanded(screen, false);
   shell?.classList.add("has-task-panel");
   screen.classList.add("has-task-panel");
   panel.classList.add("is-create");
   panel.hidden = false;
+  setTaskPanelExpanded(screen, true);
 
   const infoSection = panel.querySelector(".task-create-body .task-info-section");
   const infoToggle = infoSection?.querySelector("[data-task-section-toggle]");
@@ -1839,6 +1906,14 @@ document.querySelectorAll("[data-table-scroll]").forEach((scrollArea) => {
 });
 
 document.querySelectorAll("[data-gantt-horizontal-scroll]").forEach((scrollArea) => {
+  scrollArea.addEventListener("wheel", (event) => {
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+    event.preventDefault();
+    scrollArea.scrollLeft += event.deltaY;
+  }, { passive: false });
+});
+
+document.querySelectorAll(".task-related-table").forEach((scrollArea) => {
   scrollArea.addEventListener("wheel", (event) => {
     if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
     event.preventDefault();
@@ -2098,10 +2173,13 @@ function addTableRow(trigger) {
     input.type = "text";
     input.placeholder = "작업 제목 입력";
     input.setAttribute("aria-label", "작업 제목");
+    input.dataset.newRowTitleInput = "";
     titleCell.append(spacer, input);
     bindNewRowTitleInput(input);
     window.requestAnimationFrame(() => input.focus());
   }
+
+  resetNewTableRowCells(nextRow);
 
   addRow.parentElement.insertBefore(nextRow, addRow);
   bindTaskPanelTrigger(nextRow);
@@ -2109,18 +2187,63 @@ function addTableRow(trigger) {
   nextRow.querySelectorAll("[data-inline-title]").forEach(bindInlineTitle);
 }
 
+function resetNewTableRowCells(row) {
+  const today = getTodayDateString();
+  const cells = row.children;
+
+  if (cells[3]) {
+    cells[3].innerHTML = '<button class="person-cell table-empty-cell" type="button" data-cell-menu="assignee" aria-label="담당자 선택"></button>';
+  }
+  if (cells[4]) {
+    cells[4].innerHTML = '<button class="table-chip table-empty-cell" type="button" data-cell-menu="stage" aria-label="단계 선택"></button>';
+  }
+  if (cells[5]) {
+    cells[5].innerHTML = '<button class="table-chip table-empty-cell" type="button" data-cell-menu="state" aria-label="상태 선택"></button>';
+  }
+  if (cells[6]) {
+    cells[6].innerHTML = '<button class="table-chip table-empty-cell" type="button" data-cell-menu="priority" aria-label="우선순위 선택"></button>';
+  }
+  if (cells[7]) {
+    cells[7].innerHTML = '<button class="table-date-button table-empty-cell" type="button" data-cell-menu="date" aria-label="시작일 선택"></button>';
+  }
+  if (cells[8]) {
+    cells[8].innerHTML = '<button class="table-date-button table-empty-cell" type="button" data-cell-menu="date" aria-label="완료일 선택"></button>';
+  }
+
+  if (cells[9]) {
+    cells[9].innerHTML = '<span class="person-cell is-readonly"><span class="table-avatar navy">김</span>김지은</span>';
+  }
+  if (cells[10]) cells[10].textContent = today;
+  if (cells[11]) cells[11].textContent = today;
+}
+
+function getTodayDateString() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 function bindNewRowTitleInput(input) {
   input.addEventListener("click", (event) => event.stopPropagation());
   input.addEventListener("keydown", (event) => {
     event.stopPropagation();
-    if (event.key === "Enter" || event.key === "Escape") {
+    if (event.key === "Enter") {
       event.preventDefault();
+      input.blur();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      input.value = "";
       input.blur();
     }
   });
   input.addEventListener("blur", () => {
     const value = input.value.trim();
-    if (!value) return;
+    if (!value) {
+      input.closest("tr")?.remove();
+      return;
+    }
 
     const button = document.createElement("button");
     button.type = "button";
@@ -2155,6 +2278,7 @@ function renderTableCellMenu(menu, target) {
       option.innerHTML = `<span class="table-avatar ${avatarClass}">${name.slice(0, 1)}</span><span>${name}</span>`;
       option.addEventListener("click", () => {
         target.innerHTML = `<span class="table-avatar ${avatarClass}">${name.slice(0, 1)}</span>${name}`;
+        target.classList.remove("table-empty-cell");
         menu.hidden = true;
       });
       menu.append(option);
@@ -2243,6 +2367,7 @@ function createDateMenu(target, menu) {
     if (day === "27" && index > 20) button.classList.add("is-selected");
     button.addEventListener("click", () => {
       target.textContent = `2026-01-${day.padStart(2, "0")}`;
+      target.classList.remove("table-empty-cell");
       menu.hidden = true;
     });
     grid.append(button);

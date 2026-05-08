@@ -1639,6 +1639,22 @@ button {
   text-align: left;
 }
 
+.board-table td > .table-empty-cell {
+  width: 100%;
+  min-height: 24px;
+}
+
+.board-table td > .table-empty-cell:hover,
+.board-table td > .table-empty-cell:focus-visible {
+  background: var(--hover);
+  outline: none;
+}
+
+.board-table td > .table-chip.table-empty-cell {
+  justify-content: flex-start;
+  background: transparent;
+}
+
 .title-cell {
   width: 100%;
 }
@@ -2710,7 +2726,7 @@ button.table-chip {
 
 .gantt-grid-shell {
   display: grid;
-  grid-template-columns: 620px minmax(0, 1fr);
+  grid-template-columns: var(--gantt-left-width, 620px) 2px minmax(0, 1fr);
   flex: 1 1 auto;
   min-height: 0;
   margin: 0 18px 18px;
@@ -2721,10 +2737,8 @@ button.table-chip {
 
 .gantt-left-pane {
   z-index: 3;
-  width: 620px;
-  min-width: 620px;
+  min-width: 0;
   min-height: 0;
-  border-right: 1px solid #e6e6e6;
   background: var(--white);
   overflow-x: hidden;
   overflow-y: hidden;
@@ -2733,8 +2747,60 @@ button.table-chip {
 .gantt-left-head,
 .gantt-left-row {
   display: grid;
-  grid-template-columns: 90px minmax(0, 1fr) 72px 120px;
+  grid-template-columns: 90fr minmax(0, 338fr) 72fr 120fr;
   align-items: center;
+}
+
+.gantt-splitter {
+  position: relative;
+  z-index: 4;
+  width: 2px;
+  min-width: 2px;
+  padding: 0;
+  border: 0;
+  background: #e6e6e6;
+  cursor: col-resize;
+}
+
+.gantt-splitter::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 12px;
+  transform: translateX(-50%);
+  content: "";
+}
+
+.gantt-splitter::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 44px;
+  border-radius: 999px;
+  background: #c4c4c4;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 120ms ease, background 120ms ease;
+  content: "";
+}
+
+.gantt-splitter:hover::before,
+.gantt-splitter:focus-visible::before,
+.gantt-grid-shell.is-resizing .gantt-splitter::before {
+  background: var(--accent);
+  opacity: 1;
+}
+
+.gantt-splitter:focus-visible {
+  outline: none;
+}
+
+.gantt-grid-shell.is-resizing,
+.gantt-grid-shell.is-resizing * {
+  cursor: col-resize;
+  user-select: none;
 }
 
 .gantt-left-head {
@@ -3388,7 +3454,6 @@ button.table-chip {
 .feed-note-tabs button[data-task-note-tab] {
   min-width: 0;
   max-width: 180px;
-  padding-right: 24px;
 }
 
 .feed-note-tabs button.is-active {
@@ -3401,19 +3466,14 @@ button.table-chip {
   height: 20px;
 }
 
-.feed-note-tabs .task-note-tab-menu-icon {
-  right: 6px;
-}
-
 .feed-note-tabs .task-note-tab-label {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.feed-note-tabs button[data-task-note-tab]:hover .task-note-tab-menu-icon,
-.feed-note-tabs button[data-task-note-tab]:focus-visible .task-note-tab-menu-icon {
-  opacity: 1;
+.feed-note-tabs .task-note-tab-menu-icon {
+  display: none;
 }
 
 .feed-note p,
@@ -3853,6 +3913,7 @@ button.table-chip {
   min-width: 0;
   height: 100%;
   min-height: 0;
+  border-radius: 16px;
   background: var(--white);
   overflow: hidden;
   overscroll-behavior: contain;
@@ -3876,6 +3937,7 @@ button.table-chip {
 
 .task-detail-panel.is-create .task-panel-icon-button[aria-label="활동"],
 .task-detail-panel.is-create .task-panel-icon-button[aria-label="더보기"],
+.task-detail-panel.is-create .task-panel-expand-button,
 .task-detail-panel.is-create .task-panel-view-select {
   display: none;
 }
@@ -4129,12 +4191,14 @@ button.table-chip {
 .workspace-home.has-task-panel .task-detail-panel,
 .workspace-overview.has-task-panel .task-detail-panel {
   position: relative;
+  z-index: 1;
   grid-column: 2;
   grid-row: 1 / 4;
   display: flex;
   height: 100%;
   max-height: calc(100vh - 40px);
   border-radius: 16px;
+  box-shadow: -20px 0 0 #f4f4f4;
 }
 
 .workspace-home.has-task-panel .task-detail-panel,
@@ -4145,12 +4209,14 @@ button.table-chip {
 .board-dashboard-screen.has-task-panel.is-task-expanded .task-detail-panel {
   grid-column: 1;
   grid-row: 1;
+  box-shadow: none;
 }
 
 .workspace-home.has-task-panel.is-task-expanded .task-detail-panel,
 .workspace-overview.has-task-panel.is-task-expanded .task-detail-panel {
   grid-column: 1;
   grid-row: 1;
+  box-shadow: none;
 }
 
 .board-dashboard-screen.has-task-panel.is-task-expanded .task-panel-body,
@@ -4178,6 +4244,7 @@ button.table-chip {
   min-height: 56px;
   padding: 12px 22px 8px 28px;
   border-bottom: 1px solid var(--border);
+  border-radius: 16px 16px 0 0;
   background: var(--white);
   z-index: 2;
 }
@@ -4391,6 +4458,7 @@ button.table-chip {
   flex: 1 1 auto;
   min-height: 0;
   padding: 20px 22px 48px;
+  border-radius: 0 0 16px 16px;
   overflow-y: auto;
 }
 
@@ -4862,9 +4930,9 @@ button.task-field-icon:hover {
 
 .task-note-tabs {
   display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  height: 40px;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
   overflow-x: auto;
   overflow-y: hidden;
   border-bottom: 1px solid var(--border);
@@ -4885,15 +4953,17 @@ button.task-field-icon:hover {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
   gap: 4px;
-  height: 40px;
-  padding: 0;
+  height: 28px;
+  padding: 0 10px;
   border: 0;
+  border-radius: 999px;
   background: transparent;
-  color: var(--text-subtle);
+  color: var(--text);
   font-family: inherit;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1.5;
   white-space: nowrap;
@@ -4901,7 +4971,21 @@ button.task-field-icon:hover {
 }
 
 .task-note-tabs button[data-task-note-tab] {
-  padding-right: 20px;
+  min-width: 0;
+  max-width: 180px;
+  padding-right: 24px;
+}
+
+.task-note-tabs button:not(.is-active):hover,
+.task-note-tabs button:not(.is-active):focus-visible {
+  background: var(--hover);
+  outline: none;
+}
+
+.task-note-tabs .task-note-tab-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .task-note-tab-label[contenteditable="true"] {
@@ -4914,7 +4998,7 @@ button.task-field-icon:hover {
 
 .task-note-tab-menu-icon {
   position: absolute;
-  right: 0;
+  right: 6px;
   width: 16px;
   height: 16px;
   opacity: 0;
@@ -4927,17 +5011,8 @@ button.task-field-icon:hover {
 }
 
 .task-note-tabs button.is-active {
-  color: var(--text);
-}
-
-.task-note-tabs button.is-active::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-  height: 2px;
-  background: var(--text);
+  background: #3b3e47;
+  color: var(--white);
 }
 
 .task-note-tab-popover {
@@ -5170,14 +5245,9 @@ button.task-field-icon:hover {
   min-width: 0;
   height: 100%;
   padding: 4px;
-  border-right: 1px solid var(--border);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.task-related-table div > span:last-child {
-  border-right: 0;
 }
 
 .task-related-title {
