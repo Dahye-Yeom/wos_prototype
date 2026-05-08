@@ -4226,6 +4226,23 @@ button.table-chip {
   padding-left: 48px;
 }
 
+.board-dashboard-screen.has-task-panel.is-task-expanded .task-detail-panel.is-create .task-create-body,
+.workspace-home.has-task-panel.is-task-expanded .task-detail-panel.is-create .task-create-body,
+.workspace-overview.has-task-panel.is-task-expanded .task-detail-panel.is-create .task-create-body {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: max(48px, calc((100% - 960px) / 2));
+  padding-left: max(48px, calc((100% - 960px) / 2));
+}
+
+.board-dashboard-screen.has-task-panel.is-task-expanded .task-detail-panel:not(.is-create) .task-view-body,
+.workspace-home.has-task-panel.is-task-expanded .task-detail-panel:not(.is-create) .task-view-body,
+.workspace-overview.has-task-panel.is-task-expanded .task-detail-panel:not(.is-create) .task-view-body {
+  padding-right: max(48px, calc((100% - 960px) / 2));
+  padding-left: max(48px, calc((100% - 960px) / 2));
+}
+
 .task-panel-body::-webkit-scrollbar {
   width: 8px;
 }
@@ -6615,18 +6632,19 @@ button.task-field-icon:hover {
   width: 16px;
   height: 16px;
   border-radius: 50%;
+  background: var(--board-chart-color);
 }
 
 .dot-yellow {
-  background: #ffcc00;
+  background: var(--board-chart-color, #ffd400);
 }
 
 .dot-blue {
-  background: #0078ff;
+  background: var(--board-chart-color, #0078ff);
 }
 
 .dot-green {
-  background: #64bd00;
+  background: var(--board-chart-color, #99c300);
 }
 
 .donut {
@@ -6665,6 +6683,11 @@ button.task-field-icon:hover {
 .board-metrics strong {
   color: var(--text);
   font-size: 16px;
+}
+
+#workspaceHomeScreen .board-card .board-metrics span:last-child strong,
+#workspaceOverviewScreen .board-card .board-metrics span:last-child strong {
+  color: var(--board-chart-color);
 }
 
 .board-metrics .danger {
